@@ -3,7 +3,10 @@
     <div id="wrapper">
       <div class="image">
         <div class="text1 animate__animated animate__fadeInDown animates">
-          <img src="@/assets/images/icons/WhiteGDJicon.png" />
+          <img
+            class="imageStyle"
+            src="@/assets/images/icons/WhiteGDJicon.png"
+          />
           Get Dream Job
         </div>
         <div class="text2 animate__animated animate__fadeInDown animates">
@@ -30,7 +33,9 @@ export default {
 }
 #wrapper {
   background-image: url('../../../assets/images/loginPage/login-image.png');
-  height: 820px;
+  height: 920px;
+  background-size: cover;
+  object-position: 45%;
   overflow: hidden;
   color: #ffffff;
 }
@@ -43,7 +48,7 @@ export default {
 .text1 {
   padding-top: 50px;
   padding-left: 50px;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
@@ -52,12 +57,12 @@ export default {
   width: 30px;
 }
 .text2 {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 44px;
   line-height: 70px;
   padding: 70px;
-  padding-top: 190px;
+  margin-top: 200px;
 }
 @media (max-width: 1050px) {
   .text2 {
@@ -73,7 +78,14 @@ export default {
     background-size: cover;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 576px) {
+  #wrapper {
+    background-image: none;
+    height: 0px;
+  }
+  .image {
+    background: none;
+  }
   #main {
     padding: 5px;
     padding-top: 20px;
