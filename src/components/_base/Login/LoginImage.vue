@@ -56,6 +56,12 @@ export default {
   padding: 70px;
   padding-top: 190px;
 }
+@media (max-width: 1050px) {
+  .text2 {
+    font-size: 37px;
+    line-height: 50px;
+  }
+}
 @media (max-width: 1000px) {
   .text2 {
     color: transparent;

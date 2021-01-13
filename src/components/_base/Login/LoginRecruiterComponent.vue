@@ -15,7 +15,7 @@
           <div>
             <b-form-input
               class="input"
-              type="text"
+              type="email"
               placeholder="Masukan alamat email"
             ></b-form-input>
           </div>
@@ -25,7 +25,7 @@
           <div>
             <b-form-input
               class="input"
-              type="text"
+              type="password"
               placeholder="Masukan kata sandi"
             ></b-form-input>
           </div>

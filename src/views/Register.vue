@@ -30,5 +30,8 @@ export default {
   .RegisterImage {
     position: absolute;
   }
+  .register {
+    background-color: white;
+  }
 }
 </style>

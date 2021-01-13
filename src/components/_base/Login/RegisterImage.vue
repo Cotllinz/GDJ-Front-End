@@ -56,20 +56,35 @@ export default {
   padding: 70px;
   padding-top: 190px;
 }
+@media (max-width: 1050px) {
+  .text2 {
+    font-size: 37px;
+    line-height: 50px;
+  }
+}
 @media (max-width: 1000px) {
   .text2 {
     color: transparent;
   }
 
   #wrapper {
-    height: 950px;
+    height: 1080px;
     background-size: cover;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 655px) {
   #main {
     padding: 5px;
     padding-top: 20px;
+  }
+}
+@media (max-width: 395px) {
+  #main {
+    padding: 5px;
+    padding-top: 20px;
+  }
+  #wrapper {
+    height: 1150px;
   }
 }
 </style>
