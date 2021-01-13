@@ -1,5 +1,24 @@
 <template>
-  <h1>NAVBAR</h1>
+  <div>
+    <b-container>
+      <b-navbar toggleable="lg">
+        <b-navbar-brand
+          ><router-link tag="a" to="/"
+            >Get Dreams Job</router-link
+          ></b-navbar-brand
+        >
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto">
+            <button class="btn_signin" type="button">Masuk</button>
+            <button class="btn_signup" type="button">Daftar</button>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </b-container>
+  </div>
 </template>
 
 <script>
