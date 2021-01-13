@@ -3,8 +3,12 @@
     <div class="register_bg">
       <b-container fluid>
         <b-row class="d-flex align-items-lg-center">
-          <b-col class="RegisterImage"><RegisterImage /></b-col>
-          <b-col><RegisterComponent /></b-col>
+          <b-col class="RegisterImage">
+            <RegisterImage />
+          </b-col>
+          <b-col>
+            <RegisterComponent />
+          </b-col>
         </b-row>
       </b-container>
     </div>

@@ -64,6 +64,17 @@ export default {
   padding: 70px;
   margin-top: 200px;
 }
+@media (max-width: 1366px) {
+  .text2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 70px;
+    padding: 70px;
+    margin-top: 50px;
+  }
+}
+
 @media (max-width: 1050px) {
   .text2 {
     font-size: 37px;

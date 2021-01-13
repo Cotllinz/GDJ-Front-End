@@ -101,7 +101,14 @@ export default {
   color: gray;
   font-family: 'Poppins', sans-serif;
 }
-
+a.bottoms {
+  color: #eca923;
+  text-decoration: none;
+}
+a.bottoms:hover {
+  color: #fcaa07;
+  text-decoration: none;
+}
 .input {
   height: 50px;
   border-radius: 7px;
@@ -149,7 +156,7 @@ input::-webkit-inner-spin-button {
     color: white;
   }
   .bottoms {
-    color: yellow;
+    color: #eca923;
   }
 }
 @media (max-width: 576px) {

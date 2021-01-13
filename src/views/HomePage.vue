@@ -1,84 +1,97 @@
 <template>
-  <div class="HomePage fontstyle" style="background-color: #F6F7F8">
-    <div class="top">
-      <b-container><h3>Top Jobs</h3></b-container>
-    </div>
-    <b-container>
-      <div class="search-menu">
-        <b-input-group
-          class="shadow"
-          style="border-radius:10px;background-color:white"
-        >
-          <b-form-input class="input" autocomplete="off"></b-form-input>
-          <template #append>
-            <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
-              <b-dropdown-item>Action C</b-dropdown-item>
-              <b-dropdown-item>Action D</b-dropdown-item>
-            </b-dropdown>
-            <b-button text="Button" class="btn-search">Search</b-button>
-          </template>
-        </b-input-group>
+  <div class="HomePages">
+    <Navbar />
+    <div class="HomePage fontstyle" style="background-color: #F6F7F8">
+      <div class="top">
+        <b-container><h3>Top Jobs</h3></b-container>
       </div>
-      <b-row>
-        <b-col
-          xs="12"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="4"
-          xl="3"
-          v-for="(item, index) in card"
-          :key="index"
-        >
-          <b-card class="home-card">
-            <div
-              class="d-flex flex-lg-column align-items-center align-items-lg-start"
-            >
-              <div class="clearfix">
-                <b-img
-                  left
-                  :src="require('../assets/img/photo.png')"
-                  rounded
-                  alt="Photo"
-                  class="card-img"
-                ></b-img>
-              </div>
-              <div id="info" class="ml-3 ml-lg-0">
-                <h5>Louis Tomlinson</h5>
-                <b-card-text style="color: #DBDBDD">
-                  Web Developer <br />
-                  Lorem Ipsum
-                </b-card-text>
-                <div class="d-none d-lg-block">
-                  <b-button size="sm" class="skill">PHP</b-button>
-                  <b-button size="sm" class="skill">Javascript</b-button>
+      <b-container>
+        <div class="search-menu">
+          <b-input-group
+            class="shadow"
+            style="border-radius:10px;background-color:white"
+          >
+            <b-form-input class="input" autocomplete="off"></b-form-input>
+            <template #append>
+              <b-dropdown
+                text="Kategori"
+                variant="outline-none"
+                class="btn-sort"
+              >
+                <b-dropdown-item>Action C</b-dropdown-item>
+                <b-dropdown-item>Action D</b-dropdown-item>
+              </b-dropdown>
+              <b-button text="Button" class="btn-search">Search</b-button>
+            </template>
+          </b-input-group>
+        </div>
+        <b-row>
+          <b-col
+            xs="12"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="4"
+            xl="3"
+            v-for="(item, index) in card"
+            :key="index"
+          >
+            <b-card class="home-card">
+              <div
+                class="d-flex flex-lg-column align-items-center align-items-lg-start"
+              >
+                <div class="clearfix">
+                  <b-img
+                    left
+                    :src="require('../assets/img/photo.png')"
+                    rounded
+                    alt="Photo"
+                    class="card-img"
+                  ></b-img>
+                </div>
+                <div id="info" class="ml-3 ml-lg-0">
+                  <h5>Louis Tomlinson</h5>
+                  <b-card-text style="color: #DBDBDD">
+                    Web Developer <br />
+                    Lorem Ipsum
+                  </b-card-text>
+                  <div class="d-none d-lg-block">
+                    <b-button size="sm" class="skill">PHP</b-button>
+                    <b-button size="sm" class="skill">Javascript</b-button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="d-block d-lg-none">
-              <b-button size="sm" class="skill">PHP</b-button>
-              <b-button size="sm" class="skill">Javascript</b-button>
-            </div>
-          </b-card>
-        </b-col>
-      </b-row>
-      <div class="overflow-auto" style="padding-top:30px;padding-bottom:30px">
-        <b-pagination
-          align="center"
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
-        ></b-pagination>
-      </div>
-    </b-container>
+              <div class="d-block d-lg-none">
+                <b-button size="sm" class="skill">PHP</b-button>
+                <b-button size="sm" class="skill">Javascript</b-button>
+              </div>
+            </b-card>
+          </b-col>
+        </b-row>
+        <div class="overflow-auto" style="padding-top:30px;padding-bottom:30px">
+          <b-pagination
+            align="center"
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            aria-controls="my-table"
+          ></b-pagination>
+        </div>
+      </b-container>
+    </div>
+    <Footer />
   </div>
 </template>
 <script>
 //import
+import Navbar from '../components/NavigationBar'
+import Footer from '../components/Footer'
 export default {
   name: 'HomePage',
-  components: {},
+  components: {
+    Navbar,
+    Footer
+  },
   data() {
     return {
       perPage: 3,

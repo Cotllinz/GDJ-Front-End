@@ -95,6 +95,17 @@ export default {
     height: 1150px;
   }
 } */
+@media (max-width: 1280px) {
+  .text2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 70px;
+    padding: 70px;
+    margin-top: 50px;
+  }
+}
+
 @media (max-width: 576px) {
   #wrapper {
     background-image: none;

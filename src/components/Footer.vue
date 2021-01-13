@@ -1,5 +1,5 @@
 <template>
-  <footer class="mb-2 border-top">
+  <footer class="border-top">
     <b-container>
       <b-row>
         <b-col lg="12">
