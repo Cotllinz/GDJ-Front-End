@@ -21,10 +21,22 @@
 
         <b-col>
           <div class="d-flex bd-highlight flex-column flex-lg-row">
-            <div class="p-2 mt-lg-2 flex-grow-1 footer_descBottom bd-highlight">
+            <div
+              class="p-2 mt-lg-2 order-lg-1 order-2 flex-grow-1 footer_descBottom bd-highlight"
+            >
               <p>2021 GetDreamJob. All right reserved</p>
             </div>
-            <div class="mobile_footer">
+            <div
+              class="p-2 bd-highlight order-lg-2 d-none d-lg-block footer_descBottom mt-lg-2"
+            >
+              <a href="tel:+62898928XXX">Telepon</a>
+            </div>
+            <div
+              class="p-2 bd-highlight order-lg-3  d-none d-lg-block  ml-lg-5 footer_descBottom mt-lg-2"
+            >
+              <a href="mailto: teamGDJ@example.com">Email</a>
+            </div>
+            <div class="mobile_footer order-1  d-lg-none">
               <div class="p-2 bd-highlight footer_descBottom mt-lg-2">
                 <a href="tel:+62898928XXX">Telepon</a>
               </div>
@@ -84,8 +96,10 @@ footer {
   }
   .footer_descBottom p {
     margin: 0;
+    padding-bottom: 12px;
   }
   .mobile_footer {
+    padding: 0;
     display: flex;
   }
 }
