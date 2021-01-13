@@ -3,7 +3,7 @@
     <div id="wrapper">
       <div class="image">
         <div class="text1">
-          <img src="@/assets/logo.png" />
+          <img src="@/assets/images/loginPage/logo.png" />
           Get Dream Job
         </div>
         <div class="text2">
@@ -26,7 +26,7 @@ export default {
   padding-top: 35px;
 }
 #wrapper {
-  background-image: url('../../../assets/login-image.png');
+  background-image: url('../../../assets/images/loginPage/login-image.png');
   height: 820px;
   overflow: hidden;
   color: #ffffff;
