@@ -2,7 +2,7 @@
   <div class="login">
     <b-container fluid>
       <b-row>
-        <b-col><LoginImage /></b-col>
+        <b-col class="loginImage"><LoginImage /></b-col>
         <b-col><LoginComponent /></b-col>
       </b-row>
     </b-container>
@@ -26,5 +26,10 @@ export default {
 <style scoped>
 .login {
   background-color: rgb(250, 245, 245);
+}
+@media (max-width: 1000px) {
+  .loginImage {
+    position: absolute;
+  }
 }
 </style>

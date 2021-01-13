@@ -40,7 +40,9 @@
         <button>Masuk</button>
         <p>
           Anda belum punya akun?
-          <router-link to="/register"> Daftar disini</router-link>
+          <router-link to="/register" class="bottoms">
+            Daftar disini</router-link
+          >
         </p>
       </div>
     </div>
@@ -89,5 +91,33 @@ export default {
 }
 .bottom p {
   margin-top: 15px;
+}
+@media (max-width: 1000px) {
+  .wrapper {
+    margin-left: 90px;
+    color: white;
+  }
+  .email,
+  .sandi,
+  .forget {
+    color: white;
+  }
+  .bottoms {
+    color: yellow;
+  }
+}
+@media (max-width: 500px) {
+  .wrapper {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  .text h1 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .text p {
+    font-size: 16px;
+    line-height: 18px;
+  }
 }
 </style>

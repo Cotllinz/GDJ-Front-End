@@ -53,4 +53,15 @@ export default {
   padding: 70px;
   padding-top: 190px;
 }
+@media (max-width: 1000px) {
+  .text2 {
+    color: transparent;
+  }
+}
+@media (max-width: 500px) {
+  #main {
+    padding: 5px;
+    padding-top: 20px;
+  }
+}
 </style>
