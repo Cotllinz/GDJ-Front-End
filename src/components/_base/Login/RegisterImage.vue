@@ -2,11 +2,11 @@
   <div id="main">
     <div id="wrapper">
       <div class="image">
-        <div class="text1">
+        <div class="text1 animate__animated animate__fadeInDown animates">
           <img src="@/assets/images/icons/WhiteGDJicon.png" />
           Get Dream Job
         </div>
-        <div class="text2">
+        <div class="text2 animate__animated animate__fadeInDown animates">
           Temukan developer berbakat & terbaik di berbagai bidang keahlian
         </div>
       </div>
@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style scoped>
+.animates {
+  --animate-duration: 2s;
+}
 #main {
   padding: 50px;
   padding-top: 35px;
