@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
+import HomegPage from '../views/HomePage.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import LoginRecruiter from '../views/LoginRecruiter.vue'
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage
+  },
+  {
+    path: '/home',
+    name: 'HomegPage',
+    component: HomegPage
   },
   {
     path: '/Login',

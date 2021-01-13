@@ -49,13 +49,13 @@ export default {
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
         if (res.result.value === true && res.getSign === 'Login') {
-          console.log('LoginPekerja')
+          this.route.push('/Login')
         } else if (res.result.value === false && res.getSign === 'Login') {
-          console.log('LoginPerekrut')
+          this.route.push('/Login-recruiter')
         } else if (res.result.value === true && res.getSign === 'SignUp') {
-          console.log('RegisterPekerja')
+          this.route.push('/register')
         } else if (res.result.value === false && res.getSign === 'SignUp') {
-          console.log('RegisterPerekrut')
+          this.route.push('/register-recruiter')
         }
       })
     }
