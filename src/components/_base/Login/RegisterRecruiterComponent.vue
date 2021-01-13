@@ -2,13 +2,13 @@
   <div>
     <div class="wrapper">
       <div class="text">
-        <h1>Hello, Dream Job Seekers</h1>
+        <h1>Hello, Talent Recruiters</h1>
         <p>
-          Don't have any account yet? Register here and let's find your dream
-          job, as we always connects the jobseeker with the hiring company of
-          their dream jobs!
+          Don't have any account yet? Register here and find the best talent for
+          your company , as we always connects with the most skillfull talent.
         </p>
       </div>
+
       <div class="form">
         <div class="email">
           Nama
@@ -25,8 +25,28 @@
           <div>
             <b-form-input
               class="input"
-              type="text"
+              type="email"
               placeholder="Masukan alamat email"
+            ></b-form-input>
+          </div>
+        </div>
+        <div class="inputForm">
+          Nama Perusahaan
+          <div>
+            <b-form-input
+              class="input"
+              type="text"
+              placeholder="Masukan nama perusahaan"
+            ></b-form-input>
+          </div>
+        </div>
+        <div class="inputForm">
+          Jabatan
+          <div>
+            <b-form-input
+              class="input"
+              type="text"
+              placeholder="Posisi di perusahaan anda"
             ></b-form-input>
           </div>
         </div>
@@ -65,7 +85,9 @@
         <button>Daftar</button>
         <p>
           Anda sudah punya akun?
-          <router-link to="/login" class="bottoms"> Masuk disini</router-link>
+          <router-link to="/login-recruiter" class="bottoms">
+            Masuk disini</router-link
+          >
         </p>
       </div>
     </div>
@@ -89,7 +111,7 @@ export default {
   color: gray;
 }
 .inputForm {
-  margin-top: 40px;
+  margin-top: 30px;
   color: gray;
 }
 
@@ -136,7 +158,7 @@ input::-webkit-inner-spin-button {
     color: yellow;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 655px) {
   .wrapper {
     margin-right: 30px;
     margin-left: 30px;
