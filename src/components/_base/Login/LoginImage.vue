@@ -3,7 +3,7 @@
     <div id="wrapper">
       <div class="image">
         <div class="text1">
-          <img src="@/assets/images/loginPage/logo.png" />
+          <img src="@/assets/images/icons/WhiteGDJicon.png" />
           Get Dream Job
         </div>
         <div class="text2">
@@ -44,6 +44,9 @@ export default {
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+}
+.text1 img {
+  width: 30px;
 }
 .text2 {
   font-family: sans-serif;
