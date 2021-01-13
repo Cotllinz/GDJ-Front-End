@@ -64,12 +64,6 @@ export default {
   padding: 70px;
   margin-top: 200px;
 }
-/* @media (max-width: 1050px) {
-  .text2 {
-    font-size: 37px;
-    line-height: 50px;
-  }
-} */
 @media (max-width: 1050px) {
   .text2 {
     font-size: 37px;

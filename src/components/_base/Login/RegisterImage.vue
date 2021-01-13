@@ -30,7 +30,9 @@ export default {
 }
 #wrapper {
   background-image: url('../../../assets/images/loginPage/login-image.png');
-  height: 820px;
+  height: 920px;
+  background-size: cover;
+  object-position: 45%;
   overflow: hidden;
   color: #ffffff;
 }
@@ -41,6 +43,7 @@ export default {
   z-index: 2;
 }
 .text1 {
+  font-family: 'Poppins', sans-serif;
   padding-top: 50px;
   padding-left: 50px;
   font-family: sans-serif;
@@ -52,14 +55,15 @@ export default {
   width: 30px;
 }
 .text2 {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 44px;
   line-height: 70px;
   padding: 70px;
-  padding-top: 190px;
+  margin-top: 200px;
 }
-@media (max-width: 1050px) {
+
+/* @media (max-width: 1050px) {
   .text2 {
     font-size: 37px;
     line-height: 50px;
@@ -74,13 +78,14 @@ export default {
     height: 1080px;
     background-size: cover;
   }
-}
-@media (max-width: 655px) {
+} */
+/* @media (max-width: 655px) {
   #main {
     padding: 5px;
     padding-top: 20px;
   }
 }
+
 @media (max-width: 395px) {
   #main {
     padding: 5px;
@@ -88,6 +93,19 @@ export default {
   }
   #wrapper {
     height: 1150px;
+  }
+} */
+@media (max-width: 576px) {
+  #wrapper {
+    background-image: none;
+    height: 0px;
+  }
+  .image {
+    background: none;
+  }
+  #main {
+    padding: 5px;
+    padding-top: 20px;
   }
 }
 </style>
