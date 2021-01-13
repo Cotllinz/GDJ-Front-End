@@ -5,10 +5,15 @@
         class="animate__animated animate__fadeInDown animates"
         toggleable="lg"
       >
-        <b-navbar-brand
-          ><router-link class="title_navbar" tag="a" to="/"
-            >Get Dream Job</router-link
-          ></b-navbar-brand
+        <b-navbar-brand class="shadow_title"
+          ><router-link class="title_navbar" tag="a" to="/">
+            <img
+              class="logos"
+              src="../assets/images/icons/Purple GDJ icon.png"
+              alt="logo"
+            />
+            G<span>et</span>D<span>ream</span>J<span>ob</span>
+          </router-link></b-navbar-brand
         >
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
@@ -62,10 +67,20 @@ export default {
 <style scoped>
 .title_navbar {
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 25px;
   text-decoration: none;
   color: #5e50a1;
 }
+.title_navbar span {
+  font-size: 20px;
+  font-weight: 500;
+}
+.logos {
+  width: 50px;
+  object-fit: contain;
+}
+
 .btn_signin,
 .btn_signup {
   outline: none;
