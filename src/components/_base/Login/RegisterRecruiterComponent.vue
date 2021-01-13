@@ -131,6 +131,21 @@ export default {
   color: white;
   font-weight: 700;
 }
+/* @media (max-width: 1000px) {
+  .wrapper {
+    margin-top: 50px;
+    margin-left: 90px;
+    color: white;
+  }
+  .email,
+  .inputForm,
+  .forget {
+    color: white;
+  }
+  .bottoms {
+    color: yellow;
+  }
+} */
 .bottom p {
   margin-top: 15px;
   margin-bottom: 100px;

@@ -89,7 +89,20 @@ export default {
 .bottom {
   text-align: center;
 }
-
+/* @media (max-width: 1000px) {
+  .wrapper {
+    margin-left: 90px;
+    color: white;
+  }
+  .email,
+  .sandi,
+  .forget {
+    color: white;
+  }
+  .bottoms {
+    color: yellow;
+  }
+} */
 .bottom button {
   width: 100%;
   height: 50px;
