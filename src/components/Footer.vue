@@ -7,7 +7,7 @@
             <div class="footer_logos">
               <img
                 class="logos"
-                src="../assets/images/icons/White GDJ icon.png"
+                src="../assets/images/icons/WhiteGDJicon.png"
                 alt="logo"
               />
               G<span>et</span>D<span>ream</span>J<span>ob</span>
