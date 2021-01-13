@@ -57,7 +57,9 @@ export default {
   .text2 {
     color: transparent;
   }
+
   #wrapper {
+    height: 950px;
     background-size: cover;
   }
 }
