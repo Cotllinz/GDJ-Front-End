@@ -5,10 +5,10 @@
       <div class="page">
         <b-container>
           <b-row>
-            <b-col sm="12" md="4" lg="4">
+            <b-col class="cards" sm="12" md="12" lg="4">
               <Profile />
             </b-col>
-            <b-col sm="12" md="8" lg="8">
+            <b-col sm="12" md="12" lg="8">
               <FormInput />
             </b-col>
           </b-row>
@@ -45,6 +45,9 @@ export default {
   background: #f5f4f4;
   padding: 40px 0px 80px 0px;
 }
+.cards {
+  padding: 0;
+}
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
 }
@@ -55,7 +58,12 @@ export default {
   margin-top: 30px;
 }
 .navbars {
-  box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);
+  box-shadow: 0px 2px 60px rgba(66, 66, 66, 0.432);
   margin-bottom: 30px;
+}
+@media (max-width: 576px) {
+  .cards {
+    padding: 15px;
+  }
 }
 </style>

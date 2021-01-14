@@ -5,7 +5,6 @@
         <div class="images d-flex justify-content-center">
           <b-img
             rounded="circle"
-            fluid
             :src="require('../../../assets/img/photo.png')"
             alt="Image"
             class="profile-img"
@@ -31,11 +30,11 @@
         </div>
         <div class="skills">
           <h4 style="font-weight:600; margin-top:30px;">Skill</h4>
-          <b-button class="skill" size="sm">Phyton</b-button>
-          <b-button class="skill" size="sm">Laravel</b-button>
-          <b-button class="skill" size="sm">Golang</b-button>
-          <b-button class="skill" size="sm">PHP</b-button>
-          <b-button class="skill" size="sm">Cotlin</b-button>
+          <button class="skill py-1">Phyton</button>
+          <button class="skill py-1">Laravel</button>
+          <button class="skill py-1">Golang</button>
+          <button class="skill py-1">PHP</button>
+          <button class="skill py-1">Cotlin</button>
         </div>
       </b-card>
     </div>
@@ -75,10 +74,15 @@ export default {
   text-align: center;
   color: white;
   font-weight: bold;
+  border-radius: 5px;
+  font-size: 12px;
   padding-left: 20px;
+  cursor: unset;
   padding-right: 20px;
+  outline: none;
   margin: 10px 10px 10px 0px;
 }
+
 .text-icon {
   display: inline-flex;
   align-items: center;

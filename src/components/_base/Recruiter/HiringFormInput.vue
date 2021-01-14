@@ -2,15 +2,14 @@
   <div class="wrapper">
     <div class="detail">
       <h1>Hubungi Lous Tomlinson</h1>
-      <p style="margin-top: 30px">
+      <p class="mt-lg-4 mt-3">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit In euismod ipsum
         et dui rhoncus auctor. In euismod ipsum et dui rhoncus auctor.
       </p>
     </div>
     <div class="form">
-      <div class="inputTitle" style="margin-top: 50px">
+      <div class="inputTitle mt-5">
         Tujuan tentang pesan ini
-        <label for="tujuan">Example select</label>
         <select class="form-control" id="tujuan">
           <option>Projek</option>
           <option>Full Time</option>
@@ -51,13 +50,13 @@
       <div class="inputTitle">
         Deskripsi
         <div>
-          <textarea
-            style="width: 100%"
-            class="input"
-            type="textarea"
-            placeholder=" Deskripsikan/jelaskan lebih detail  "
-            rows="6"
-          ></textarea>
+          <b-form-textarea
+            id="textarea"
+            placeholder="Deskripsikan/jelaskan lebih detail "
+            rows="8"
+            max-rows="8"
+            no-resize
+          ></b-form-textarea>
         </div>
       </div>
       <button class="buttonHire">Hire</button>
@@ -67,23 +66,44 @@
 
 <style scoped>
 .wrapper {
-  padding: 45px;
-  padding-bottom: 10px;
-  padding-top: 25px;
+  padding: 10px 45px;
 }
 .inputTitle {
   color: #9ea0a5;
   margin-top: 20px;
+}
+.form {
+  font-family: 'Poppins', sans-serif;
+}
+select {
+  padding-left: 7px;
+}
+input.input,
+select {
+  margin-top: 5px;
+  height: 45px;
 }
 .buttonHire {
   width: 100%;
   height: 60px;
   margin-top: 20px;
   border-radius: 10px;
-  background-color: orange;
+  background-color: rgb(243, 171, 39);
   color: white;
+  border: none;
+  outline: none;
 }
-@media screen and (max-width: 767px) {
+.buttonHire:hover {
+  background-color: rgb(255, 166, 1);
+}
+.detail h1 {
+  font-weight: 700;
+  font-size: 36px;
+}
+textarea {
+  margin-top: 5px;
+}
+@media screen and (max-width: 1000px) {
   .wrapper {
     padding: 30px;
     margin-top: 65px;

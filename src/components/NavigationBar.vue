@@ -40,7 +40,9 @@
           </b-navbar-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav v-if="status === 1" class="ml-auto">
-            <div class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4">
+            <div
+              class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
+            >
               <div class="mr-lg-4 position-relative">
                 <img
                   class="pr-lg-3"
