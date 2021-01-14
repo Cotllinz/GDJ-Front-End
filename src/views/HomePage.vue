@@ -3,7 +3,9 @@
     <Navbar />
     <div class="HomePage fontstyle" style="background-color: #F6F7F8">
       <div class="top">
-        <b-container><h3>Top Jobs</h3></b-container>
+        <b-container>
+          <h3>Top Jobs</h3>
+        </b-container>
       </div>
       <b-container>
         <SearchSort />
