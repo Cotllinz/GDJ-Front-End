@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrapper">
+    <div v-if="rule == 1" class="wrapper">
       <div class="text">
         <img
           class="mt-3 imageStyle d-block d-md-none"
@@ -27,43 +27,90 @@
       <div class="bottom">
         <button @click="confirm">Send password reset email</button>
       </div>
-      <b-modal
-        ref="my-modal"
-        hide-footer
-        title="Request to Reset Your Account Password"
-      >
-        <div class="d-block text-center">
-          <h2 class="titleModel">
-            <img
-              class="logoModal"
-              src="@/assets/images/icons/Purple GDJ icon.png"
-            />
-            Get Dream Job
-          </h2>
-          <br />
-          <img src="@/assets/images/icons/lock.png" />
-          <br />
-          <br />
-          <h3>
-            Check your email. We sent you the link to reset your password.
-          </h3>
-          <br />
-        </div>
-        <b-button
-          class="modalButton"
-          variant="outline-warning"
-          block
-          @click="hideModal"
-          >Ok</b-button
-        >
-      </b-modal>
     </div>
+    <div v-if="rule == 2" class="wrapper">
+      <div class="text">
+        <img
+          class="mt-3 imageStyle d-block d-md-none"
+          src="@/assets/images/icons/WhiteGDJicon.png"
+        />
+        <h1>Reset password</h1>
+        <p>
+          You need to change your password to activate your account
+        </p>
+      </div>
+      <div class="form">
+        <div class="email">
+          New Password
+          <div>
+            <b-form-input
+              class="input"
+              type="password"
+              placeholder="Masukan kata sandi"
+            ></b-form-input>
+          </div>
+        </div>
+        <div class="email">
+          Confirmation new password
+          <div>
+            <b-form-input
+              class="input"
+              type="password"
+              placeholder="Masukan konfirmasi kata sandi"
+            ></b-form-input>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <button @click="confirm">Reset Password</button>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <button @click="rules(1)">rule 1</button>
+      <button @click="rules(2)">rule: 2</button>
+      <button @click="rules(3)">rule 3</button>
+    </div>
+    <b-modal
+      ref="my-modal"
+      hide-footer
+      title="Request to Reset Your Account Password"
+    >
+      <div class="d-block text-center">
+        <h2 class="titleModel">
+          <img
+            class="logoModal"
+            src="@/assets/images/icons/Purple GDJ icon.png"
+          />
+          Get Dream Job
+        </h2>
+        <br />
+        <img src="@/assets/images/icons/lock.png" />
+        <br />
+        <br />
+        <h3>
+          Check your email. We sent you the link to reset your password.
+        </h3>
+        <br />
+      </div>
+      <b-button
+        class="modalButton"
+        variant="outline-warning"
+        block
+        @click="hideModal"
+        >Ok</b-button
+      >
+    </b-modal>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ForgotComponent',
+  data() {
+    return {
+      rule: 1
+    }
+  },
   methods: {
     confirm() {
       this.showModal()
@@ -73,6 +120,9 @@ export default {
     },
     hideModal() {
       this.$refs['my-modal'].hide()
+    },
+    rules(param) {
+      return (this.rule = param)
     }
   }
 }
