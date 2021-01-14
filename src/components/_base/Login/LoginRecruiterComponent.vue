@@ -129,7 +129,23 @@ a.bottoms:hover {
   color: #fcaa07;
   text-decoration: none;
 }
-
+@media (max-width: 1000px) {
+  .wrapper {
+    padding: 120px;
+    padding-top: 200px;
+    color: white;
+  }
+  .sandi,
+  .email,
+  .forget {
+    color: white;
+  }
+}
+@media screen and (max-width: 770px) and (min-width: 577px) {
+  .text img {
+    width: 10px;
+  }
+}
 @media (max-width: 576px) {
   .imageStyle {
     width: 100px;
@@ -138,7 +154,8 @@ a.bottoms:hover {
     margin: 0 auto;
   }
   .wrapper {
-    padding-right: 0;
+    padding: 0px;
+    padding-right: 15px;
   }
   .text h1 {
     font-size: 35px;

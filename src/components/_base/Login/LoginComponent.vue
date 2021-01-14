@@ -131,7 +131,7 @@ a.bottoms:hover {
 }
 @media screen and (max-width: 770px) and (min-width: 577px) {
   .text img {
-    width: 10px;
+    width: 0px;
   }
 }
 @media (max-width: 576px) {
