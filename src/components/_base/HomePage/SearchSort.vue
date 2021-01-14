@@ -1,0 +1,61 @@
+<template>
+  <div class="search fontstyle">
+    <div class="search-menu">
+      <b-input-group
+        class="shadow"
+        style="border-radius:10px;background-color:white"
+      >
+        <b-form-input class="input" autocomplete="off"></b-form-input>
+        <template #append>
+          <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
+            <b-dropdown-item>Action C</b-dropdown-item>
+            <b-dropdown-item>Action D</b-dropdown-item>
+          </b-dropdown>
+          <b-button text="Button" class="btn-search">Search</b-button>
+        </template>
+      </b-input-group>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'SearchSort'
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+.fontstyle {
+  font-family: 'Open Sans', sans-serif;
+}
+.shadow {
+  -webkit-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
+  -moz-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
+  box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
+}
+.input {
+  border: none;
+  padding: 25px 20px 27px 20px;
+  border-radius: 10px;
+}
+.input:focus {
+  box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0);
+  border-color: #7d4f2a;
+}
+.btn-search {
+  background-color: #5f52a0;
+  padding: 10px 25px 10px 25px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+}
+.btn-sort {
+  margin: 5px;
+  border: none;
+  border-left: 1px solid #d2d2d2;
+}
+.search-menu {
+  margin: 30px 0px 30px 0px;
+}
+</style>
