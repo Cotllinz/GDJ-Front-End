@@ -25,15 +25,56 @@
         </div>
       </div>
       <div class="bottom">
-        <button>Send password reset email</button>
+        <button @click="confirm">Send password reset email</button>
       </div>
+      <b-modal
+        ref="my-modal"
+        hide-footer
+        title="Request to Reset Your Account Password"
+      >
+        <div class="d-block text-center">
+          <h2 class="titleModel">
+            <img
+              class="logoModal"
+              src="@/assets/images/icons/Purple GDJ icon.png"
+            />
+            Get Dream Job
+          </h2>
+          <br />
+          <img src="@/assets/images/icons/lock.png" />
+          <br />
+          <br />
+          <h3>
+            Check your email. We sent you the link to reset your password.
+          </h3>
+          <br />
+        </div>
+        <b-button
+          class="modalButton"
+          variant="outline-warning"
+          block
+          @click="hideModal"
+          >Ok</b-button
+        >
+      </b-modal>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginComponent'
+  name: 'ForgotComponent',
+  methods: {
+    confirm() {
+      this.showModal()
+    },
+    showModal() {
+      this.$refs['my-modal'].show()
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    }
+  }
 }
 </script>
 
@@ -69,7 +110,9 @@ export default {
 .bottom {
   text-align: center;
 }
-
+.logoModal {
+  width: 30px;
+}
 .bottom button {
   width: 100%;
   height: 50px;
