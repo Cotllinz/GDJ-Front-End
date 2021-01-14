@@ -63,7 +63,7 @@ export default {
   margin-top: 200px;
 }
 
-/* @media (max-width: 1050px) {
+@media (max-width: 1050px) {
   .text2 {
     font-size: 37px;
     line-height: 50px;
@@ -75,11 +75,22 @@ export default {
   }
 
   #wrapper {
-    height: 1080px;
+    height: 1250px;
     background-size: cover;
   }
-} */
-/* @media (max-width: 655px) {
+}
+@media (max-width: 775px) {
+  #wrapper {
+    height: 1300px;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 655px) {
+  #wrapper {
+    height: 1380px;
+    background-size: cover;
+  }
   #main {
     padding: 5px;
     padding-top: 20px;
@@ -94,7 +105,7 @@ export default {
   #wrapper {
     height: 1150px;
   }
-} */
+}
 @media (max-width: 1280px) {
   .text2 {
     font-family: 'Poppins', sans-serif;

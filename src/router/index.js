@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import LoginRecruiter from '../views/LoginRecruiter.vue'
 import RegisterRecruiter from '../views/RegisterRecruiter.vue'
 import Profile from '../views/Profile.vue'
+import Forgot from '../views/ForgotPassword.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/Login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/forgot',
+    name: 'Forgot',
+    component: Forgot
   },
   {
     path: '/register',
