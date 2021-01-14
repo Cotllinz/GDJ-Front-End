@@ -74,11 +74,16 @@ export default {
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
 }
-
 .home-card {
   border-radius: 8px;
   border: none;
   margin: 15px 0px 10px 0px;
+  cursor: pointer;
+}
+.home-card:hover {
+  -webkit-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
+  -moz-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
+  box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
 }
 .card-img {
   width: 90px;
