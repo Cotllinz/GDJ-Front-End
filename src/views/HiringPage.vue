@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="profiles fontstyle">
-      <Navbar />
+      <Navbar class="navbars" />
       <div class="page">
         <b-container>
           <b-row>
@@ -56,27 +56,8 @@ export default {
   padding: 10px;
   margin-top: 30px;
 }
-.title-button {
-  font-weight: 700;
-  font-size: 22px;
-  padding-bottom: 10px;
-  border-bottom: 3px solid #5e50a1;
-  line-height: 28px;
-  margin-right: 30px;
-  cursor: pointer;
-}
-.title-button:hover {
-  color: #5e50a1;
-  border-bottom: 3px solid #d2d2d2;
-}
-@media only screen and (max-width: 600px) {
-  .title-button {
-    font-size: 14px;
-    line-height: 20px;
-    border-bottom: 2px solid #5e50a1;
-  }
-  .title-button:hover {
-    border-bottom: 2px solid #d2d2d2;
-  }
+.navbars {
+  box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);
+  margin-bottom: 30px;
 }
 </style>

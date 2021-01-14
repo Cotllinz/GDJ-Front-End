@@ -49,7 +49,7 @@ export default {
   border-radius: 8px;
   border: none;
   padding: 10px;
-  margin-top: 30px;
+  box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);
 }
 .btnstyle {
   background-color: #5e50a1;
