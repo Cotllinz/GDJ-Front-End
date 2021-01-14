@@ -62,7 +62,56 @@
         </div>
       </div>
       <div class="bottom">
-        <button @click="confirm">Reset Password</button>
+        <button @click="confirmReset">Reset Password</button>
+      </div>
+    </div>
+    <div v-if="rule == 3" class="wrapper">
+      <div class="text">
+        <img
+          class="mt-3 imageStyle d-block d-md-none"
+          src="@/assets/images/icons/WhiteGDJicon.png"
+        />
+        <h1>Please login with your account</h1>
+        <p>
+          We have change your password into the new password which you just
+          changed. Please login using that password information.
+        </p>
+      </div>
+      <div class="form">
+        <div class="email">
+          Email
+          <div>
+            <b-form-input
+              class="input"
+              type="email"
+              placeholder="Masukan alamat email"
+            ></b-form-input>
+          </div>
+        </div>
+        <div class="sandi">
+          Password
+          <div>
+            <b-form-input
+              class="input"
+              type="password"
+              placeholder="Masukan kata sandi"
+            ></b-form-input>
+          </div>
+          <div class="forget">
+            <router-link to="/forgot" class="forget">
+              Lupa kata sandi?
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <button>Masuk</button>
+        <p>
+          Anda belum punya akun?
+          <router-link to="/register" tag="a" class="bottoms">
+            Daftar disini</router-link
+          >
+        </p>
       </div>
     </div>
     <div style="text-align: center">
@@ -114,6 +163,14 @@ export default {
   methods: {
     confirm() {
       this.showModal()
+    },
+    confirmReset() {
+      this.$swal(
+        'Password has been reset!',
+        'Now you can go to login page',
+        'success'
+      )
+      this.rules(3)
     },
     showModal() {
       this.$refs['my-modal'].show()
