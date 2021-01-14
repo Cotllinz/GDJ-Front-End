@@ -169,17 +169,29 @@ input::-webkit-inner-spin-button {
 }
 @media (max-width: 1000px) {
   .wrapper {
-    margin-top: 50px;
-    margin-left: 90px;
+    padding: 120px;
+    padding-top: 200px;
+    padding-right: 40px;
     color: white;
   }
-  .email,
   .inputForm,
+  .email,
   .forget {
     color: white;
   }
-  .bottoms {
-    color: yellow;
+}
+@media screen and (max-width: 770px) and (min-width: 577px) {
+  .text img {
+    width: 0px;
+  }
+  .wrapper {
+    margin-right: 50px;
+  }
+}
+@media (max-width: 655px) {
+  .wrapper {
+    margin-right: 10px;
+    padding-left: 50px;
   }
 }
 @media (max-width: 576px) {
@@ -190,9 +202,8 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
   }
   .wrapper {
-    padding-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
+    padding: 10px;
+    margin-right: 15px;
   }
   .text h1 {
     font-size: 35px;
@@ -203,6 +214,22 @@ input::-webkit-inner-spin-button {
   .text p {
     color: white;
     font-size: 19px;
+  }
+  .email,
+  .sandi,
+  .forget {
+    color: white;
+  }
+  .bottom p {
+    color: white;
+  }
+  a.bottoms {
+    color: #ffaa00;
+    text-decoration: none;
+  }
+  a.bottoms:hover {
+    color: #fcaa07;
+    text-decoration: none;
   }
 }
 </style>

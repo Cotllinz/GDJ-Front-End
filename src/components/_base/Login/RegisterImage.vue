@@ -75,11 +75,22 @@ export default {
   }
 
   #wrapper {
-    height: 1080px;
+    height: 1250px;
     background-size: cover;
   }
 }
+@media (max-width: 775px) {
+  #wrapper {
+    height: 1300px;
+    background-size: cover;
+  }
+}
+
 @media (max-width: 655px) {
+  #wrapper {
+    height: 1380px;
+    background-size: cover;
+  }
   #main {
     padding: 5px;
     padding-top: 20px;
