@@ -8,6 +8,7 @@ import LoginRecruiter from '../views/LoginRecruiter.vue'
 import RegisterRecruiter from '../views/RegisterRecruiter.vue'
 import Profile from '../views/Profile.vue'
 import Forgot from '../views/ForgotPassword.vue'
+import NewPassword from '../views/NewPassword.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/forgot',
     name: 'Forgot',
     component: Forgot
+  },
+  {
+    path: '/forgot/:id',
+    name: 'NewPassword',
+    component: NewPassword
   },
   {
     path: '/register',
