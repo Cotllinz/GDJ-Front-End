@@ -10,6 +10,7 @@ import Profile from '../views/Profile.vue'
 import Forgot from '../views/ForgotPassword.vue'
 import NewPassword from '../views/NewPassword.vue'
 import Hire from '../views/HiringPage.vue'
+import ProfileCompany from '../views/ProfileCompany.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +59,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/profile-company',
+    name: 'ProfileCompany',
+    component: ProfileCompany
   },
   {
     path: '/hire',

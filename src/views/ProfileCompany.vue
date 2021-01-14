@@ -3,16 +3,7 @@
     <div class="profiles fontstyle">
       <Navbar class="navbars" />
       <div class="page">
-        <b-container>
-          <b-row>
-            <b-col sm="12" md="4" lg="4">
-              <Profile />
-            </b-col>
-            <b-col sm="12" md="8" lg="8">
-              <FormInput />
-            </b-col>
-          </b-row>
-        </b-container>
+        <BoxProfile />
       </div>
       <Footer />
     </div>
@@ -20,15 +11,13 @@
 </template>
 
 <script>
-import Profile from '../components/_base/Recruiter/HiringCard'
-import FormInput from '../components/_base/Recruiter/HiringFormInput'
+import BoxProfile from '../components/_base/Recruiter/BoxProfile'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 export default {
-  name: 'HiringPage',
+  name: 'ProfileCompany',
   components: {
-    Profile,
-    FormInput,
+    BoxProfile,
     Navbar,
     Footer
   },
