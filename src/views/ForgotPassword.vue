@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import LoginComponent from '../components/_base/Login/LoginComponent'
+import ForgotComponent from '../components/_base/Login/ForgotComponent'
 import LoginImage from '../components/_base/Login/LoginImage'
 
 export default {
   name: 'Login',
   components: {
     LoginImage,
-    LoginComponent
+    ForgotComponent
   }
 }
 </script>
@@ -34,58 +34,21 @@ export default {
   height: 1000px;
 }
 @media (max-width: 1000px) {
-  .wrapper {
-    padding: 120px;
-    padding-top: 200px;
-    color: white;
+  .loginImage {
+    position: absolute;
   }
-  .sandi,
-  .email,
-  .forget {
-    color: white;
-  }
-}
-@media screen and (max-width: 770px) and (min-width: 577px) {
-  .text img {
-    width: 10px;
+  .login {
+    background-color: white;
   }
 }
 @media (max-width: 576px) {
-  .imageStyle {
-    width: 100px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+  .login {
+    height: auto;
+    background-image: url('../assets/images/loginPage/login-image.png');
   }
-  .wrapper {
-    padding: 10px;
-    padding-right: 15px;
-  }
-  .text h1 {
-    font-size: 35px;
-    margin-top: 40px;
-    color: white;
-    font-weight: bold;
-  }
-  .text p {
-    color: white;
-    font-size: 19px;
-  }
-  .email,
-  .sandi,
-  .forget {
-    color: white;
-  }
-  .bottom p {
-    color: white;
-  }
-  a.bottoms {
-    color: #ffaa00;
-    text-decoration: none;
-  }
-  a.bottoms:hover {
-    color: #fcaa07;
-    text-decoration: none;
+  .login_bg {
+    background: rgba(8, 107, 199, 0.763);
+    height: 900px;
   }
 }
 @media (max-width: 375px) {

@@ -6,11 +6,10 @@
           class="mt-3 imageStyle d-block d-md-none"
           src="@/assets/images/icons/WhiteGDJicon.png"
         />
-        <h1>Hello, Dream Job Seekers</h1>
+        <h1>Reset password</h1>
         <p>
-          Find your dream job here, as we always connects the jobseeker with the
-          hiring company of their dream jobs. Set up your profile, and be ready
-          for your biggest hit!
+          Enter your user account's verified email address and we will send you
+          a password reset link.
         </p>
       </div>
       <div class="form">
@@ -24,30 +23,9 @@
             ></b-form-input>
           </div>
         </div>
-        <div class="sandi">
-          Kata Sandi
-          <div>
-            <b-form-input
-              class="input"
-              type="password"
-              placeholder="Masukan kata sandi"
-            ></b-form-input>
-          </div>
-          <div class="forget">
-            <router-link to="/forgot" class="forget">
-              Lupa kata sandi?
-            </router-link>
-          </div>
-        </div>
       </div>
       <div class="bottom">
-        <button>Masuk</button>
-        <p>
-          Anda belum punya akun?
-          <router-link to="/register" tag="a" class="bottoms">
-            Daftar disini</router-link
-          >
-        </p>
+        <button>Send password reset email</button>
       </div>
     </div>
   </div>
@@ -64,8 +42,10 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 .wrapper {
+  position: relative;
   padding-right: 100px;
   font-family: sans-serif;
+  top: -190px;
 }
 .email {
   margin-top: 50px;
@@ -119,6 +99,7 @@ a.bottoms:hover {
 
 @media (max-width: 1000px) {
   .wrapper {
+    position: static;
     padding: 120px;
     padding-top: 200px;
     color: white;

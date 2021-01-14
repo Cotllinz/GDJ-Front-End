@@ -34,7 +34,7 @@
             ></b-form-input>
           </div>
           <div class="forget">
-            <router-link to="/ForgetPassword" class="forget">
+            <router-link to="/forgot" class="forget">
               Lupa kata sandi?
             </router-link>
           </div>
