@@ -2,11 +2,11 @@
   <div id="main">
     <div id="wrapper">
       <div class="image">
-        <div class="text1">
+        <div class="text1 animate__animated animate__fadeInDown animates">
           <img src="@/assets/images/icons/WhiteGDJicon.png" />
           Get Dream Job
         </div>
-        <div class="text2">
+        <div class="text2 animate__animated animate__fadeInDown animates">
           Temukan developer berbakat & terbaik di berbagai bidang keahlian
         </div>
       </div>
@@ -21,13 +21,18 @@ export default {
 </script>
 
 <style scoped>
+.animates {
+  --animate-duration: 2s;
+}
 #main {
   padding: 50px;
   padding-top: 35px;
 }
 #wrapper {
   background-image: url('../../../assets/images/loginPage/login-image.png');
-  height: 820px;
+  height: 920px;
+  background-size: cover;
+  object-position: 45%;
   overflow: hidden;
   color: #ffffff;
 }
@@ -38,6 +43,7 @@ export default {
   z-index: 2;
 }
 .text1 {
+  font-family: 'Poppins', sans-serif;
   padding-top: 50px;
   padding-left: 50px;
   font-family: sans-serif;
@@ -49,14 +55,15 @@ export default {
   width: 30px;
 }
 .text2 {
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 44px;
   line-height: 70px;
   padding: 70px;
-  padding-top: 190px;
+  margin-top: 200px;
 }
-@media (max-width: 1050px) {
+
+/* @media (max-width: 1050px) {
   .text2 {
     font-size: 37px;
     line-height: 50px;
@@ -71,13 +78,14 @@ export default {
     height: 1080px;
     background-size: cover;
   }
-}
-@media (max-width: 655px) {
+} */
+/* @media (max-width: 655px) {
   #main {
     padding: 5px;
     padding-top: 20px;
   }
 }
+
 @media (max-width: 395px) {
   #main {
     padding: 5px;
@@ -85,6 +93,30 @@ export default {
   }
   #wrapper {
     height: 1150px;
+  }
+} */
+@media (max-width: 1280px) {
+  .text2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 44px;
+    line-height: 70px;
+    padding: 70px;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  #wrapper {
+    background-image: none;
+    height: 0px;
+  }
+  .image {
+    background: none;
+  }
+  #main {
+    padding: 5px;
+    padding-top: 20px;
   }
 }
 </style>

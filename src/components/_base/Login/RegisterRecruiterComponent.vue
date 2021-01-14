@@ -2,6 +2,10 @@
   <div>
     <div class="wrapper">
       <div class="text">
+        <img
+          class="mt-3 imageStyle d-block d-md-none"
+          src="@/assets/images/icons/WhiteGDJicon.png"
+        />
         <h1>Hello, Talent Recruiters</h1>
         <p>
           Don't have any account yet? Register here and find the best talent for
@@ -101,6 +105,9 @@ export default {
 </script>
 
 <style scoped>
+.text {
+  font-family: 'Poppins', sans-serif;
+}
 .wrapper {
   margin-right: 100px;
   padding-top: 100px;
@@ -109,14 +116,17 @@ export default {
 .email {
   margin-top: 50px;
   color: gray;
+  font-family: 'Poppins', sans-serif;
 }
 .inputForm {
-  margin-top: 30px;
+  margin-top: 40px;
   color: gray;
+  font-family: 'Poppins', sans-serif;
 }
 
 .input {
-  height: 40px;
+  height: 50px;
+  border-radius: 7px;
 }
 .bottom {
   text-align: center;
@@ -129,7 +139,21 @@ export default {
   margin-top: 30px;
   background-color: #fbb017;
   color: white;
+  border: none;
+  outline: none;
   font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+a.bottoms {
+  color: #eca923;
+  text-decoration: none;
+}
+a.bottoms:hover {
+  color: #fcaa07;
+  text-decoration: none;
+}
+.bottom button:hover {
+  background-color: #fbb017;
 }
 .bottom p {
   margin-top: 15px;
@@ -158,18 +182,27 @@ input::-webkit-inner-spin-button {
     color: yellow;
   }
 }
-@media (max-width: 655px) {
+@media (max-width: 576px) {
+  .imageStyle {
+    width: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
   .wrapper {
-    margin-right: 30px;
-    margin-left: 30px;
+    padding-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
   }
   .text h1 {
-    font-size: 25px;
+    font-size: 35px;
+    margin-top: 40px;
+    color: white;
     font-weight: bold;
   }
   .text p {
-    font-size: 16px;
-    line-height: 18px;
+    color: white;
+    font-size: 19px;
   }
 }
 </style>

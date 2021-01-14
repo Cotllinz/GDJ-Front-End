@@ -2,6 +2,10 @@
   <div>
     <div class="wrapper">
       <div class="text">
+        <img
+          class="mt-3 imageStyle d-block d-md-none"
+          src="@/assets/images/icons/WhiteGDJicon.png"
+        />
         <h1>Hello, Dream Job Seekers</h1>
         <p>
           Find your dream job here, as we always connects the jobseeker with the
@@ -40,7 +44,7 @@
         <button>Masuk</button>
         <p>
           Anda belum punya akun?
-          <router-link to="/register" class="bottoms">
+          <router-link to="/register" tag="a" class="bottoms">
             Daftar disini</router-link
           >
         </p>
@@ -56,68 +60,106 @@ export default {
 </script>
 
 <style scoped>
+.text {
+  font-family: 'Poppins', sans-serif;
+}
 .wrapper {
-  margin-right: 100px;
-  padding-top: 150px;
+  padding-right: 100px;
   font-family: sans-serif;
 }
 .email {
   margin-top: 50px;
   color: gray;
+  font-family: 'Poppins', sans-serif;
 }
 .sandi {
   margin-top: 40px;
   color: gray;
+  font-family: 'Poppins', sans-serif;
 }
 .forget {
   text-align: right;
   margin-top: 15px;
   color: black;
+  text-decoration: none;
 }
 .input {
-  height: 40px;
+  height: 50px;
 }
 .bottom {
   text-align: center;
 }
+
 .bottom button {
   width: 100%;
   height: 50px;
-  border-radius: 10px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 6px;
   margin-top: 30px;
   background-color: #fbb017;
   color: white;
   font-weight: 700;
 }
+.bottom button:hover {
+  background-color: #fcaa07;
+}
 .bottom p {
   margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
 }
-@media (max-width: 1000px) {
+a.bottoms {
+  color: #eca923;
+  text-decoration: none;
+}
+a.bottoms:hover {
+  color: #fcaa07;
+  text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .imageStyle {
+    width: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
   .wrapper {
-    margin-left: 90px;
+    padding-right: 0;
+  }
+  .text h1 {
+    font-size: 35px;
+    margin-top: 40px;
     color: white;
+    font-weight: bold;
+  }
+  .text p {
+    color: white;
+    font-size: 19px;
   }
   .email,
   .sandi,
   .forget {
     color: white;
   }
-  .bottoms {
-    color: yellow;
+  .bottom p {
+    color: white;
+  }
+  a.bottoms {
+    color: #ffaa00;
+    text-decoration: none;
+  }
+  a.bottoms:hover {
+    color: #fcaa07;
+    text-decoration: none;
   }
 }
-@media (max-width: 500px) {
-  .wrapper {
-    margin-right: 30px;
-    margin-left: 30px;
-  }
+@media (max-width: 375px) {
   .text h1 {
-    font-size: 25px;
+    font-size: 35px;
+    margin-top: 30px;
+    color: white;
     font-weight: bold;
-  }
-  .text p {
-    font-size: 16px;
-    line-height: 18px;
   }
 }
 </style>

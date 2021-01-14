@@ -19,7 +19,7 @@ export default {
             popup: 'animate__animated animate__slideInLeft'
           },
           hideClass: {
-            popup: 'animate__animated animate__slideOutRight animate__fast'
+            popup: 'animate__animated animate__fadeOut animate__faster'
           }
         })
           .then(result => {

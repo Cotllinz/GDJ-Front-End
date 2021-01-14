@@ -1,9 +1,9 @@
 <template>
-  <footer class="mb-2 border-top">
+  <footer class="border-top">
     <b-container>
       <b-row>
         <b-col lg="12">
-          <div class="footer_desc mt-lg-4 p-lg-3 border-bottom">
+          <div class="footer_desc mt-lg-4 p-lg-3 mt-2 p-3 border-bottom">
             <div class="footer_logos">
               <img
                 class="logos"
@@ -12,7 +12,7 @@
               />
               G<span>et</span>D<span>ream</span>J<span>ob</span>
             </div>
-            <p class="mt-lg-3">
+            <p class="mt-lg-3 mt-3">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
               euismod ipsum et dui rhoncus auctor.
             </p>
@@ -20,15 +20,29 @@
         </b-col>
 
         <b-col>
-          <div class="d-flex bd-highlight">
-            <div class="p-2 mt-lg-2 flex-grow-1 footer_descBottom bd-highlight">
+          <div class="d-flex bd-highlight flex-column flex-lg-row">
+            <div
+              class="p-2 mt-lg-2 order-lg-1 order-2 flex-grow-1 footer_descBottom bd-highlight"
+            >
               <p>2021 GetDreamJob. All right reserved</p>
             </div>
-            <div class="p-2 bd-highlight footer_descBottom mt-lg-2">
+            <div
+              class="p-2 bd-highlight order-lg-2 d-none d-lg-block footer_descBottom mt-lg-2"
+            >
               <a href="tel:+62898928XXX">Telepon</a>
             </div>
-            <div class="p-2 bd-highlight ml-lg-5 footer_descBottom mt-lg-2">
+            <div
+              class="p-2 bd-highlight order-lg-3  d-none d-lg-block  ml-lg-5 footer_descBottom mt-lg-2"
+            >
               <a href="mailto: teamGDJ@example.com">Email</a>
+            </div>
+            <div class="mobile_footer order-1  d-lg-none">
+              <div class="p-2 bd-highlight footer_descBottom mt-lg-2">
+                <a href="tel:+62898928XXX">Telepon</a>
+              </div>
+              <div class="p-2 bd-highlight ml-lg-5 footer_descBottom mt-lg-2">
+                <a href="mailto: teamGDJ@example.com">Email</a>
+              </div>
             </div>
           </div>
         </b-col>
@@ -75,5 +89,18 @@ footer {
 .logos {
   width: 50px;
   object-fit: contain;
+}
+@media (max-width: 576px) {
+  .footer_desc p {
+    padding-right: 0;
+  }
+  .footer_descBottom p {
+    margin: 0;
+    padding-bottom: 12px;
+  }
+  .mobile_footer {
+    padding: 0;
+    display: flex;
+  }
 }
 </style>
