@@ -1,3 +1,114 @@
 <template>
-  <div></div>
+  <div>
+    <div>
+      <b-card class="card-style">
+        <div class="images d-flex justify-content-center">
+          <b-img
+            rounded="circle"
+            fluid
+            :src="require('../../../assets/img/photo.png')"
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+        </div>
+        <div class="info">
+          <h4 style="font-weight:600">Louis Tomlinson</h4>
+          <p>Web Developer</p>
+          <div style="font-size:15px;color:#AAACB0">
+            <p>Purwokerto, Jawa Tengah</p>
+            <b-card-text style="margin-top:20px">
+              <h6 style="margin-bottom:20px;font-size:15px">Freelance</h6>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
+              Curabitur eu lacus fringilla, vestibulum risus at.
+            </b-card-text>
+          </div>
+        </div>
+        <b-button class="btnstyle" block>Hire</b-button>
+        <div class="skills">
+          <h4 style="font-weight:600">Skill</h4>
+          <b-button class="skill" size="sm">Phyton</b-button>
+          <b-button class="skill" size="sm">Laravel</b-button>
+          <b-button class="skill" size="sm">Golang</b-button>
+          <b-button class="skill" size="sm">PHP</b-button>
+          <b-button class="skill" size="sm">Cotlin</b-button>
+        </div>
+        <div class="contact">
+          <div style="color:#AAACB0">
+            <p class="h6" style="margin-bottom:30px">
+              <b-icon
+                font-scale="1.3"
+                icon="chat-dots"
+                style="margin-right:10px"
+              ></b-icon>
+              Louistommo@gmail.com
+            </p>
+            <p class="h6" style="margin-bottom:30px">
+              <b-icon
+                font-scale="1.3"
+                icon="chat-dots"
+                style="margin-right:10px"
+              ></b-icon>
+              Louistommo@gmail.com
+            </p>
+            <p class="h6" style="margin-bottom:30px">
+              <b-icon
+                font-scale="1.3"
+                icon="chat-dots"
+                style="margin-right:10px"
+              ></b-icon>
+              Louistommo@gmail.com
+            </p>
+          </div>
+        </div>
+      </b-card>
+    </div>
+  </div>
 </template>
+<script>
+export default {
+  name: 'Profile'
+}
+</script>
+
+<style scoped>
+.card-style {
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  margin-top: 30px;
+}
+.btnstyle {
+  background-color: #5e50a1;
+  font-weight: 700;
+  border: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.profile-img {
+  width: 155px;
+  height: 155px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.skill {
+  background-color: #fdd074;
+  border: 1px solid #fbb017;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 10px 10px 10px 0px;
+}
+.contact {
+  margin: 50px 10px 50px 0px;
+}
+.text-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
