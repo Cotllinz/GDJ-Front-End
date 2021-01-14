@@ -11,6 +11,7 @@ import Forgot from '../views/ForgotPassword.vue'
 import NewPassword from '../views/NewPassword.vue'
 import Hire from '../views/HiringPage.vue'
 import ProfileCompany from '../views/ProfileCompany.vue'
+import EditCompany from '../views/EditProfileCompany.vue'
 
 Vue.use(VueRouter)
 
@@ -64,6 +65,11 @@ const routes = [
     path: '/profile-company',
     name: 'ProfileCompany',
     component: ProfileCompany
+  },
+  {
+    path: '/edit-company',
+    name: 'EditCompany',
+    component: EditCompany
   },
   {
     path: '/hire',

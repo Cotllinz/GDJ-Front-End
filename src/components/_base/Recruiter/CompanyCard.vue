@@ -11,31 +11,21 @@
             class="profile-img"
           ></b-img>
         </div>
+        <div class="editProfile">
+          <img src="@/assets/images/icons/pencilEditGrey.png" />
+          Edit
+        </div>
         <div class="info">
-          <h4 style="font-weight:600">Louis Tomlinson</h4>
+          <h4 style="font-weight:600">PT. Martabat Jaya Abadi</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            erat orci.
+            Financial
           </p>
           <div style="font-size:15px;color:#AAACB0">
             <p>
               <img src="@/assets/images/icons/map.png" /> Purwokerto, Jawa
               Tengah
             </p>
-            <b-card-text style="margin-top:20px">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-              Curabitur eu lacus fringilla, vestibulum risus at.
-            </b-card-text>
           </div>
-        </div>
-        <div class="skills">
-          <h4 style="font-weight:600; margin-top:30px;">Skill</h4>
-          <b-button class="skill" size="sm">Phyton</b-button>
-          <b-button class="skill" size="sm">Laravel</b-button>
-          <b-button class="skill" size="sm">Golang</b-button>
-          <b-button class="skill" size="sm">PHP</b-button>
-          <b-button class="skill" size="sm">Cotlin</b-button>
         </div>
       </b-card>
     </div>
@@ -63,21 +53,16 @@ export default {
   margin-top: 40px;
   margin-bottom: 40px;
 }
+.editProfile {
+  color: grey;
+  text-align: center;
+  margin-bottom: 20px;
+}
 .profile-img {
   width: 155px;
   height: 155px;
   margin-top: 15px;
-  margin-bottom: 30px;
-}
-.skill {
-  background-color: #fdd074;
-  border: 1px solid #fbb017;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 10px 10px 10px 0px;
+  margin-bottom: 10px;
 }
 .text-icon {
   display: inline-flex;
