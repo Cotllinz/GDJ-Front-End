@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import LoginRecruiter from '../views/LoginRecruiter.vue'
 import RegisterRecruiter from '../views/RegisterRecruiter.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/register-recruiter',
     name: 'RegisterRecruiter',
     component: RegisterRecruiter
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
 ]
 
