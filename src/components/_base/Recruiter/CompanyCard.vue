@@ -83,6 +83,7 @@ export default {
   height: 55px;
   border-radius: 10px;
   font-weight: bold;
+  box-shadow: 0px 10px 10px rgba(66, 66, 66, 0.432);
 }
 .batal {
   color: #5e50a1;
