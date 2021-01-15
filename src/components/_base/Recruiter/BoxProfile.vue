@@ -69,15 +69,13 @@ export default {
 <style scoped>
 .ubahLatar {
   position: absolute;
-  color: white;
+  color: rgb(255, 255, 255);
   right: 40px;
   top: 180px;
 }
 .card-style {
   border-radius: 8px;
   border: none;
-  padding: 10px;
-  margin: 10px 10% 0px 10%;
   background: linear-gradient(180deg, #5e50a1 220px, #f6f7f8 10%);
   text-align: center;
   box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);

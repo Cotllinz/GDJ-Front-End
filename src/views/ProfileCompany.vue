@@ -3,7 +3,9 @@
     <div class="profiles fontstyle">
       <Navbar class="navbars" />
       <div class="page">
-        <BoxProfile />
+        <b-container>
+          <BoxProfile />
+        </b-container>
       </div>
       <Footer />
     </div>
