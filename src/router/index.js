@@ -9,6 +9,10 @@ import RegisterRecruiter from '../views/RegisterRecruiter.vue'
 import Profile from '../views/Profile.vue'
 import Forgot from '../views/ForgotPassword.vue'
 import EditProfile from '../views/EditProfile.vue'
+import NewPassword from '../views/NewPassword.vue'
+import Hire from '../views/HiringPage.vue'
+import ProfileCompany from '../views/ProfileCompany.vue'
+import EditCompany from '../views/EditProfileCompany.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +38,11 @@ const routes = [
     component: Forgot
   },
   {
+    path: '/forgot/:id',
+    name: 'NewPassword',
+    component: NewPassword
+  },
+  {
     path: '/register',
     name: 'Register',
     component: Register
@@ -49,14 +58,29 @@ const routes = [
     component: RegisterRecruiter
   },
   {
-    path: '/profile',
+    path: '/profile-pekerja',
     name: 'Profile',
     component: Profile
   },
   {
-    path: '/edit/pekerja/',
+    path: '/edit-pekerja',
     name: 'EditProfile',
     component: EditProfile
+  },
+  {
+    path: '/profile-company',
+    name: 'ProfileCompany',
+    component: ProfileCompany
+  },
+  {
+    path: '/edit-company',
+    name: 'EditCompany',
+    component: EditCompany
+  },
+  {
+    path: '/hire',
+    name: 'Hire',
+    component: Hire
   }
 ]
 

@@ -24,7 +24,7 @@
             </b-card-text>
           </div>
         </div>
-        <b-button class="btnstyle" block>Hire</b-button>
+        <b-button class="btnstyle" block @click="moveToHire">Hire</b-button>
         <div class="skills">
           <h4 style="font-weight:600">Skill</h4>
           <b-button class="skill" size="sm">Phyton</b-button>
@@ -67,7 +67,12 @@
 </template>
 <script>
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  methods: {
+    moveToHire() {
+      this.$router.push('/hire')
+    }
+  }
 }
 </script>
 

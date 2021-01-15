@@ -5,20 +5,76 @@
         class="animate__animated animate__fadeInDown animates"
         toggleable="lg"
       >
-        <b-navbar-brand class="shadow_title"
-          ><router-link class="title_navbar" tag="a" to="/">
+        <b-navbar-brand class="shadow_title">
+          <router-link
+            v-if="status === 1 || status === 0"
+            class="title_navbar"
+            tag="a"
+            to="/"
+          >
+            <img
+              class="logosLogin"
+              :src="require('../assets/images/icons/Purple GDJ + Icon.png')"
+              alt="logo"
+            />
+          </router-link>
+          <router-link v-else class="title_navbar" tag="a" to="/">
             <img
               class="logos"
-              src="../assets/images/icons/Purple GDJ icon.png"
+              :src="require('../assets/images/icons/Purple GDJ icon.png')"
               alt="logo"
             />
             G<span>et</span>D<span>ream</span>J<span>ob</span>
-          </router-link></b-navbar-brand
-        >
+          </router-link>
+        </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <router-link
+              v-if="status === 0"
+              class="ml-lg-5 pl-lg-5 mt-3 mt-lg-0 mb-2 mb-lg-0 home_jobSeaker"
+              tag="a"
+              to="/"
+              >Home</router-link
+            >
+          </b-navbar-nav>
           <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav v-if="status === 1" class="ml-auto">
+            <div
+              class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
+            >
+              <div class="mr-lg-4 position-relative">
+                <img
+                  class="pr-lg-3"
+                  src="../assets/images/icons/bell (1) 1.svg"
+                  alt="bell"
+                />
+                <span class="badge">30+</span>
+              </div>
+              <div class="mr-lg-4 pr-lg-3">
+                <img
+                  src="../assets/images/icons/mail (3) 1.svg"
+                  alt="massage"
+                />
+              </div>
+              <div class="image_profileFit">
+                <img
+                  class="image_profile"
+                  :src="require('../assets/img/photo.png')"
+                  alt="profile_pic"
+                />
+              </div>
+            </div>
+          </b-navbar-nav>
+          <b-navbar-nav v-else-if="status === 0" class="ml-auto">
+            <button
+              class="btn_signup  px-lg-3 py-2 mt-lg-0 mb-3 mb-lg-0 mt-2 py-lg-2"
+              type="button"
+            >
+              Profile
+            </button>
+          </b-navbar-nav>
+          <b-navbar-nav v-else class="ml-auto">
             <button
               class="btn_signin py-lg-2 py-2 mt-lg-0 mt-3 px-lg-3 mr-lg-3"
               type="button"
@@ -45,6 +101,11 @@ import Alert from '../mixins/AlertSweet'
 export default {
   name: 'Navbar',
   mixins: [Alert],
+  data() {
+    return {
+      status: 1
+    }
+  },
   methods: {
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
@@ -76,8 +137,32 @@ export default {
   font-size: 20px;
   font-weight: 500;
 }
+.image_profile {
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 45%;
+}
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 6px;
+  width: 25px;
+  font-size: 10px;
+  padding-top: 7.5px;
+  padding-left: 5px;
+  height: 25px;
+  border-radius: 50%;
+  background: #5e50a1;
+  color: white;
+}
 .logos {
   width: 50px;
+  object-fit: contain;
+}
+.logosLogin {
+  width: 130px;
   object-fit: contain;
 }
 
@@ -113,5 +198,14 @@ export default {
   background: #5d45d8;
   transition: 250ms;
   color: #f8f8f8;
+}
+.home_jobSeaker {
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+}
+a.router-link-exact-active.home_jobSeaker {
+  color: #5d45d8;
+  font-weight: 700;
 }
 </style>
