@@ -21,6 +21,7 @@
               class="input"
               type="text"
               placeholder="Masukan Nama Panjang"
+              v-model="form.username"
             ></b-form-input>
           </div>
         </div>
@@ -31,6 +32,7 @@
               class="input"
               type="email"
               placeholder="Masukan alamat email"
+              v-model="form.email_user"
             ></b-form-input>
           </div>
         </div>
@@ -41,6 +43,7 @@
               class="input"
               type="text"
               placeholder="Masukan nama perusahaan"
+              v-model="form.company_name"
             ></b-form-input>
           </div>
         </div>
@@ -51,6 +54,7 @@
               class="input"
               type="text"
               placeholder="Posisi di perusahaan anda"
+              v-model="form.jabatan"
             ></b-form-input>
           </div>
         </div>
@@ -61,6 +65,7 @@
               class="input"
               type="number"
               placeholder="Masukan No handphone"
+              v-model="form.phone_number"
             ></b-form-input>
           </div>
         </div>
@@ -71,6 +76,7 @@
               class="input"
               type="password"
               placeholder="Masukan kata sandi"
+              v-model="form.user_password"
             ></b-form-input>
           </div>
         </div>
@@ -81,12 +87,13 @@
               class="input"
               type="password"
               placeholder="Masukan konfirmasi kata sandi"
+              v-model="confirmPassword"
             ></b-form-input>
           </div>
         </div>
       </div>
       <div class="bottom">
-        <button>Daftar</button>
+        <button @click="daftar">Daftar</button>
         <p>
           Anda sudah punya akun?
           <router-link to="/login-recruiter" class="bottoms">
@@ -99,8 +106,55 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'RegisterComponent'
+  name: 'RegisterComponent',
+  data() {
+    return {
+      confirmPassword: '',
+      form: {
+        username: '',
+        email_user: '',
+        phone_number: '',
+        user_password: '',
+        company_name: '',
+        jabatan: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['register']),
+
+    daftar() {
+      if (
+        !this.form.username ||
+        !this.form.email_user ||
+        !this.form.phone_number ||
+        !this.form.user_password
+      ) {
+        return this.$swal('warning', 'Please input all data', 'error')
+      } else if (this.form.user_password != this.confirmPassword) {
+        return this.$swal(
+          'warning',
+          'Password does not match with confirm password',
+          'error'
+        )
+      } else {
+        this.register(this.form)
+          .then(result => {
+            return this.$swal(
+              'Success!',
+              `${result.data.massage}, now you should check your email to activate this account`,
+              'success'
+            )
+          })
+          .catch(error => {
+            return this.$swal('warning', `${error.data.massage}`, 'error')
+          })
+      }
+    }
+  }
 }
 </script>
 
