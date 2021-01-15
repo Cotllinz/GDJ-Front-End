@@ -3,17 +3,15 @@
     <b-card class="card-style p-0">
       <h6 class="title space-card">Firman Azhar R</h6>
       <hr />
-      <div class="">
-        <div class="enter-chat space-chat centered">
-          <b-form-input type="text" class="input-chat"></b-form-input>
-          <div style="font-size: 35px;">
-            <b-icon
-              icon="cursor-fill"
-              class="rounded-circle p-2"
-              style="background-color:#5E50A1"
-              variant="light"
-            ></b-icon>
-          </div>
+      <div class="enter-chat space-chat centered">
+        <b-form-input type="text" class="input-chat"></b-form-input>
+        <div style="font-size: 35px;">
+          <b-icon
+            icon="cursor-fill"
+            class="rounded-circle p-2"
+            style="background-color:#5E50A;"
+            variant="light"
+          ></b-icon>
         </div>
       </div>
     </b-card>
@@ -34,10 +32,7 @@ export default {
 <style scoped>
 .centered {
   display: flex !important;
-  align-items: center;
-}
-.flex-end {
-  display: flex;
+  justify-content: center;
   align-items: flex-end;
   height: 500px;
 }

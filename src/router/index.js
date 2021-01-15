@@ -14,6 +14,7 @@ import Hire from '../views/HiringPage.vue'
 import ProfileCompany from '../views/ProfileCompany.vue'
 import EditCompany from '../views/EditProfileCompany.vue'
 import ChatRoom from '../views/ChatRoom.vue'
+import ConfirmEmail from '../views/ConfirmEmail.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,11 @@ const routes = [
     path: '/Login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/confirm-email/:id',
+    name: 'ConfirmEmail',
+    component: ConfirmEmail
   },
   {
     path: '/forgot',
