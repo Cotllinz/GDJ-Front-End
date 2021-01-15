@@ -13,6 +13,7 @@ import NewPassword from '../views/NewPassword.vue'
 import Hire from '../views/HiringPage.vue'
 import ProfileCompany from '../views/ProfileCompany.vue'
 import EditCompany from '../views/EditProfileCompany.vue'
+import ChatRoom from '../views/ChatRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -81,6 +82,11 @@ const routes = [
     path: '/hire',
     name: 'Hire',
     component: Hire
+  },
+  {
+    path: '/chat-room',
+    name: 'ChatRoom',
+    component: ChatRoom
   }
 ]
 
