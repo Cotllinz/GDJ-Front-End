@@ -1,0 +1,95 @@
+<template>
+  <div>
+    <b-card class="card-style">
+      <h5 style="font-weight:bold" class="card-margin">Data diri</h5>
+      <hr />
+      <div class="card-margin input-color">
+        <h6>Nama Lengkap</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan nama lengkap"
+          class="input-style"
+        ></b-form-input>
+        <h6>Job desk</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan job desk"
+          class="input-style"
+        ></b-form-input>
+        <h6>Domisili</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan domisili"
+          class="input-style"
+        ></b-form-input>
+        <h6>Tempat kerja</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan tempat kerja"
+          class="input-style"
+        ></b-form-input>
+        <h6>Deskripsi singkat</h6>
+        <b-form-textarea
+          class="textarea"
+          placeholder="Tulis deskripsi singkat"
+        ></b-form-textarea>
+        <h6>Instagram</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan instagram anda"
+          class="input-style"
+        ></b-form-input>
+        <h6>Github</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan Github anda"
+          class="input-style"
+        ></b-form-input>
+      </div>
+    </b-card>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'FormDataDiri'
+}
+</script>
+
+<style scoped>
+.card-style {
+  border-radius: 8px;
+  border: none;
+  padding: 10px 10px 0px 10px;
+  margin-top: 30px;
+  padding: 0px;
+}
+.card .card-body {
+  padding: 0px;
+}
+.card-margin {
+  margin: 30px 30px 20px 30px;
+}
+.input-style {
+  padding: 25px 20px 25px 20px;
+  margin-bottom: 30px;
+}
+.input-style:focus {
+  box-shadow: 0 0 0 0.2rem rgba(169, 125, 240, 0.384);
+  border-color: #5e50a1;
+}
+.textarea:focus {
+  box-shadow: 0 0 0 0.2rem rgba(169, 125, 240, 0.384);
+  border-color: #5e50a1;
+}
+
+.input-color {
+  color: #b3b8bd;
+}
+</style>

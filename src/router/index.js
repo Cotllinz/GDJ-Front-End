@@ -8,6 +8,7 @@ import LoginRecruiter from '../views/LoginRecruiter.vue'
 import RegisterRecruiter from '../views/RegisterRecruiter.vue'
 import Profile from '../views/Profile.vue'
 import Forgot from '../views/ForgotPassword.vue'
+import EditProfile from '../views/EditProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/edit/pekerja/',
+    name: 'EditProfile',
+    component: EditProfile
   }
 ]
 
