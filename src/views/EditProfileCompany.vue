@@ -44,6 +44,7 @@ export default {
 .page {
   background: #f5f4f4;
   padding: 40px 0px 80px 0px;
+  background: linear-gradient(180deg, #5e50a1 220px, #f6f7f8 10%);
 }
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
@@ -53,9 +54,5 @@ export default {
   border: none;
   padding: 10px;
   margin-top: 30px;
-}
-.navbars {
-  box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);
-  margin-bottom: 30px;
 }
 </style>

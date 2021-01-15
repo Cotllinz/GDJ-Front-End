@@ -6,7 +6,7 @@
           <b-img
             rounded="circle"
             fluid
-            :src="require('../../../assets/img/photo.png')"
+            :src="require('@/assets/img/photo.png')"
             alt="Image"
             class="profile-img"
           ></b-img>
@@ -28,6 +28,14 @@
           </div>
         </div>
       </b-card>
+      <div class="buttonBawah">
+        <button class="simpan" style="color:white; background-color:#5e50a1">
+          Simpan
+        </button>
+      </div>
+      <div class="buttonBawah">
+        <button class="batal" style="  margin-top: 20px;">Batal</button>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +50,7 @@ export default {
   border-radius: 8px;
   border: none;
   padding: 10px;
-  box-shadow: 0px 15px 20px rgba(66, 66, 66, 0.432);
+  box-shadow: 0px 10px 10px rgba(66, 66, 66, 0.432);
 }
 .btnstyle {
   background-color: #5e50a1;
@@ -68,5 +76,18 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+.buttonBawah button {
+  width: 100%;
+  margin-top: 25px;
+  height: 55px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.batal {
+  color: #5e50a1;
+  border: #5e50a1 solid 2px;
+  background-color: transparent;
+  margin-top: 2px;
 }
 </style>
