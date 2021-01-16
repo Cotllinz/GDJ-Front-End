@@ -19,7 +19,7 @@
               class="input"
               type="password"
               placeholder="Masukan kata sandi"
-              v-model="password"
+              v-model="form.password"
             ></b-form-input>
           </div>
         </div>
@@ -39,92 +39,68 @@
         <button @click="confirmReset">Reset Password</button>
       </div>
     </div>
-    <div v-if="rule == 2" class="wrapper">
-      <div class="text">
-        <img
-          class="mt-3 imageStyle d-block d-md-none"
-          src="@/assets/images/icons/WhiteGDJicon.png"
-        />
-        <h1>Please login with your account</h1>
-        <p>
-          We have change your password into the new password which you just
-          changed. Please login using that password information.
-        </p>
+    <div v-if="rule == 2" class="wrapperMethod">
+      <h1>Password sukses ter- update, silahkan pilih metode Login</h1>
+      <div class="loginPekerja">
+        <button class="buttonLogin" @click="metodeLogin(1)">
+          Login Pekerja
+        </button>
       </div>
-      <div class="form">
-        <div class="email">
-          Email
-          <div>
-            <b-form-input
-              class="input"
-              type="email"
-              placeholder="Masukan alamat email"
-            ></b-form-input>
-          </div>
-        </div>
-        <div class="sandi">
-          Password
-          <div>
-            <b-form-input
-              class="input"
-              type="password"
-              placeholder="Masukan kata sandi"
-            ></b-form-input>
-          </div>
-          <div class="forget">
-            <router-link to="/forgot" class="forget">
-              Lupa kata sandi?
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <div class="bottom">
-        <button>Masuk</button>
+      <div class="loginPerekrut">
+        <button class="buttonLogin" @click="metodeLogin(2)">
+          Login Perekrut
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ForgotComponent',
   data() {
     return {
       rule: 1,
-      password: null,
-      confirmPassword: null
+      confirmPassword: null,
+      form: {
+        token: this.$route.params.id,
+        password: null
+      }
     }
   },
   methods: {
-    confirm() {
-      this.showModal()
-    },
+    ...mapActions(['newPasswordReset']),
     confirmReset() {
-      if (this.password !== this.confirmPassword) {
+      if (this.form.password !== this.confirmPassword) {
         return this.$swal({
           icon: 'error',
           title: 'Password does not match',
           text: "Confirmation new password does't match the new password"
         })
-      } else if (!this.password || !this.confirmPassword) {
+      } else if (!this.form.password || !this.confirmPassword) {
         return this.$swal({
           icon: 'error',
           title: 'Password form cannot be empty'
         })
       } else {
-        this.$swal(
-          'Password has been reset!',
-          'Now you can go to login page',
-          'success'
-        )
-        this.rule = 2
+        this.newPasswordReset(this.form)
+          .then(result => {
+            this.rule = 2
+            return this.$swal('Success!', `${result.data.massage}`, 'success')
+          })
+          .catch(error => {
+            return this.$swal('warning', `${error.data.massage}`, 'error')
+          })
       }
     },
-    showModal() {
-      this.$refs['my-modal'].show()
-    },
-    hideModal() {
-      this.$refs['my-modal'].hide()
+    metodeLogin(param) {
+      if (param == 1) {
+        this.$router.push('/Login')
+      } else {
+        this.$router.push('/Login-recruiter')
+      }
     }
   }
 }
@@ -139,6 +115,22 @@ export default {
   padding-right: 100px;
   font-family: sans-serif;
   top: -190px;
+}
+.wrapperMethod {
+  position: relative;
+  padding-right: 50px;
+  font-family: sans-serif;
+  top: -190px;
+}
+.buttonLogin {
+  margin-top: 20px;
+  height: 50px;
+  width: 50%;
+  background-image: linear-gradient(rgb(54, 54, 219), black);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
 }
 .email {
   margin-top: 50px;
@@ -193,7 +185,8 @@ a.bottoms:hover {
 }
 
 @media (max-width: 1000px) {
-  .wrapper {
+  .wrapper,
+  .wrapperMethod {
     position: static;
     padding: 120px;
     padding-top: 200px;
@@ -218,6 +211,11 @@ a.bottoms:hover {
     margin: 0 auto;
   }
   .wrapper {
+    padding: 10px;
+    padding-right: 15px;
+  }
+  .wrapperMethod {
+    margin-top: 150px;
     padding: 10px;
     padding-right: 15px;
   }

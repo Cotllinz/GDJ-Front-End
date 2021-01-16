@@ -21,6 +21,7 @@
               class="input"
               type="email"
               placeholder="Masukan alamat email"
+              v-model="form.email_user"
             ></b-form-input>
           </div>
         </div>
@@ -31,6 +32,7 @@
               class="input"
               type="password"
               placeholder="Masukan kata sandi"
+              v-model="form.user_password"
             ></b-form-input>
           </div>
           <div class="forget">
@@ -41,7 +43,7 @@
         </div>
       </div>
       <div class="bottom">
-        <button>Masuk</button>
+        <button @click="onSubmit">Masuk</button>
         <p>
           Anda belum punya akun?
           <router-link to="/register-recruiter" class="bottoms">
@@ -54,8 +56,33 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'LoginComponent'
+  name: 'LoginComponent',
+  data() {
+    return {
+      form: {
+        email_user: '',
+        user_password: '',
+        roles: 1
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(['logins']),
+    onSubmit() {
+      this.logins(this.form)
+        .then(result => {
+          console.log(result)
+          this.$router.push('/')
+        })
+        .catch(error => {
+          return this.$swal('warning', `${error.data.massage}`, 'error')
+        })
+    }
+  }
 }
 </script>
 

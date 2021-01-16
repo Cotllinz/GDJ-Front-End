@@ -20,6 +20,7 @@
               class="input"
               type="email"
               placeholder="Masukan alamat email"
+              v-model="form.email"
             ></b-form-input>
           </div>
         </div>
@@ -54,7 +55,7 @@
         class="modalButton"
         variant="outline-warning"
         block
-        @click="closeModal"
+        @click="hideModal"
         >Ok</b-button
       >
     </b-modal>
@@ -62,14 +63,31 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ForgotComponent',
   data() {
-    return {}
+    return {
+      form: {
+        email: null
+      }
+    }
   },
   methods: {
+    ...mapActions(['emailForgot']),
     confirm() {
-      this.showModal()
+      if (!this.form.email) {
+        return this.$swal('warning', 'Email form cannot be empty', 'error')
+      }
+      this.emailForgot(this.form)
+        .then(result => {
+          console.log(result)
+          this.showModal()
+        })
+        .catch(error => {
+          return this.$swal('warning', `${error.data.massage}`, 'error')
+        })
     },
     closeModal() {
       const random = Math.random()

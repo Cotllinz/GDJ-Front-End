@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 import LandingPage from '../views/LandingPage.vue'
 import HomegPage from '../views/HomePage.vue'
 import Login from '../views/Login.vue'
@@ -27,12 +28,14 @@ const routes = [
   {
     path: '/home',
     name: 'HomegPage',
-    component: HomegPage
+    component: HomegPage,
+    meta: { requiresAuth: true }
   },
   {
     path: '/Login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/confirm-email/:id',
@@ -52,17 +55,20 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/Login-recruiter',
     name: 'LoginRecruiter',
-    component: LoginRecruiter
+    component: LoginRecruiter,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/register-recruiter',
     name: 'RegisterRecruiter',
-    component: RegisterRecruiter
+    component: RegisterRecruiter,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/profile-pekerja',
@@ -100,6 +106,28 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.isLogin) {
+      next({
+        path: '/'
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    if (store.getters.isLogin) {
+      next({
+        path: '/'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
