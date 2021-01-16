@@ -10,6 +10,7 @@
             </b-col>
             <b-col sm="12" md="8" lg="8">
               <ConversationChat />
+              <Notif />
             </b-col>
           </b-row>
         </b-container>
@@ -21,12 +22,14 @@
 
 <script>
 import ListChat from '../components/_base/ChatRoom/ChatList'
+import Notif from '../components/_base/Nofitication/Notif'
 import ConversationChat from '../components/_base/ChatRoom/ChatConversation'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 export default {
   name: 'ChatRoom',
   components: {
+    Notif,
     ListChat,
     ConversationChat,
     Navbar,
