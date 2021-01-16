@@ -30,6 +30,7 @@
 <script>
 import LoginComponent from '../components/_base/Login/LoginComponent'
 import LoginImage from '../components/_base/Login/LoginImage'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ConfirmEmail',
@@ -44,8 +45,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['confirmEmails']),
+
     aktivasi() {
-      this.$swal('Email activation success!', 'Now you can login', 'success')
+      this.confirmEmails(this.kode)
+        .then(result => {
+          return this.$swal('Success!', `${result.data.massage}`, 'success')
+        })
+        .catch(error => {
+          return this.$swal('warning', `${error.data.massage}`, 'error')
+        })
       this.rule = 1
     }
   }
