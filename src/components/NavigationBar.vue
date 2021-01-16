@@ -7,7 +7,7 @@
       >
         <b-navbar-brand class="shadow_title">
           <router-link
-            v-if="status === 1 || status === 0"
+            v-if="configNav === 1 || configNav === 0"
             class="title_navbar"
             tag="a"
             to="/"
@@ -31,7 +31,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <router-link
-              v-if="status === 0"
+              v-if="configNav === 0"
               class="ml-lg-5 pl-lg-5 mt-3 mt-lg-0 mb-2 mb-lg-0 home_jobSeaker"
               tag="a"
               to="/"
@@ -39,7 +39,7 @@
             >
           </b-navbar-nav>
           <!-- Right aligned nav items -->
-          <b-navbar-nav v-if="status === 1" class="ml-auto">
+          <b-navbar-nav v-if="configNav === 1" class="ml-auto">
             <div
               class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
@@ -66,7 +66,7 @@
               </div>
             </div>
           </b-navbar-nav>
-          <b-navbar-nav v-else-if="status === 0" class="ml-auto">
+          <b-navbar-nav v-else-if="configNav === 0" class="ml-auto">
             <button
               class="btn_signup  px-lg-3 py-2 mt-lg-0 mb-3 mb-lg-0 mt-2 py-lg-2"
               type="button"
@@ -103,7 +103,7 @@ export default {
   mixins: [Alert],
   data() {
     return {
-      status: 1
+      configNav: null
     }
   },
   methods: {
