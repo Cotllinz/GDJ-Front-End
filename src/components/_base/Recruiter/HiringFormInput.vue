@@ -98,10 +98,6 @@ export default {
       data.append('jobs_needed', jobs_needed)
       data.append('desc_jobs', desc_jobs)
 
-      // for (var pair of data.entries()) {
-      //   console.log(pair[0] + ', ' + pair[1])
-      // }
-
       this.postHire(data)
         .then(result => {
           console.log(result)
