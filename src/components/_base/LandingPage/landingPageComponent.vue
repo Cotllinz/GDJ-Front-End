@@ -196,14 +196,150 @@
               />
             </div>
           </b-col>
+          <b-col
+            cols="12"
+            class="order-3 mb-5 card_comment corousel mt-5 mt-lg-5 pt-lg-5"
+          >
+            <h1 class="text-center mb-lg-5">
+              Their opinion about Get Dream Job
+            </h1>
+            <VueSlickCarousel
+              @init="onInitCarousel"
+              ref="carousel"
+              v-bind="settings"
+            >
+              <div
+                v-for="(item, index) in setDataCard"
+                :key="index"
+                class="px-3"
+              >
+                <b-card :img-src="item.image" img-alt="Image" tag="article">
+                  <b-card-text>
+                    <div class="desc_ppl">
+                      <h2>{{ item.names }}</h2>
+                      <p class="titleJob">{{ item.jobDesk }}</p>
+                      <p>
+                        {{ item.comment }}
+                      </p>
+                    </div>
+                  </b-card-text>
+                </b-card>
+              </div>
+            </VueSlickCarousel>
+          </b-col>
         </b-row>
       </main>
+      <section>
+        <div class="card_btnGet">
+          <div class="d-flex flex-column flex-lg-row position_card">
+            <div class="title">
+              <h2>Lorem ipsum dolor sit amet</h2>
+            </div>
+            <button class="ml-lg-auto btn_getStart px-3">
+              Mulai Dari Sekarang
+            </button>
+          </div>
+        </div>
+      </section>
     </b-container>
   </div>
 </template>
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
-  name: 'mainLandingPage'
+  name: 'mainLandingPage',
+  components: { VueSlickCarousel },
+  data() {
+    return {
+      setDataCard: [
+        {
+          image:
+            'https://images.unsplash.com/photo-1569292248791-bd7cf5884003?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          names: 'Harry Styles',
+          jobDesk: 'Web Developer',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        },
+        {
+          image:
+            'https://herstory.co.id/data/images/articles/archive_20200612/anya-geraldine-20200612-095507.jpg',
+          names: 'Anya Geraldine',
+          jobDesk: 'Team Support GDJ',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        },
+        {
+          image:
+            'https://i.pinimg.com/originals/3f/73/78/3f73786545c128c696506bcb9c9f918c.jpg',
+          names: 'Sarah Viloid',
+          jobDesk: 'Team Support GDJ',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        },
+        {
+          image:
+            'https://media-exp1.licdn.com/dms/image/C5603AQHQQ9V2LNf2HA/profile-displayphoto-shrink_800_800/0/1594363594600?e=1616025600&v=beta&t=l5oHAHtC2I0bbngkSU1zlFf5ZEGsmbfn4FMBuEAEmV0',
+          names: 'Bagus Tri Harjanto',
+          jobDesk: 'Mentor of Arkademy',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        },
+        {
+          image:
+            'https://media-exp1.licdn.com/dms/image/C5103AQESKqJNJN4lVg/profile-displayphoto-shrink_800_800/0/1562400449989?e=1616025600&v=beta&t=cRdHMe0NTQlOiXFPDrpC-UkWnBiEmAT8EE2pNg24ThI',
+          names: 'Alden H.',
+          jobDesk: 'CTO of Arkademy',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        },
+        {
+          image:
+            'https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+          names: 'Louis Tomlinson',
+          jobDesk: 'Full Stack Developer',
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+        }
+      ],
+      settings: {
+        centerMode: true,
+        centerPadding: '30px',
+        infinite: true,
+        slidesToShow: 3,
+        adaptiveHeight: true,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnDotsHover: true,
+        pauseOnFocus: true,
+        pauseOnHover: true,
+        responsive: [
+          {
+            breakpoint: 750,
+            settings: {
+              slidesToShow: 1
+            }
+          },
+          {
+            breakpoint: 576,
+            settings: {
+              centerPadding: '0px',
+              slidesToShow: 1
+            }
+          },
+          {
+            breakpoint: 1000,
+            settings: {
+              slidesToShow: 2
+            }
+          }
+        ]
+      }
+    }
+  },
+  methods: {}
 }
 </script>
 <style scoped>
@@ -213,6 +349,9 @@ export default {
   object-fit: contain;
   width: 100%;
 }
+.corousel {
+  overflow: hidden;
+}
 .title_header {
   font-family: 'Poppins', sans-serif;
 }
@@ -221,6 +360,67 @@ export default {
 }
 .title_header p {
   font-size: 18px;
+}
+img.card-img {
+  width: 150px;
+  height: 150px;
+  border: 10px solid rgba(251, 176, 23, 0.37);
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 45%;
+}
+.position_card {
+  padding: 35px 45px;
+}
+.position_card h2 {
+  padding-right: 40%;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+.btn_getStart {
+  height: 60px;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #796eaf;
+}
+.btn_getStart:hover {
+  background: #f3f2f2;
+}
+.card_btnGet {
+  background-color: #5e50a1;
+  height: 150px;
+  margin: 100px 0px;
+  border-radius: 40px 5px 40px 5px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 0% 90%;
+  background-image: url('../../../assets/images/icons/Vector 41.png');
+}
+.card_comment {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+.card {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  margin-bottom: 17px;
+  margin-top: 10px;
+}
+.desc_ppl h2 {
+  font-size: 30px;
+}
+.desc_ppl p {
+  font-size: 18px;
+}
+.titleJob {
+  color: #9ea0a5;
 }
 .title_talentSkill {
   font-family: 'Poppins', sans-serif;
@@ -256,10 +456,29 @@ export default {
     white-space: nowrap;
   }
 }
+@media (max-width: 988px){
+  .card_btnGet {
+    height: auto;
+  }
+}
 @media (max-width: 576px) {
   .title_header h1 {
     font-size: 34px;
     text-align: center;
+  }
+  .position_card {
+    padding: 35px 45px;
+  }
+  .position_card h2 {
+    padding-right: 0;
+    text-align: center;
+  }
+  .card_btnGet {
+    height: auto;
+    margin: 50px 0px;
+  }
+  .corousel h1 {
+    font-size: 30px;
   }
   .title_header p {
     font-size: 17px;
