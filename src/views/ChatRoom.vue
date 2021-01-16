@@ -44,7 +44,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 .page {
-  background: linear-gradient(180deg, #5e50a1 16%, #f6f7f8 16%);
+  background: linear-gradient(180deg, #5e50a1 3%, #f6f7f8 40%);
   padding: 40px 0px 80px 0px;
 }
 .fontstyle {

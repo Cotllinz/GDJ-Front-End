@@ -43,7 +43,7 @@
             <div
               class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
-              <div class="mr-lg-4 position-relative">
+              <div class="mr-lg-4 position-relative cursor">
                 <img
                   class="pr-lg-3"
                   src="../assets/images/icons/bell (1) 1.svg"
@@ -119,6 +119,9 @@ export default {
           this.$router.push('/register-recruiter')
         }
       })
+    },
+    showNotif() {
+      console.log('a')
     }
   }
 }
@@ -126,6 +129,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.cursor {
+  cursor: pointer;
+}
 .title_navbar {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;

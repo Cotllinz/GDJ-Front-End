@@ -3,13 +3,26 @@
     <b-card class="card-style p-0">
       <h6 class="title space-card">Firman Azhar R</h6>
       <hr />
+      <div class="space-card">
+        <div class="left-conversation">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident at
+          eaque ex. Quas tenetur, alias,
+        </div>
+        <div class="right-conversation">
+          sint vel officiis atque
+        </div>
+      </div>
       <div class="enter-chat space-chat centered">
-        <b-form-input type="text" class="input-chat"></b-form-input>
+        <b-form-input
+          type="text"
+          class="input-chat"
+          placeholder="Write your message here ..."
+        ></b-form-input>
         <div style="font-size: 35px;">
           <b-icon
             icon="cursor-fill"
             class="rounded-circle p-2"
-            style="background-color:#5E50A;"
+            style="background-color:#5E50A1"
             variant="light"
           ></b-icon>
         </div>
@@ -30,11 +43,28 @@ export default {
 </script>
 
 <style scoped>
+.left-conversation {
+  float: left;
+  max-width: 550px;
+  background-color: #f6f7f8;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.right-conversation {
+  float: right;
+  max-width: 550px;
+  background-color: #867cb8;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 .centered {
   display: flex !important;
   justify-content: center;
-  align-items: flex-end;
-  height: 500px;
+  align-items: center;
+  height: 650px;
+  width: 730px;
 }
 .input-chat {
   border-radius: 20px;
@@ -62,5 +92,20 @@ export default {
 }
 .space-chat {
   padding: 0px 20px 0px 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .left-conversation {
+    float: left;
+    max-width: 250px;
+  }
+  .right-conversation {
+    float: right;
+    max-width: 250px;
+  }
+  .centered {
+    height: 550px;
+    width: 320px;
+  }
 }
 </style>
