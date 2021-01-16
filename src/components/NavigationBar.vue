@@ -97,17 +97,16 @@
 </template>
 
 <script>
-import {mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 import Alert from '../mixins/AlertSweet'
 export default {
   name: 'Navbar',
   mixins: [Alert],
   data() {
-    return {
-    }
+    return {}
   },
-    computed: {
+  computed: {
     ...mapGetters({
       configNav: 'getUserRole'
     })

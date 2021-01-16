@@ -29,12 +29,15 @@
         </div>
       </b-card>
       <div class="buttonBawah">
-        <button class="simpan" style="color:white; background-color:#5e50a1">
+        <button class="simpan">
           Simpan
         </button>
       </div>
       <div class="buttonBawah">
-        <button class="batal" style="  margin-top: 20px;">Batal</button>
+        <button class="batal" style="margin-top: 20px;">Batal</button>
+      </div>
+      <div class="buttonBawah">
+        <button class="btn_logout" style="margin-top: 20px;">Log out</button>
       </div>
     </div>
   </div>
@@ -48,9 +51,30 @@ export default {
 <style scoped>
 .card-style {
   border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
   border: none;
   padding: 10px;
   box-shadow: 0px 10px 10px rgba(66, 66, 66, 0.432);
+}
+.batal {
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+.batal:hover {
+  border-color: #6854cf;
+  background: rgb(245, 244, 244);
+}
+.simpan {
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+.simpan {
+  color: white;
+  background-color: #5e50a1;
+}
+.simpan:hover {
+  background: #6854cf;
 }
 .btnstyle {
   background-color: #5e50a1;
@@ -60,6 +84,16 @@ export default {
   padding-bottom: 15px;
   margin-top: 40px;
   margin-bottom: 40px;
+}
+.btn_logout {
+  font-family: 'Poppins', sans-serif;
+  background: #ff2a2a;
+  border: none;
+  color: #ffff;
+  outline: none;
+}
+.btn_logout:hover {
+  background: #fd0404;
 }
 .editProfile {
   color: grey;

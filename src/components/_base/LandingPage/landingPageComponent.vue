@@ -456,7 +456,7 @@ img.card-img {
     white-space: nowrap;
   }
 }
-@media (max-width: 988px){
+@media (max-width: 988px) {
   .card_btnGet {
     height: auto;
   }
