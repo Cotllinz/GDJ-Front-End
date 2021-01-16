@@ -6,21 +6,29 @@
           <b-img
             rounded="circle"
             fluid
-            :src="require('../../../assets/img/photo.png')"
+            :src="
+              profileById.image_pekerja === ''
+                ? require('../../../assets/img/default.jpg')
+                : 'http://localhost:3000/fileUserProfile/' +
+                  profileById.image_pekerja
+            "
             alt="Image"
             class="profile-img"
           ></b-img>
         </div>
         <div class="info">
-          <h4 style="font-weight:600">Louis Tomlinson</h4>
-          <p>Web Developer</p>
+          <h4 style="font-weight:600">{{ profileById.fullname_pekerja }}</h4>
+          <p>{{ profileById.job_desk }}</p>
           <div style="font-size:15px;color:#AAACB0">
-            <p>Purwokerto, Jawa Tengah</p>
+            <p>
+              <b-icon icon="geo-alt" style="margin-right:10px"></b-icon
+              >{{ profileById.city_pekerja }}
+            </p>
             <b-card-text style="margin-top:20px">
-              <h6 style="margin-bottom:20px;font-size:15px">Freelance</h6>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-              Curabitur eu lacus fringilla, vestibulum risus at.
+              <h6 style="margin-bottom:20px;font-size:15px">
+                {{ profileById.status_jobs }}
+              </h6>
+              {{ profileById.desc_pekerja }}
             </b-card-text>
           </div>
         </div>
@@ -41,23 +49,31 @@
                 icon="chat-dots"
                 style="margin-right:10px"
               ></b-icon>
-              Louistommo@gmail.com
+              firmanazharr@gmail.com
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
                 font-scale="1.3"
-                icon="chat-dots"
+                icon="instagram"
                 style="margin-right:10px"
               ></b-icon>
-              Louistommo@gmail.com
+              {{ profileById.instagram }}
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
                 font-scale="1.3"
-                icon="chat-dots"
+                icon="linkedin"
                 style="margin-right:10px"
               ></b-icon>
-              Louistommo@gmail.com
+              {{ profileById.linked }}
+            </p>
+            <p class="h6" style="margin-bottom:30px">
+              <b-icon
+                font-scale="1.3"
+                icon="github"
+                style="margin-right:10px"
+              ></b-icon>
+              {{ profileById.github }}
             </p>
           </div>
         </div>
@@ -66,9 +82,22 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Profile',
+  data() {
+    return {
+      id: 1
+    }
+  },
+  created() {
+    this.getProfilPekerjaById(this.id)
+  },
+  computed: {
+    ...mapGetters(['profileById'])
+  },
   methods: {
+    ...mapActions(['getProfilPekerjaById']),
     moveToHire() {
       this.$router.push('/hire')
     }
