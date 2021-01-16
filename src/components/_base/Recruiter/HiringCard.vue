@@ -11,38 +11,53 @@
           ></b-img>
         </div>
         <div class="info">
-          <h4 style="font-weight:600">Louis Tomlinson</h4>
+          <h4 style="font-weight:600">{{ profileById.fullname_pekerja }}</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            erat orci.
+            {{ profileById.job_desk }}
           </p>
           <div style="font-size:15px;color:#AAACB0">
             <p>
-              <img src="@/assets/images/icons/map.png" /> Purwokerto, Jawa
-              Tengah
+              <img src="@/assets/images/icons/map.png" />
+              {{ profileById.city_pekerja }}
             </p>
             <b-card-text style="margin-top:20px">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-              Curabitur eu lacus fringilla, vestibulum risus at.
+              {{ profileById.desc_pekerja }}.
             </b-card-text>
           </div>
         </div>
         <div class="skills">
-          <h4 style="font-weight:600; margin-top:30px;">Skill</h4>
-          <button class="skill py-1">Phyton</button>
-          <button class="skill py-1">Laravel</button>
-          <button class="skill py-1">Golang</button>
-          <button class="skill py-1">PHP</button>
-          <button class="skill py-1">Cotlin</button>
+          <h4 style="font-weight:600">Skill</h4>
+          <b-button
+            class="skill"
+            size="sm"
+            v-for="(item, index) in userSkill"
+            :key="index"
+            >{{ item }}</b-button
+          >
         </div>
       </b-card>
     </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Profile'
+  name: 'Hire',
+  data() {
+    return {
+      idUser: (this.id = this.$route.params.id)
+    }
+  },
+  created() {
+    this.getProfilPekerjaById(this.idUser)
+    this.getSkills(this.idUser)
+  },
+  computed: {
+    ...mapGetters(['profileById', 'userSkill'])
+  },
+  methods: {
+    ...mapActions(['getProfilPekerjaById', 'getSkills'])
+  }
 }
 </script>
 

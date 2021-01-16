@@ -56,13 +56,63 @@
             rows="8"
             max-rows="8"
             no-resize
+            v-model="company.desc_jobs"
           ></b-form-textarea>
         </div>
       </div>
-      <button class="buttonHire">Hire</button>
+      <button class="buttonHire" @click="onHire">Hire</button>
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'HireForm',
+  data() {
+    return {
+      company: {
+        id_recruiter: '4',
+        id_pekerja: '1',
+        files: '',
+        jobs_needed: 'need',
+        desc_jobs: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['postHire']),
+    onHire() {
+      const {
+        id_recruiter,
+        id_pekerja,
+        files,
+        jobs_needed,
+        desc_jobs
+      } = this.company
+
+      const data = new FormData()
+      data.append('id_recruiter', id_recruiter)
+      data.append('id_pekerja', id_pekerja)
+      data.append('files', files)
+      data.append('jobs_needed', jobs_needed)
+      data.append('desc_jobs', desc_jobs)
+
+      // for (var pair of data.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1])
+      // }
+
+      this.postHire(data)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .wrapper {

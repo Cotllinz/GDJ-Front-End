@@ -32,14 +32,23 @@
             </b-card-text>
           </div>
         </div>
-        <b-button class="btnstyle" block @click="moveToHire">Hire</b-button>
+        <router-link
+          :to="{
+            name: 'Hire',
+            params: { id: profileById.id_pekerja }
+          }"
+        >
+          <b-button class="btnstyle" block>Hire</b-button>
+        </router-link>
         <div class="skills">
           <h4 style="font-weight:600">Skill</h4>
-          <b-button class="skill" size="sm">Phyton</b-button>
-          <b-button class="skill" size="sm">Laravel</b-button>
-          <b-button class="skill" size="sm">Golang</b-button>
-          <b-button class="skill" size="sm">PHP</b-button>
-          <b-button class="skill" size="sm">Cotlin</b-button>
+          <b-button
+            class="skill"
+            size="sm"
+            v-for="(item, index) in userSkill"
+            :key="index"
+            >{{ item }}</b-button
+          >
         </div>
         <div class="contact">
           <div style="color:#AAACB0">
@@ -92,15 +101,13 @@ export default {
   },
   created() {
     this.getProfilPekerjaById(this.id)
+    this.getSkills(this.id)
   },
   computed: {
-    ...mapGetters(['profileById'])
+    ...mapGetters(['profileById', 'userSkill'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById']),
-    moveToHire() {
-      this.$router.push('/hire')
-    }
+    ...mapActions(['getProfilPekerjaById', 'getSkills'])
   }
 }
 </script>
