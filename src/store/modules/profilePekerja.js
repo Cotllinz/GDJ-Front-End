@@ -3,7 +3,8 @@ import axios from 'axios'
 export default {
   state: {
     profileById: '',
-    exprUser: []
+    exprUser: [],
+    skill: ''
   },
   mutation: {},
   actions: {
@@ -32,6 +33,19 @@ export default {
             reject(error)
           })
       })
+    },
+    getSkills(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://${process.env.VUE_APP_URL}/skill/${payload}`)
+          .then(result => {
+            context.state.skill = result.data.data[0].skill_name.split(',')
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     }
   },
   getters: {
@@ -40,6 +54,9 @@ export default {
     },
     exprUser(state) {
       return state.exprUser
+    },
+    userSkill(state) {
+      return state.skill
     }
   }
 }

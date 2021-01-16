@@ -91,7 +91,7 @@ const routes = [
     component: EditCompany
   },
   {
-    path: '/hire',
+    path: '/hire/:id',
     name: 'Hire',
     component: Hire
   },
