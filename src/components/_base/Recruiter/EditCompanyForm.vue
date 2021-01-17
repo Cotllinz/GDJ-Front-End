@@ -91,7 +91,7 @@
             class="input"
             type="text"
             placeholder="Masukan nama Linkedin"
-            v-model="profilePerekrut.linked_id"
+            v-model="profilePerekrut.linked_in"
           ></b-form-input>
         </div>
       </div>

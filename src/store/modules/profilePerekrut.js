@@ -31,7 +31,7 @@ export default {
           desc_recruiter,
           image_recruiter,
           social_media,
-          linked_id
+          linked_in
         } = context.state.profilePerekrut
         const data = new FormData()
         data.append('company_name', company_name)
@@ -42,7 +42,7 @@ export default {
         data.append('desc_recruiter', desc_recruiter)
         data.append('image_recruiter', image_recruiter)
         data.append('social_media', social_media)
-        data.append('linked_id', linked_id)
+        data.append('linked_in', linked_in)
         axios
           .patch(`http://${process.env.VUE_APP_URL}/company/${payload}`, data)
           .then(response => {

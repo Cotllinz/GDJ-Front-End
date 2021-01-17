@@ -43,14 +43,14 @@
           Edit
         </div>
         <div class="info">
-          <h4 style="font-weight:600">PT. Martabat Jaya Abadi</h4>
+          <h4 style="font-weight:600">{{ profilePerekrut.company_name }}</h4>
           <p>
-            Financial
+            {{ profilePerekrut.jabatan }}
           </p>
           <div style="font-size:15px;color:#AAACB0">
             <p>
-              <img src="@/assets/images/icons/map.png" /> Purwokerto, Jawa
-              Tengah
+              <img src="@/assets/images/icons/map.png" />
+              {{ profilePerekrut.city_recruiter }}
             </p>
           </div>
         </div>
@@ -61,7 +61,9 @@
         </button>
       </div>
       <div class="buttonBawah">
-        <button class="batal" style="margin-top: 20px;">Batal</button>
+        <button class="batal" style="margin-top: 20px;" @click="batalUpdate">
+          Batal
+        </button>
       </div>
       <div class="buttonBawah">
         <button
@@ -72,7 +74,6 @@
           Log out
         </button>
       </div>
-      {{ profilePerekrut }} {{ user_id }} ini card
     </div>
   </div>
 </template>
@@ -114,11 +115,15 @@ export default {
       this.updateCompany(this.user_id)
         .then(result => {
           console.log(result)
-          return this.$swal('Success', `${result.data.message}`, 'success')
+          this.$swal('Success', `Profile berhasil di-update`, 'success')
+          this.$router.push('/profile-company')
         })
         .catch(error => {
           return this.$swal('warning', `${error.data.message}`, 'error')
         })
+    },
+    batalUpdate() {
+      this.$router.push('/profile-company')
     },
     loggingOut() {
       this.logout()
@@ -185,6 +190,7 @@ export default {
   border-radius: 10px;
   background-color: rgb(111, 122, 228);
   border: black 2px solid;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.22);
 }
 .profile-img {
   width: 155px;
