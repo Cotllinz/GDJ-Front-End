@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    {{ profilePerekrut }} {{ user_id }} {{ typeof user_id }}ini test unit
     <div class="dataDiri">
       <h1>Data diri</h1>
     </div>
@@ -12,7 +13,6 @@
             class="input"
             type="text"
             placeholder="Masukan nama perusahan"
-            v-model="formName.nama_perusahaan"
           ></b-form-input>
         </div>
       </div>
@@ -93,9 +93,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'EditCompanyForm',
-  props: ['formName']
+  mounted() {
+    this.getProfilPerekrutById(this.user_id)
+  },
+  computed: {
+    ...mapGetters({
+      user_id: 'getUserId',
+      profilePerekrut: 'profilePerekrutById'
+    })
+  },
+  methods: {
+    ...mapGetters(['getUserId', 'profilePerekrutById']),
+    ...mapActions(['getProfilPerekrutById'])
+  }
 }
 </script>
 
