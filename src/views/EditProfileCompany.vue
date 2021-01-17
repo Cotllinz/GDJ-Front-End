@@ -34,11 +34,7 @@ export default {
   },
   created() {},
   data() {
-    return {
-      form: {
-        nama_perusahaan: null
-      }
-    }
+    return {}
   }
 }
 </script>

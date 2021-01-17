@@ -133,6 +133,9 @@ export default {
     },
     getUserId(state) {
       return state.user.id_user
+    },
+    getUserData(state) {
+      return state.user
     }
   }
 }
