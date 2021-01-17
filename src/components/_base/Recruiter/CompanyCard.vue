@@ -37,16 +37,28 @@
         <button class="batal" style="margin-top: 20px;">Batal</button>
       </div>
       <div class="buttonBawah">
-        <button class="btn_logout" style="margin-top: 20px;">Log out</button>
+        <button
+          class="btn_logout"
+          style="margin-top: 20px;"
+          @click="loggingOut"
+        >
+          Log out
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Profile',
   props: ['formName'],
   methods: {
+    ...mapActions(['logout']),
+
+    loggingOut() {
+      this.logout()
+    },
     sumbitForm() {
       console.log(this.formName)
     }

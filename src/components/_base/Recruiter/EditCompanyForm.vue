@@ -13,6 +13,7 @@
             class="input"
             type="text"
             placeholder="Masukan nama perusahan"
+            v-model="profilePerekrut.company_name"
           ></b-form-input>
         </div>
       </div>
@@ -23,6 +24,7 @@
             class="input"
             type="text"
             placeholder=" Masukan bidang perusahaan ex : Financial"
+            v-model="profilePerekrut.jabatan"
           ></b-form-input>
         </div>
       </div>
@@ -33,6 +35,7 @@
             class="input"
             type="tel"
             placeholder=" Masukan kota "
+            v-model="city_recruiter"
           ></b-form-input>
         </div>
       </div>
@@ -45,6 +48,7 @@
             rows="8"
             max-rows="8"
             no-resize
+            v-model="profilePerekrut.desc_recruiter"
           ></b-form-textarea>
         </div>
       </div>
@@ -55,6 +59,7 @@
             class="input"
             type="email"
             placeholder="Masukan email"
+            v-model="profilePerekrut.email_user"
           ></b-form-input>
         </div>
       </div>
@@ -65,6 +70,7 @@
             class="input"
             type="text"
             placeholder="Masukan nama Instagram"
+            v-model="profilePerekrut.social_media"
           ></b-form-input>
         </div>
       </div>
@@ -75,6 +81,7 @@
             class="input"
             type="tel"
             placeholder=" Masukan bidang perusahaan ex : Financial"
+            v-model="profilePerekrut.phone_number"
           ></b-form-input>
         </div>
       </div>
@@ -85,6 +92,7 @@
             class="input"
             type="text"
             placeholder="Masukan nama Linkedin"
+            v-model="profilePerekrut.linked_id"
           ></b-form-input>
         </div>
       </div>
