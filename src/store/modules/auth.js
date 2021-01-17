@@ -22,6 +22,7 @@ export default {
             resolve(result)
           })
           .catch(error => {
+            console.clear()
             reject(error.response)
           })
       })

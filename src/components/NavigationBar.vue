@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     ...mapGetters(['getUserRole']),
-
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
         if (res.result.value === true && res.getSign === 'Login') {

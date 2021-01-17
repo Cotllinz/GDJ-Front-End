@@ -4,6 +4,7 @@ import createPersistedState from 'vuex-persistedstate'
 import Auth from './modules/auth'
 import profilePekerja from './modules/profilePekerja'
 import Hire from './modules/hire'
+import home from './modules/home'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,7 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: { Auth, profilePekerja, Hire },
+  modules: { Auth, profilePekerja, Hire, home },
   plugins: [
     createPersistedState({
       paths: ['Auth.user']
