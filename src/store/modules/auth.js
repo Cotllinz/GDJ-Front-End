@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../../router/index'
 
 export default {
   state: {
@@ -9,6 +10,10 @@ export default {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
+    },
+    delUser(state) {
+      state.user = ''
+      state.token = null
     }
   },
   actions: {
@@ -81,6 +86,11 @@ export default {
             reject(error.response)
           })
       })
+    },
+    logout(context) {
+      localStorage.removeItem('token')
+      context.commit('delUser')
+      router.push('/')
     },
     interceptorRequest(context) {
       axios.interceptors.request.use(
