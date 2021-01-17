@@ -11,7 +11,6 @@
         v-for="(item, index) in jobSeeker"
         :key="index"
       >
-        <!--   'http://localhost:3000/fileUserProfile/' +  -->
         <b-card class="home-card">
           <div
             class="d-flex flex-lg-column align-items-center align-items-lg-start"
@@ -19,7 +18,9 @@
             <div class="clearfix">
               <b-img
                 left
-                :src="item.image_pekerja"
+                :src="
+                  'http://localhost:3000/fileUserProfile/' + item.image_pekerja
+                "
                 rounded
                 alt="Photo"
                 class="card-img"
