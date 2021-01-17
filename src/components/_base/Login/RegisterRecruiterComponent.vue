@@ -48,12 +48,12 @@
           </div>
         </div>
         <div class="inputForm">
-          Jabatan
+          Bidang Perusahaan
           <div>
             <b-form-input
               class="input"
               type="text"
-              placeholder="Posisi di perusahaan anda"
+              placeholder="misal: finance"
               v-model="form.jabatan"
             ></b-form-input>
           </div>
