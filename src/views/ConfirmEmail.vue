@@ -58,12 +58,12 @@ export default {
     aktivasi() {
       this.confirmEmails(this.kode)
         .then(result => {
+          this.rule = 1
           return this.$swal('Success!', `${result.data.message}`, 'success')
         })
         .catch(error => {
           return this.$swal('warning', `${error.data.message}`, 'error')
         })
-      this.rule = 1
     },
     metodeLogin(param) {
       if (param == 1) {
@@ -126,6 +126,13 @@ export default {
   height: 1000px;
 }
 @media (max-width: 1000px) {
+  .wrapperMethod {
+    position: static;
+    z-index: 1;
+    margin-top: 200px;
+    padding: 150px;
+    color: white;
+  }
   .loginImage {
     position: absolute;
   }
@@ -146,6 +153,9 @@ export default {
   .login_bg {
     background: rgba(8, 107, 199, 0.763);
     height: 900px;
+  }
+  .wrapperMethod {
+    padding: 50px;
   }
   .wrapperButton img {
     width: 50%;
