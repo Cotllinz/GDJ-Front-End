@@ -6,12 +6,39 @@
           <b-img
             rounded="circle"
             fluid
+            v-if="!profilePerekrut.image_recruiter && !url"
             :src="require('@/assets/img/photo.png')"
             alt="Image"
             class="profile-img"
           ></b-img>
+          <b-img
+            rounded="circle"
+            fluid
+            v-if="profilePerekrut.image_recruiter && !url"
+            :src="
+              'http://localhost:3000/userRecruiter/' +
+                profilePerekrut.image_recruiter
+            "
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+          <b-img
+            rounded="circle"
+            fluid
+            v-if="url"
+            :src="url"
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+          <input
+            id="formInputImage"
+            type="file"
+            accept="image/x-png,image/jpg,image/jpeg"
+            @change="handleFile"
+            hidden
+          />
         </div>
-        <div class="editProfile">
+        <div class="editProfile" @click="chooseFile()">
           <img src="@/assets/images/icons/pencilEditGrey.png" />
           Edit
         </div>
@@ -29,7 +56,7 @@
         </div>
       </b-card>
       <div class="buttonBawah">
-        <button class="simpan" @click="sumbitForm">
+        <button class="simpan" @click="goUpdate">
           Simpan
         </button>
       </div>
@@ -45,22 +72,56 @@
           Log out
         </button>
       </div>
+      {{ profilePerekrut }} {{ user_id }} ini card
     </div>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Profile',
-  props: ['formName'],
+  data() {
+    return {
+      url: null
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user_id: 'getUserId',
+      profilePerekrut: 'profilePerekrutById'
+    })
+  },
   methods: {
-    ...mapActions(['logout']),
-
+    ...mapGetters(['getUserId', 'profilePerekrutById']),
+    ...mapActions(['updateCompany', 'logout']),
+    chooseFile() {
+      document.getElementById('formInputImage').click()
+    },
+    handleFile(event) {
+      this.profilePerekrut.image_recruiter = event.target.files[0]
+      this.url = URL.createObjectURL(event.target.files[0])
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        return this.$swal({
+          icon: 'error',
+          title: 'File input not recognized',
+          text: 'Image input must be .JPG or .PNG'
+        })
+      }
+    },
+    goUpdate() {
+      this.updateCompany(this.user_id)
+        .then(result => {
+          console.log(result)
+          return this.$swal('Success', `${result.data.message}`, 'success')
+        })
+        .catch(error => {
+          return this.$swal('warning', `${error.data.message}`, 'error')
+        })
+    },
     loggingOut() {
       this.logout()
-    },
-    sumbitForm() {
-      console.log(this.formName)
     }
   }
 }
@@ -117,6 +178,13 @@ export default {
   color: grey;
   text-align: center;
   margin-bottom: 20px;
+}
+.editProfile:hover {
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: rgb(111, 122, 228);
+  border: black 2px solid;
 }
 .profile-img {
   width: 155px;

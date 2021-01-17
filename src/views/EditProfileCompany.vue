@@ -6,10 +6,10 @@
         <b-container>
           <b-row>
             <b-col sm="12" md="4" lg="4">
-              <EditProfile :formName="form" />
+              <EditProfile />
             </b-col>
             <b-col sm="12" md="8" lg="8">
-              <FormInput :formName="form" />
+              <FormInput />
             </b-col>
           </b-row>
         </b-container>

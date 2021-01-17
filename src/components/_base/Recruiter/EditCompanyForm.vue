@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    {{ profilePerekrut }} {{ user_id }} {{ typeof user_id }}ini test unit
     <div class="dataDiri">
       <h1>Data diri</h1>
     </div>
@@ -35,7 +34,7 @@
             class="input"
             type="tel"
             placeholder=" Masukan kota "
-            v-model="city_recruiter"
+            v-model="profilePerekrut.city_recruiter"
           ></b-form-input>
         </div>
       </div>
