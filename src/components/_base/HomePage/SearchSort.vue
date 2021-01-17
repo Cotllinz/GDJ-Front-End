@@ -8,8 +8,21 @@
         <b-form-input class="input" autocomplete="off"></b-form-input>
         <template #append>
           <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
-            <b-dropdown-item>Action C</b-dropdown-item>
-            <b-dropdown-item>Action D</b-dropdown-item>
+            <b-dropdown-item @click="sorting('fullname_pekerja asc')"
+              >Sortir berdasarkan nama</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortSkills"
+              >Sortir berdasarkan Skill</b-dropdown-item
+            >
+            <b-dropdown-item @click="sorting('city_pekerja asc')"
+              >Sortir berdasarkan Lokasi</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortStatus('Freelance')"
+              >Sortir berdasarkan freelance</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortStatus('Full Time')"
+              >Sortir berdasarkan fulltime</b-dropdown-item
+            >
           </b-dropdown>
           <b-button text="Button" class="btn-search">Search</b-button>
         </template>
@@ -19,8 +32,27 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
 export default {
-  name: 'SearchSort'
+  name: 'SearchSort',
+  methods: {
+    ...mapActions(['getPekerja', 'getPekerjabySkill']),
+    ...mapMutations(['changeSort', 'handlePage', 'changeStatus']),
+    sorting(event) {
+      this.handlePage(1)
+      this.changeSort(event)
+      this.getPekerja('order by  ' + event)
+    },
+    sortStatus(event) {
+      this.handlePage(1)
+      this.changeStatus(event)
+      this.getPekerja(`where job_require = '${event}'`)
+    },
+    sortSkills() {
+      this.handlePage(1)
+      this.getPekerjabySkill()
+    }
+  }
 }
 </script>
 

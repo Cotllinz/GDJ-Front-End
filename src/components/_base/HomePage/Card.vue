@@ -11,6 +11,7 @@
         v-for="(item, index) in jobSeeker"
         :key="index"
       >
+        <!--   'http://localhost:3000/fileUserProfile/' +  -->
         <b-card class="home-card">
           <div
             class="d-flex flex-lg-column align-items-center align-items-lg-start"
@@ -18,9 +19,7 @@
             <div class="clearfix">
               <b-img
                 left
-                :src="
-                  'http://localhost:3000/fileUserProfile/' + item.image_pekerja
-                "
+                :src="item.image_pekerja"
                 rounded
                 alt="Photo"
                 class="card-img"
@@ -30,7 +29,7 @@
               <h5>{{ item.fullname_pekerja }}</h5>
               <b-card-text style="color: #DBDBDD">
                 {{ item.job_desk }}<br />
-                {{ item.job_require }}
+                {{ item.city_pekerja }}
               </b-card-text>
               <div class="d-none d-lg-block">
                 <b-button
@@ -73,27 +72,38 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Card',
   data() {
-    return {
-      currentPage: 1
-    }
+    return {}
   },
   computed: {
     ...mapGetters({
       jobSeeker: 'exportListPekerja',
       page: 'exportPage',
       limit: 'exportLimit',
-      totalRows: 'exportTotalRows'
-    })
+      totalRows: 'exportTotalRows',
+      skill: 'exportSkill'
+    }),
+    currentPage: {
+      get() {
+        return this.page
+      },
+      set(newPage) {
+        return newPage
+      }
+    }
   },
   created() {
     this.getPekerja()
   },
   methods: {
-    ...mapActions(['getPekerja']),
+    ...mapActions(['getPekerja', 'getPekerjabySkill']),
     ...mapMutations(['handlePage']),
     handlePageChange(numberPage) {
       this.handlePage(numberPage)
-      this.getPekerja()
+      if (this.skill === 0) {
+        this.getPekerja()
+      } else {
+        this.getPekerjabySkill()
+      }
     }
   }
 }
