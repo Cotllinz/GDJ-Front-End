@@ -88,10 +88,10 @@ export default {
         this.newPasswordReset(this.form)
           .then(result => {
             this.rule = 2
-            return this.$swal('Success!', `${result.data.massage}`, 'success')
+            return this.$swal('Success!', `${result.data.message}`, 'success')
           })
           .catch(error => {
-            return this.$swal('warning', `${error.data.massage}`, 'error')
+            return this.$swal('warning', `${error.data.message}`, 'error')
           })
       }
     },

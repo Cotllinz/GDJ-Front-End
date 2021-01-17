@@ -100,13 +100,13 @@ export default {
         function(error) {
           if (
             error.response.data.status === 403 &&
-            (error.response.data.massage === 'invalid token' ||
-              error.response.data.massage === 'invalid signature' ||
-              error.response.data.massage === 'jwt expired' ||
-              error.response.data.massage === 'jwt malformed')
+            (error.response.data.message === 'invalid token' ||
+              error.response.data.message === 'invalid signature' ||
+              error.response.data.message === 'jwt expired' ||
+              error.response.data.message === 'jwt malformed')
           ) {
             context.dispatch('logout')
-            alert(error.response.data.massage)
+            alert(error.response.data.message)
           }
           return Promise.reject(error)
         }
@@ -119,6 +119,9 @@ export default {
     },
     getUserRole(state) {
       return state.user.roles
+    },
+    getUserId(state) {
+      return state.user.id_user
     }
   }
 }

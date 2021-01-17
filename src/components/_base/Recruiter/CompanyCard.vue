@@ -29,7 +29,7 @@
         </div>
       </b-card>
       <div class="buttonBawah">
-        <button class="simpan">
+        <button class="simpan" @click="sumbitForm">
           Simpan
         </button>
       </div>
@@ -44,7 +44,13 @@
 </template>
 <script>
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  props: ['formName'],
+  methods: {
+    sumbitForm() {
+      console.log(this.formName)
+    }
+  }
 }
 </script>
 

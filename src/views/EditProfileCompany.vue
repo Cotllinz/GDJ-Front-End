@@ -6,10 +6,10 @@
         <b-container>
           <b-row>
             <b-col sm="12" md="4" lg="4">
-              <EditProfile />
+              <EditProfile :formName="form" />
             </b-col>
             <b-col sm="12" md="8" lg="8">
-              <FormInput />
+              <FormInput :formName="form" />
             </b-col>
           </b-row>
         </b-container>
@@ -34,7 +34,11 @@ export default {
   },
   created() {},
   data() {
-    return {}
+    return {
+      form: {
+        nama_perusahaan: null
+      }
+    }
   }
 }
 </script>

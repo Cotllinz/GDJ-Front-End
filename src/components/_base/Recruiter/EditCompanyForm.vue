@@ -12,6 +12,7 @@
             class="input"
             type="text"
             placeholder="Masukan nama perusahan"
+            v-model="formName.nama_perusahaan"
           ></b-form-input>
         </div>
       </div>
@@ -90,6 +91,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'EditCompanyForm',
+  props: ['formName']
+}
+</script>
 
 <style scoped>
 .wrapper {
