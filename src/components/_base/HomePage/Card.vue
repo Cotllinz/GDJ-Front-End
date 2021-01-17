@@ -81,7 +81,8 @@ export default {
       page: 'exportPage',
       limit: 'exportLimit',
       totalRows: 'exportTotalRows',
-      skill: 'exportSkill'
+      skill: 'exportSkill',
+      search: 'exportSearch'
     }),
     currentPage: {
       get() {
@@ -96,14 +97,16 @@ export default {
     this.getPekerja()
   },
   methods: {
-    ...mapActions(['getPekerja', 'getPekerjabySkill']),
+    ...mapActions(['getPekerja', 'getPekerjabySkill', 'getPekerjabySearch']),
     ...mapMutations(['handlePage']),
     handlePageChange(numberPage) {
       this.handlePage(numberPage)
       if (this.skill === 0) {
         this.getPekerja()
-      } else {
+      } else if (this.skill === 1) {
         this.getPekerjabySkill()
+      } else {
+        this.getPekerjabySearch()
       }
     }
   }

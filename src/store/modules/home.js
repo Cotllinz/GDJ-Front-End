@@ -7,7 +7,8 @@ export default {
     listPekerja: [],
     sort: '',
     skill: 0,
-    categoryStatus: ''
+    categoryStatus: '',
+    search: ''
   },
   mutations: {
     setListPekerja(state, payload) {
@@ -17,6 +18,11 @@ export default {
     },
     setListSkills(state, payload) {
       state.skill = 1
+      state.listPekerja = payload.data
+      state.totalRows = payload.pagination.totalData
+    },
+    setListSearch(state, payload) {
+      state.skill = 2
       state.listPekerja = payload.data
       state.totalRows = payload.pagination.totalData
     },
@@ -30,6 +36,10 @@ export default {
     changeStatus(state, payload) {
       state.sort = ''
       state.categoryStatus = `where job_require = '${payload}'`
+    },
+    changeSearch(state, payload) {
+      state.search = payload
+      console.log(state.search)
     }
   },
   actions: {
@@ -40,7 +50,6 @@ export default {
             `http://${process.env.VUE_APP_URL}/home/limit?page=${context.state.page}&limit=${context.state.limit}&sort=${context.state.sort}&status=${context.state.categoryStatus}`
           )
           .then(result => {
-            console.log(result)
             context.commit('setListPekerja', result.data)
             resolve(result)
           })
@@ -64,6 +73,26 @@ export default {
             reject(err)
           })
       })
+    },
+    getPekerjabySearch(context) {
+      if (context.state.search) {
+        return new Promise((resolve, reject) => {
+          axios
+            .get(
+              `http://${process.env.VUE_APP_URL}/home?page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}`
+            )
+            .then(result => {
+              console.log(result)
+              context.commit('setListSearch', result.data)
+              resolve(result)
+            })
+            .catch(err => {
+              reject(err)
+            })
+        })
+      } else {
+        context.dispatch('getPekerja')
+      }
     }
   },
   getters: {
@@ -81,6 +110,9 @@ export default {
     },
     exportSkill(state) {
       return state.skill
+    },
+    exportSearch(state) {
+      return state.search
     }
   }
 }
