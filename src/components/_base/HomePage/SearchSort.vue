@@ -5,7 +5,13 @@
         class="shadow"
         style="border-radius:10px;background-color:white"
       >
-        <b-form-input class="input" autocomplete="off"></b-form-input>
+        <input
+          class="input"
+          type="text"
+          v-model="searchData"
+          v-on:keyup.enter="search()"
+          autocomplete="off"
+        />
         <template #append>
           <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
             <b-dropdown-item @click="sorting('fullname_pekerja asc')"
@@ -35,6 +41,11 @@
 import { mapActions, mapMutations } from 'vuex'
 export default {
   name: 'SearchSort',
+  data() {
+    return {
+      searchData: ''
+    }
+  },
   methods: {
     ...mapActions(['getPekerja', 'getPekerjabySkill']),
     ...mapMutations(['changeSort', 'handlePage', 'changeStatus']),
@@ -51,6 +62,9 @@ export default {
     sortSkills() {
       this.handlePage(1)
       this.getPekerjabySkill()
+    },
+    search() {
+      console.log(this.searchData)
     }
   }
 }
@@ -67,8 +81,10 @@ export default {
   box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
 }
 .input {
+  outline: none;
   border: none;
-  padding: 25px 20px 27px 20px;
+  width: 79.8%;
+  padding: 15px 20px 15px 20px;
   border-radius: 10px;
 }
 .input:focus {
@@ -89,5 +105,41 @@ export default {
 }
 .search-menu {
   margin: 30px 0px 30px 0px;
+}
+@media (max-width: 1200px) {
+  .input {
+    border: none;
+    width: 75.5%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 991px) {
+  .input {
+    border: none;
+    width: 67.5%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .input {
+    border: none;
+    width: 38%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 393px) {
+  .input {
+    border: none;
+    width: 31%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
 }
 </style>
