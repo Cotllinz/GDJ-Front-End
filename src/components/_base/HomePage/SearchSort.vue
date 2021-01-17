@@ -47,8 +47,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getPekerja', 'getPekerjabySkill']),
-    ...mapMutations(['changeSort', 'handlePage', 'changeStatus']),
+    ...mapActions(['getPekerja', 'getPekerjabySkill', 'getPekerjabySearch']),
+    ...mapMutations([
+      'changeSort',
+      'handlePage',
+      'changeStatus',
+      'changeSearch'
+    ]),
     sorting(event) {
       this.handlePage(1)
       this.changeSort(event)
@@ -64,7 +69,13 @@ export default {
       this.getPekerjabySkill()
     },
     search() {
-      console.log(this.searchData)
+      if (this.searchData.length > 2) {
+        this.handlePage(1)
+        this.changeSearch(this.searchData)
+        this.getPekerjabySearch(this.searchData)
+      } else {
+        return this.$swal('warning', 'Min Search 3 or more text', 'error')
+      }
     }
   }
 }
