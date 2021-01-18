@@ -11,8 +11,8 @@
       <div class="inputTitle mt-5">
         Tujuan tentang pesan ini
         <select class="form-control" id="tujuan">
-          <option>Full Time</option>
-          <option>Freelance</option>
+          <option value="Full Time">Full Time</option>
+          <option value="Freelance">Freelance</option>
         </select>
       </div>
       <div class="inputTitle">
@@ -76,8 +76,6 @@ export default {
   data() {
     return {
       company: {
-        id_recruiter: '4',
-        id_pekerja: '1',
         files: '',
         jobs_needed: 'need',
         desc_jobs: ''
@@ -85,19 +83,21 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['profilePerekrutById'])
+    ...mapGetters(['profilePerekrutById', 'getUserId'])
   },
   methods: {
     ...mapActions(['postHire']),
     onHire() {
-      const {
-        id_recruiter,
-        id_pekerja,
-        files,
-        jobs_needed,
-        desc_jobs
-      } = this.company
-
+      const { files, jobs_needed, desc_jobs } = this.company
+      const id_recruiter = this.getUserId
+      const id_pekerja = this.$route.params.id
+      if (!desc_jobs) {
+        return this.$swal({
+          icon: 'error',
+          title: 'Deskripsi kosong',
+          text: 'Deskripsi untuk detail pekerjaan tidak boleh kosong'
+        })
+      }
       const data = new FormData()
       data.append('id_recruiter', id_recruiter)
       data.append('id_pekerja', id_pekerja)
@@ -107,10 +107,20 @@ export default {
 
       this.postHire(data)
         .then(result => {
-          console.log(result)
+          console.log(result.data.data)
+          return this.$swal({
+            icon: 'success',
+            title: 'Success',
+            text: `Success sending hire invitation`
+          })
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error.message)
+          return this.$swal({
+            icon: 'error',
+            title: 'Success',
+            text: `${error.data.message}`
+          })
         })
     }
   }
