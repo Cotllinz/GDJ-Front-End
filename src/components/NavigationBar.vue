@@ -70,6 +70,7 @@
             <button
               class="btn_signup  px-lg-3 py-2 mt-lg-0 mb-3 mb-lg-0 mt-2 py-lg-2"
               type="button"
+              @click="goToProfile"
             >
               Profile
             </button>
@@ -128,6 +129,9 @@ export default {
     },
     showNotif() {
       console.log('a')
+    },
+    goToProfile() {
+      return this.$router.push('/edit-pekerja')
     }
   }
 }
