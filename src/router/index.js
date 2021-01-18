@@ -71,7 +71,7 @@ const routes = [
     // meta: { requiresVisitor: true }
   },
   {
-    path: '/profile-pekerja',
+    path: '/profile-pekerja:id',
     name: 'Profile',
     component: Profile
   },

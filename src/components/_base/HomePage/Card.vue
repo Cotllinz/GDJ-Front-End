@@ -11,7 +11,7 @@
         v-for="(item, index) in jobSeeker"
         :key="index"
       >
-        <b-card class="home-card">
+        <b-card @click="profilePekerja(item.id_pekerja)" class="home-card">
           <div
             class="d-flex flex-lg-column align-items-center align-items-lg-start"
           >
@@ -33,24 +33,24 @@
                 {{ item.city_pekerja }}
               </b-card-text>
               <div class="d-none d-lg-block">
-                <b-button
-                  size="sm"
-                  v-for="(item, index) in item.skills"
-                  :key="index"
-                  class="skill"
-                  >{{ item.skill_name }}</b-button
-                >
+                <b-button size="sm" class="skill">{{
+                  item.skills[0].skill_name
+                }}</b-button>
+                <b-button size="sm" class="skill">{{
+                  item.skills[1].skill_name
+                }}</b-button>
+                <span class="badge">{{ item.skills.length - 2 }}+</span>
               </div>
             </div>
           </div>
           <div class="d-block d-lg-none">
-            <b-button
-              size="sm"
-              v-for="(item, index) in item.skills"
-              :key="index"
-              class="skill"
-              >{{ item.skill_name }}</b-button
-            >
+            <b-button size="sm" class="skill">{{
+              item.skills[0].skill_name
+            }}</b-button>
+            <b-button size="sm" class="skill">{{
+              item.skills[1].skill_name
+            }}</b-button>
+            <span class="badge">{{ item.skills.length - 2 }}+</span>
           </div>
         </b-card>
       </b-col>
@@ -108,6 +108,12 @@ export default {
       } else {
         this.getPekerjabySearch()
       }
+    },
+    profilePekerja(event) {
+      this.$router.push({
+        name: 'profile-pekerja',
+        params: { id: event }
+      })
     }
   }
 }
@@ -117,6 +123,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
+}
+.badge {
+  color: #9ea0a5;
+  font-size: 15px;
 }
 .home-card {
   border-radius: 8px;
@@ -130,8 +140,10 @@ export default {
   box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
 }
 .card-img {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
+  object-position: 45%;
+  background-size: cover;
   margin-bottom: 20px;
 }
 .card-info {

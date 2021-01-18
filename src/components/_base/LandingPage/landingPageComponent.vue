@@ -204,8 +204,6 @@
               Their opinion about Get Dream Job
             </h1>
             <VueSlickCarousel
-              @init="onInitCarousel"
-              ref="carousel"
               v-bind="settings"
             >
               <div
