@@ -87,6 +87,9 @@ export default {
       url: null
     }
   },
+  created() {
+    this.profilePerekrutById(this.user_id)
+  },
   computed: {
     ...mapGetters({
       user_id: 'getUserId',

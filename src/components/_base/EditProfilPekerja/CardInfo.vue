@@ -85,8 +85,6 @@ export default {
       document.getElementById('fileUpload').click()
     },
     handleFile(e) {
-      const file = (this.profileById.image_pekerja = e.target.files[0])
-      this.url = URL.createObjectURL(file)
       const type = event.target.files[0].type
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
         return this.$swal({
@@ -94,6 +92,9 @@ export default {
           title: 'File input not recognized',
           text: 'Image input must be .JPG or .PNG'
         })
+      } else {
+        const file = (this.profileById.image_pekerja = e.target.files[0])
+        this.url = URL.createObjectURL(file)
       }
     },
     onUpdate() {

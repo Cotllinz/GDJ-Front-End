@@ -16,6 +16,8 @@
 import BoxProfile from '../components/_base/Recruiter/BoxProfile'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ProfileCompany',
   components: {
@@ -23,7 +25,12 @@ export default {
     Navbar,
     Footer
   },
-  created() {},
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
+  },
   data() {
     return {}
   }

@@ -73,8 +73,7 @@ const routes = [
   {
     path: '/profile-pekerja/:idHired',
     name: 'Profile',
-    component: Profile,
-    meta: { requiresRoles: true }
+    component: Profile
   },
   {
     path: '/edit-pekerja/:id',
