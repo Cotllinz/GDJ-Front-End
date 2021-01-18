@@ -4,7 +4,7 @@
       class="portofolio"
       style="margin-top:20px;margin-bottom:20px;text-align:center"
     >
-      <div v-if="portoUser.length === 0">
+      <div v-if="portofolioList.length === 0">
         <h5>Portofolio Kosong</h5>
       </div>
       <b-row v-else>
@@ -13,13 +13,12 @@
           md="6"
           lg="4"
           xl="4"
-          v-for="(item, index) in portoUser"
+          v-for="(item, index) in portofolioList"
           :key="index"
         >
-          <div></div>
           <div class="porto-img">
             <b-img
-              :src="`http://localhost:3000/imagePorto/` + item.image_portofolio"
+              :src="`http://${ENV}/imagePorto/` + item.image_portofolio"
               rounded
               alt="Rounded image"
               class="img"
@@ -38,26 +37,23 @@ export default {
   name: 'Portofolio',
   data() {
     return {
-      results: ''
+      idHired: 0,
+      ENV: process.env.VUE_APP_URL
     }
   },
   created() {
-    this.getPorto()
+    if (this.getUserData.roles === 0) {
+      this.getPortofolio(this.getUserData.id_user)
+    } else {
+      this.idHired = this.$route.params.idHired
+      this.getPortofolio(this.idHired)
+    }
   },
   computed: {
-    ...mapGetters(['portoUser', 'getUserData'])
+    ...mapGetters(['portofolioList', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getPortofolio']),
-    getPorto() {
-      this.getPortofolio(this.getUserData.id_user)
-        .then(result => {
-          this.results = result.data
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+    ...mapActions(['getPortofolio'])
   }
 }
 </script>
@@ -70,6 +66,6 @@ export default {
 }
 .img {
   max-width: 100%;
-  height: auto;
+  height: 100px;
 }
 </style>
