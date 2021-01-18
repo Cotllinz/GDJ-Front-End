@@ -39,9 +39,6 @@ export default {
         data.append('instagram', instagram)
         data.append('linked', linked)
         data.append('github', github)
-        // for (var pair of data.entries()) {
-        //   console.log(pair[0] + ', ' + pair[1])
-        // }
         axios
           .patch(
             `http://${process.env.VUE_APP_URL}/user/editprofile/${payload}`,
@@ -88,7 +85,7 @@ export default {
         axios
           .get(`http://${process.env.VUE_APP_URL}/skill/${payload}`)
           .then(result => {
-            context.state.skill = result.data.data[0].skill_name.split(',')
+            context.state.skill = result.data.data
             resolve(result)
           })
           .catch(error => {
