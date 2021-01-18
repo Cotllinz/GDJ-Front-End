@@ -25,7 +25,7 @@
             <div class="work-exp">
               <h5 style="font-weight:600">{{ item.posisi }}</h5>
               <h5>{{ item.at_company }}</h5>
-              <h5 style="color:#9EA0A5">{{ item.date }}</h5>
+              <h5 style="color:#9EA0A5">{{ formatDate(item.date) }}</h5>
               <div class="work-des">
                 {{ item.description }}
               </div>
@@ -39,21 +39,21 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import moment from 'moment'
 export default {
   name: 'Work',
   data() {
     return {
-      id: 1
+      idHired: 0
     }
   },
   created() {
-    this.getExperience(this.getUserData.id_user)
-      .then(result => {
-        console.log(result)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    if (this.getUserData.roles === 0) {
+      this.getExperience(this.getUserData.id_user)
+    } else {
+      this.idHired = this.$route.params.idHired
+      this.getExperience(this.idHired)
+    }
   },
   computed: {
     ...mapGetters(['exprUser', 'getUserData'])
@@ -62,6 +62,10 @@ export default {
     ...mapActions(['getExperience']),
     moveToHire() {
       this.$router.push('/hire')
+    },
+    formatDate(value) {
+      moment.locale('EN')
+      return moment(String(value)).format('LL')
     }
   }
 }

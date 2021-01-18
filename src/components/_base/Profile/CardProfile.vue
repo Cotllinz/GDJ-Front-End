@@ -7,10 +7,10 @@
             rounded="circle"
             fluid
             :src="
-              profileById.image_pekerja === ''
-                ? require('../../../assets/img/default.jpg')
-                : `http://localhost:3000/fileUserProfile/` +
+              profileById.image_pekerja
+                ? `http://${ENV}/fileUserProfile/` +
                   profileById.image_pekerja
+                : require('../../../assets/img/default.jpg')
             "
             alt="Image"
             class="profile-img"
@@ -106,11 +106,11 @@ export default {
   name: 'Profile',
   data() {
     return {
-      idHired: 0
+      idHired: 0,
+      ENV : process.env.VUE_APP_URL
     }
   },
   created() {
-    console.log(this.getUserData.roles === 0)
     if (this.getUserData.roles === 0) {
       this.getProfilPekerjaById(this.getUserData.id_user)
       this.getSkills(this.getUserData.id_user)
@@ -146,6 +146,9 @@ export default {
   margin-bottom: 40px;
 }
 .profile-img {
+  overflow: hidden;
+  background-size: cover;
+  object-position: 45%;
   width: 155px;
   height: 155px;
   margin-top: 15px;
