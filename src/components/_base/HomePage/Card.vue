@@ -7,8 +7,8 @@
         sm="6"
         md="4"
         lg="4"
-        xl="3"
-        v-for="(item, index) in card"
+        xl="4"
+        v-for="(item, index) in jobSeeker"
         :key="index"
       >
         <b-card class="home-card">
@@ -18,27 +18,39 @@
             <div class="clearfix">
               <b-img
                 left
-                :src="require('../../../assets/img/photo.png')"
+                :src="
+                  'http://localhost:3000/fileUserProfile/' + item.image_pekerja
+                "
                 rounded
                 alt="Photo"
                 class="card-img"
               ></b-img>
             </div>
             <div id="info" class="ml-3 ml-lg-0">
-              <h5>Louis Tomlinson</h5>
+              <h5>{{ item.fullname_pekerja }}</h5>
               <b-card-text style="color: #DBDBDD">
-                Web Developer <br />
-                Lorem Ipsum
+                {{ item.job_desk }}<br />
+                {{ item.city_pekerja }}
               </b-card-text>
               <div class="d-none d-lg-block">
-                <b-button size="sm" class="skill">PHP</b-button>
-                <b-button size="sm" class="skill">Javascript</b-button>
+                <b-button
+                  size="sm"
+                  v-for="(item, index) in item.skills"
+                  :key="index"
+                  class="skill"
+                  >{{ item.skill_name }}</b-button
+                >
               </div>
             </div>
           </div>
           <div class="d-block d-lg-none">
-            <b-button size="sm" class="skill">PHP</b-button>
-            <b-button size="sm" class="skill">Javascript</b-button>
+            <b-button
+              size="sm"
+              v-for="(item, index) in item.skills"
+              :key="index"
+              class="skill"
+              >{{ item.skill_name }}</b-button
+            >
           </div>
         </b-card>
       </b-col>
@@ -47,8 +59,9 @@
       <b-pagination
         align="center"
         v-model="currentPage"
-        :total-rows="rows"
-        :per-page="perPage"
+        :total-rows="totalRows"
+        :per-page="limit"
+        @change="handlePageChange"
         aria-controls="my-table"
       ></b-pagination>
     </div>
@@ -56,14 +69,45 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Card',
   data() {
-    return {
-      perPage: 3,
-      currentPage: 1,
-      rows: 9,
-      card: [1, 2, 3, 4, 5, 6, 7, 8]
+    return {}
+  },
+  computed: {
+    ...mapGetters({
+      jobSeeker: 'exportListPekerja',
+      page: 'exportPage',
+      limit: 'exportLimit',
+      totalRows: 'exportTotalRows',
+      skill: 'exportSkill',
+      search: 'exportSearch'
+    }),
+    currentPage: {
+      get() {
+        return this.page
+      },
+      set(newPage) {
+        return newPage
+      }
+    }
+  },
+  created() {
+    this.getPekerja()
+  },
+  methods: {
+    ...mapActions(['getPekerja', 'getPekerjabySkill', 'getPekerjabySearch']),
+    ...mapMutations(['handlePage']),
+    handlePageChange(numberPage) {
+      this.handlePage(numberPage)
+      if (this.skill === 0) {
+        this.getPekerja()
+      } else if (this.skill === 1) {
+        this.getPekerjabySkill()
+      } else {
+        this.getPekerjabySearch()
+      }
     }
   }
 }

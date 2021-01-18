@@ -6,45 +6,129 @@
           <b-img
             rounded="circle"
             fluid
+            v-if="!profilePerekrut.image_recruiter && !url"
             :src="require('@/assets/img/photo.png')"
             alt="Image"
             class="profile-img"
           ></b-img>
+          <b-img
+            rounded="circle"
+            fluid
+            v-if="profilePerekrut.image_recruiter && !url"
+            :src="
+              'http://localhost:3000/userRecruiter/' +
+                profilePerekrut.image_recruiter
+            "
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+          <b-img
+            rounded="circle"
+            fluid
+            v-if="url"
+            :src="url"
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+          <input
+            id="formInputImage"
+            type="file"
+            accept="image/x-png,image/jpg,image/jpeg"
+            @change="handleFile"
+            hidden
+          />
         </div>
-        <div class="editProfile">
+        <div class="editProfile" @click="chooseFile()">
           <img src="@/assets/images/icons/pencilEditGrey.png" />
           Edit
         </div>
         <div class="info">
-          <h4 style="font-weight:600">PT. Martabat Jaya Abadi</h4>
+          <h4 style="font-weight:600">{{ profilePerekrut.company_name }}</h4>
           <p>
-            Financial
+            {{ profilePerekrut.jabatan }}
           </p>
           <div style="font-size:15px;color:#AAACB0">
             <p>
-              <img src="@/assets/images/icons/map.png" /> Purwokerto, Jawa
-              Tengah
+              <img src="@/assets/images/icons/map.png" />
+              {{ profilePerekrut.city_recruiter }}
             </p>
           </div>
         </div>
       </b-card>
       <div class="buttonBawah">
-        <button class="simpan">
+        <button class="simpan" @click="goUpdate">
           Simpan
         </button>
       </div>
       <div class="buttonBawah">
-        <button class="batal" style="margin-top: 20px;">Batal</button>
+        <button class="batal" style="margin-top: 20px;" @click="batalUpdate">
+          Batal
+        </button>
       </div>
       <div class="buttonBawah">
-        <button class="btn_logout" style="margin-top: 20px;">Log out</button>
+        <button
+          class="btn_logout"
+          style="margin-top: 20px;"
+          @click="loggingOut"
+        >
+          Log out
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  data() {
+    return {
+      url: null
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user_id: 'getUserId',
+      profilePerekrut: 'profilePerekrutById'
+    })
+  },
+  methods: {
+    ...mapGetters(['getUserId', 'profilePerekrutById']),
+    ...mapActions(['updateCompany', 'logout']),
+    chooseFile() {
+      document.getElementById('formInputImage').click()
+    },
+    handleFile(event) {
+      this.profilePerekrut.image_recruiter = event.target.files[0]
+      this.url = URL.createObjectURL(event.target.files[0])
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        return this.$swal({
+          icon: 'error',
+          title: 'File input not recognized',
+          text: 'Image input must be .JPG or .PNG'
+        })
+      }
+    },
+    goUpdate() {
+      this.updateCompany(this.user_id)
+        .then(result => {
+          console.log(result)
+          this.$swal('Success', `Profile berhasil di-update`, 'success')
+          this.$router.push('/profile-company')
+        })
+        .catch(error => {
+          return this.$swal('warning', `${error.data.message}`, 'error')
+        })
+    },
+    batalUpdate() {
+      this.$router.push('/profile-company')
+    },
+    loggingOut() {
+      this.logout()
+    }
+  }
 }
 </script>
 
@@ -99,6 +183,14 @@ export default {
   color: grey;
   text-align: center;
   margin-bottom: 20px;
+}
+.editProfile:hover {
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: rgb(111, 122, 228);
+  border: black 2px solid;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.22);
 }
 .profile-img {
   width: 155px;

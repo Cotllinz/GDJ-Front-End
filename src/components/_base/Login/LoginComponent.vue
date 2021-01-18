@@ -13,13 +13,14 @@
           for your biggest hit!
         </p>
       </div>
-      <div class="form">
+      <b-form @submit.prevent="onSubmit">
         <div class="email">
           Email
           <div>
             <b-form-input
               class="input"
               type="email"
+              required
               placeholder="Masukan alamat email"
               v-model="form.email_user"
             ></b-form-input>
@@ -31,6 +32,7 @@
             <b-form-input
               class="input"
               type="password"
+              required
               placeholder="Masukan kata sandi"
               v-model="form.user_password"
             ></b-form-input>
@@ -41,16 +43,17 @@
             </router-link>
           </div>
         </div>
-      </div>
-      <div class="bottom">
-        <button @click="onSubmit">Masuk</button>
-        <p>
-          Anda belum punya akun?
-          <router-link to="/register" tag="a" class="bottoms">
-            Daftar disini</router-link
-          >
-        </p>
-      </div>
+
+        <div class="bottom">
+          <button type="submit">Masuk</button>
+          <p>
+            Anda belum punya akun?
+            <router-link to="/register" tag="a" class="bottoms">
+              Daftar disini</router-link
+            >
+          </p>
+        </div>
+      </b-form>
     </div>
     {{ form }}
   </div>
@@ -58,7 +61,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-
 export default {
   name: 'LoginComponent',
   data() {
@@ -75,12 +77,11 @@ export default {
     ...mapActions(['logins']),
     onSubmit() {
       this.logins(this.form)
-        .then(result => {
-          console.log(result)
+        .then(() => {
           this.$router.push('/')
         })
         .catch(error => {
-          return this.$swal('warning', `${error.data.massage}`, 'error')
+          return this.$swal('warning', `${error.data.message}`, 'error')
         })
     }
   }

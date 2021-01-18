@@ -33,6 +33,15 @@
           </div>
         </div>
         <router-link
+          v-if="getUserData.roles === 0"
+          :to="{
+            name: 'EditProfile'
+          }"
+        >
+          <b-button class="btnstyle" block>Edit Profile</b-button>
+        </router-link>
+        <router-link
+          v-else
           :to="{
             name: 'Hire',
             params: { id: profileById.id_pekerja }
@@ -45,9 +54,9 @@
           <b-button
             class="skill"
             size="sm"
-            v-for="(item, index) in userSkill"
+            v-for="(item, index) in skillPekerja"
             :key="index"
-            >{{ item }}</b-button
+            >{{ item.skill_name }}</b-button
           >
         </div>
         <div class="contact">
@@ -58,7 +67,7 @@
                 icon="chat-dots"
                 style="margin-right:10px"
               ></b-icon>
-              firmanazharr@gmail.com
+              {{ getUserData.email_user }}
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
@@ -100,11 +109,11 @@ export default {
     }
   },
   created() {
-    this.getProfilPekerjaById(this.id)
-    this.getSkills(this.id)
+    this.getProfilPekerjaById(this.getUserData.id_user)
+    this.getSkills(this.getUserData.id_user)
   },
   computed: {
-    ...mapGetters(['profileById', 'userSkill'])
+    ...mapGetters(['profileById', 'skillPekerja', 'getUserData'])
   },
   methods: {
     ...mapActions(['getProfilPekerjaById', 'getSkills'])

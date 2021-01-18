@@ -21,6 +21,7 @@
               class="input"
               type="email"
               placeholder="Masukan alamat email"
+              required
               v-model="form.email_user"
             ></b-form-input>
           </div>
@@ -73,14 +74,21 @@ export default {
   methods: {
     ...mapActions(['logins']),
     onSubmit() {
-      this.logins(this.form)
-        .then(result => {
-          console.log(result)
-          this.$router.push('/')
-        })
-        .catch(error => {
-          return this.$swal('warning', `${error.data.massage}`, 'error')
-        })
+      if (this.form.email_user && this.form.user_password) {
+        this.logins(this.form)
+          .then(() => {
+            this.$router.push('/home')
+          })
+          .catch(error => {
+            return this.$swal('warning', `${error.data.message}`, 'error')
+          })
+      } else {
+        return this.$swal(
+          'warning',
+          'Email and Password Cant be empty',
+          'error'
+        )
+      }
     }
   }
 }
@@ -137,6 +145,7 @@ export default {
   font-family: 'Poppins', sans-serif;
   border-radius: 6px;
   margin-top: 30px;
+  outline: none;
   background-color: #fbb017;
   color: white;
   font-weight: 700;

@@ -10,24 +10,34 @@
             <b-img
               rounded="circle"
               fluid
-              :src="require('../../../assets/img/photo.png')"
+              v-if="!profilePerekrut.image_recruiter"
+              :src="require('@/assets/img/photo.png')"
+              alt="Image"
+              class="profile-img"
+            ></b-img>
+            <b-img
+              rounded="circle"
+              fluid
+              v-if="profilePerekrut.image_recruiter"
+              :src="
+                'http://localhost:3000/userRecruiter/' +
+                  profilePerekrut.image_recruiter
+              "
               alt="Image"
               class="profile-img"
             ></b-img>
           </div>
 
           <div class="info">
-            <h4 style="font-weight:600">PT. Martabat Jaya Abadi</h4>
-            <p>Financial</p>
+            <h4 style="font-weight:600">{{ profilePerekrut.company_name }}</h4>
+            <p>{{ profilePerekrut.jabatan }}</p>
             <div style="font-size:15px;color:#AAACB0">
               <p>
-                <img src="@/assets/images/icons/map.png" /> Purwokerto, Jawa
-                Tengah
+                <img src="@/assets/images/icons/map.png" />
+                {{ profilePerekrut.city_recruiter }}
               </p>
               <b-card-text style="margin-top:20px">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum erat orci, mollis nec gravida sed, ornare quis urna.
-                Curabitur eu lacus fringilla, vestibulum risus at.
+                {{ profilePerekrut.desc_recruiter }}
               </b-card-text>
             </div>
           </div>
@@ -39,15 +49,23 @@
           <div class="contact">
             <p>
               <img src="@/assets/images/icons/mail.png" />
-              martabatjaya@gmail.com
+              {{ profilePerekrut.email_user }}
             </p>
             <p>
               <img src="@/assets/images/icons/instagram.png" />
-              martabat_jaya
+              {{ profilePerekrut.social_media }}
             </p>
-            <p><img src="@/assets/images/icons/phone1.png" /> 0821-8190-1821</p>
             <p>
-              <img src="@/assets/images/icons/mail.png" /> Martabat Jaya Abadi
+              <img src="@/assets/images/icons/phone1.png" />
+              {{ profilePerekrut.phone_number }}
+            </p>
+            <p>
+              <b-icon
+                font-scale="1.3"
+                icon="linkedin"
+                style="margin-right:10px"
+              ></b-icon>
+              {{ profilePerekrut.linked_in }}
             </p>
           </div>
         </div>
@@ -56,9 +74,23 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'Profile',
+  mounted() {
+    this.getProfilPerekrutById(this.user_id)
+  },
+  computed: {
+    ...mapGetters({
+      user_id: 'getUserId',
+      profilePerekrut: 'profilePerekrutById'
+    })
+  },
   methods: {
+    ...mapGetters(['getUserId', 'profilePerekrutById']),
+    ...mapActions(['getProfilPerekrutById']),
+
     moveToEdit() {
       this.$router.push('/edit-company')
     }

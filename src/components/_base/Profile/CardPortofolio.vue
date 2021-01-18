@@ -4,7 +4,10 @@
       class="portofolio"
       style="margin-top:20px;margin-bottom:20px;text-align:center"
     >
-      <b-row>
+      <div v-if="portoUser.length === 0">
+        <h5>Portofolio Kosong</h5>
+      </div>
+      <b-row v-else>
         <b-col
           sm="12"
           md="6"
@@ -13,6 +16,7 @@
           v-for="(item, index) in portoUser"
           :key="index"
         >
+          <div></div>
           <div class="porto-img">
             <b-img
               :src="`http://localhost:3000/imagePorto/` + item.image_portofolio"
@@ -34,17 +38,26 @@ export default {
   name: 'Portofolio',
   data() {
     return {
-      userId: 1
+      results: ''
     }
   },
   created() {
-    this.getPortofolio(this.userId)
+    this.getPorto()
   },
   computed: {
-    ...mapGetters(['portoUser'])
+    ...mapGetters(['portoUser', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getPortofolio'])
+    ...mapActions(['getPortofolio']),
+    getPorto() {
+      this.getPortofolio(this.getUserData.id_user)
+        .then(result => {
+          this.results = result.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 }
 </script>

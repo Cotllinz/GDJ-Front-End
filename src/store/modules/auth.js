@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../../router/index'
 
 export default {
   state: {
@@ -9,6 +10,10 @@ export default {
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
+    },
+    delUser(state) {
+      state.user = ''
+      state.token = null
     }
   },
   actions: {
@@ -22,6 +27,7 @@ export default {
             resolve(result)
           })
           .catch(error => {
+            console.clear()
             reject(error.response)
           })
       })
@@ -81,6 +87,11 @@ export default {
           })
       })
     },
+    logout(context) {
+      localStorage.removeItem('token')
+      context.commit('delUser')
+      router.push('/')
+    },
     interceptorRequest(context) {
       axios.interceptors.request.use(
         function(config) {
@@ -100,13 +111,13 @@ export default {
         function(error) {
           if (
             error.response.data.status === 403 &&
-            (error.response.data.massage === 'invalid token' ||
-              error.response.data.massage === 'invalid signature' ||
-              error.response.data.massage === 'jwt expired' ||
-              error.response.data.massage === 'jwt malformed')
+            (error.response.data.message === 'invalid token' ||
+              error.response.data.message === 'invalid signature' ||
+              error.response.data.message === 'jwt expired' ||
+              error.response.data.message === 'jwt malformed')
           ) {
             context.dispatch('logout')
-            alert(error.response.data.massage)
+            alert(error.response.data.message)
           }
           return Promise.reject(error)
         }
@@ -119,6 +130,12 @@ export default {
     },
     getUserRole(state) {
       return state.user.roles
+    },
+    getUserId(state) {
+      return state.user.id_user
+    },
+    getUserData(state) {
+      return state.user
     }
   }
 }

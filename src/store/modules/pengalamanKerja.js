@@ -7,10 +7,8 @@ export default {
   mutation: {},
   actions: {
     addPengalamanKerja(context, payload) {
+      //console.log(payload)
       return new Promise((resolve, reject) => {
-        // console.log(resolve)
-        // console.log(reject)
-        // console.log(payload)
         axios
           .post(`http://${process.env.VUE_APP_URL}/experiences`, payload)
           .then(result => {
@@ -41,7 +39,21 @@ export default {
             `http://${process.env.VUE_APP_URL}/experiences/delete/?id=${payload.id}&idPekerja=${payload.idPekerja}`
           )
           .then(result => {
-            context.state.listPengalaman = result.data.data
+            //context.state.listPengalaman = result.data.data
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    },
+    dellAll(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(
+            `http://${process.env.VUE_APP_URL}/experiences/deleteall/?id=${payload}`
+          )
+          .then(result => {
             resolve(result)
           })
           .catch(error => {

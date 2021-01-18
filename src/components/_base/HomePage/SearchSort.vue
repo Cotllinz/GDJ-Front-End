@@ -5,11 +5,30 @@
         class="shadow"
         style="border-radius:10px;background-color:white"
       >
-        <b-form-input class="input" autocomplete="off"></b-form-input>
+        <input
+          class="input"
+          type="text"
+          v-model="searchData"
+          v-on:keyup.enter="search()"
+          autocomplete="off"
+        />
         <template #append>
           <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
-            <b-dropdown-item>Action C</b-dropdown-item>
-            <b-dropdown-item>Action D</b-dropdown-item>
+            <b-dropdown-item @click="sorting('fullname_pekerja asc')"
+              >Sortir berdasarkan nama</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortSkills"
+              >Sortir berdasarkan Skill</b-dropdown-item
+            >
+            <b-dropdown-item @click="sorting('city_pekerja asc')"
+              >Sortir berdasarkan Lokasi</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortStatus('Freelance')"
+              >Sortir berdasarkan freelance</b-dropdown-item
+            >
+            <b-dropdown-item @click="sortStatus('Full Time')"
+              >Sortir berdasarkan fulltime</b-dropdown-item
+            >
           </b-dropdown>
           <b-button text="Button" class="btn-search">Search</b-button>
         </template>
@@ -19,8 +38,46 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex'
 export default {
-  name: 'SearchSort'
+  name: 'SearchSort',
+  data() {
+    return {
+      searchData: ''
+    }
+  },
+  methods: {
+    ...mapActions(['getPekerja', 'getPekerjabySkill', 'getPekerjabySearch']),
+    ...mapMutations([
+      'changeSort',
+      'handlePage',
+      'changeStatus',
+      'changeSearch'
+    ]),
+    sorting(event) {
+      this.handlePage(1)
+      this.changeSort(event)
+      this.getPekerja('order by  ' + event)
+    },
+    sortStatus(event) {
+      this.handlePage(1)
+      this.changeStatus(event)
+      this.getPekerja(`where job_require = '${event}'`)
+    },
+    sortSkills() {
+      this.handlePage(1)
+      this.getPekerjabySkill()
+    },
+    search() {
+      if (this.searchData.length > 2) {
+        this.handlePage(1)
+        this.changeSearch(this.searchData)
+        this.getPekerjabySearch(this.searchData)
+      } else {
+        return this.$swal('warning', 'Min Search 3 or more text', 'error')
+      }
+    }
+  }
 }
 </script>
 
@@ -35,8 +92,10 @@ export default {
   box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
 }
 .input {
+  outline: none;
   border: none;
-  padding: 25px 20px 27px 20px;
+  width: 79.8%;
+  padding: 15px 20px 15px 20px;
   border-radius: 10px;
 }
 .input:focus {
@@ -57,5 +116,41 @@ export default {
 }
 .search-menu {
   margin: 30px 0px 30px 0px;
+}
+@media (max-width: 1200px) {
+  .input {
+    border: none;
+    width: 75.5%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 991px) {
+  .input {
+    border: none;
+    width: 67.5%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .input {
+    border: none;
+    width: 38%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 393px) {
+  .input {
+    border: none;
+    width: 31%;
+    outline: none;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+  }
 }
 </style>

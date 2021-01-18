@@ -86,7 +86,7 @@ export default {
           this.showModal()
         })
         .catch(error => {
-          return this.$swal('warning', `${error.data.massage}`, 'error')
+          return this.$swal('warning', `${error.data.message}`, 'error')
         })
     },
     closeModal() {

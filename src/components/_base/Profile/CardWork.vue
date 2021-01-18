@@ -2,7 +2,11 @@
   <div>
     <div>
       <div class="work" style="margin-top:20px;margin-bottom:20px;">
+        <div v-if="exprUser.length === 0">
+          <h4>Pengalaman Kerja Kosong</h4>
+        </div>
         <b-row
+          v-else
           style="margin-bottom:20px"
           v-for="(item, index) in exprUser"
           :key="index"
@@ -43,10 +47,16 @@ export default {
     }
   },
   created() {
-    this.getExperience(this.id)
+    this.getExperience(this.getUserData.id_user)
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   },
   computed: {
-    ...mapGetters(['exprUser'])
+    ...mapGetters(['exprUser', 'getUserData'])
   },
   methods: {
     ...mapActions(['getExperience']),

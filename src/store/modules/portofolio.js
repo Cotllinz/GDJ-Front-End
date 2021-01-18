@@ -32,7 +32,6 @@ export default {
       })
     },
     delPortofolio(context, payload) {
-      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .delete(

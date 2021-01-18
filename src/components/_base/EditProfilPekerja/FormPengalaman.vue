@@ -59,8 +59,19 @@
         <b-button
           @click="addNewEmployeeForm"
           block
+          variant="outline-secondary"
+          style="color:#d2d2d2"
+          class="btn-invert"
+          v-if="listPengalaman.length > 1"
+          disabled
+          >Tambah Pengalaman Kerja</b-button
+        >
+        <b-button
+          @click="addNewEmployeeForm"
+          block
           variant="outline-warning"
           class="btn-invert"
+          v-else
           >Tambah Pengalaman Kerja</b-button
         >
       </div>
@@ -83,7 +94,7 @@ export default {
   name: 'FormPengalaman',
   data() {
     return {
-      idUser: 1,
+      hasil: '',
       employee: [
         {
           id_pekerja: 1,
@@ -96,31 +107,47 @@ export default {
     }
   },
   created() {
-    this.getPengalamanKerja(this.idUser)
+    this.getPengalamanKerja(this.getUserData.id_user)
   },
   computed: {
-    ...mapGetters(['listPengalaman'])
+    ...mapGetters(['listPengalaman', 'getUserData'])
   },
   methods: {
     ...mapActions([
       'addPengalamanKerja',
       'getPengalamanKerja',
-      'deletePengalamanKerja'
+      'deletePengalamanKerja',
+      'dellAll'
     ]),
     addNewEmployeeForm() {
       this.listPengalaman.push({
-        id_pekerja: 1,
+        id_pekerja: this.getUserData.id_user,
         posisi: '',
         at_company: '',
         date: '',
         description: ''
       })
     },
-    addPengalaman() {
-      this.addPengalamanKerja(this.listPengalaman)
+    deleteAll() {
+      this.dellAll(this.getUserData.id_user)
         .then(result => {
           console.log(result)
-          this.getPengalamanKerja(this.idUser)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    async addPengalaman() {
+      //const x = await this.listPengalaman.length
+      // if (x !== 0) {
+      //   this.deleteAll()
+      //   //console.log('hapus')
+      // }
+      await this.addPengalamanKerja(this.listPengalaman)
+        .then(result => {
+          this.hasil = result
+          console.log('berhasil')
+          //this.getPengalamanKerja(this.getUserData.id_user)
         })
         .catch(error => {
           console.log(error)
@@ -131,12 +158,13 @@ export default {
         id: id,
         idPekerja: idPekerja
       }
+      //this.listPengalaman[index].posisi === ''
       if (this.listPengalaman[index].posisi === '') {
         this.listPengalaman.splice(index, 1)
       } else {
         this.deletePengalamanKerja(data)
           .then(result => {
-            this.getPengalamanKerja(this.idUser)
+            this.listPengalaman.splice(index, 1)
             console.log(result)
           })
           .catch(error => {

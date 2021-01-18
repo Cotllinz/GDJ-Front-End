@@ -48,12 +48,12 @@
           </div>
         </div>
         <div class="inputForm">
-          Jabatan
+          Bidang Perusahaan
           <div>
             <b-form-input
               class="input"
               type="text"
-              placeholder="Posisi di perusahaan anda"
+              placeholder="misal: finance"
               v-model="form.jabatan"
             ></b-form-input>
           </div>
@@ -145,12 +145,12 @@ export default {
           .then(result => {
             return this.$swal(
               'Success!',
-              `${result.data.massage}, now you should check your email to activate this account`,
+              `${result.data.message}, now you should check your email to activate this account`,
               'success'
             )
           })
           .catch(error => {
-            return this.$swal('warning', `${error.data.massage}`, 'error')
+            return this.$swal('warning', `${error.data.message}`, 'error')
           })
       }
     }

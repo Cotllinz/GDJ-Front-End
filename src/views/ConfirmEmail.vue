@@ -18,8 +18,18 @@
               <br />
             </div>
           </b-col>
-          <b-col v-if="rule == 1">
-            <LoginComponent />
+          <b-col v-if="rule == 1" class="wrapperMethod">
+            <h1>Email berhasil teraktivasi, silahkan pilih metode Login</h1>
+            <div class="loginPekerja">
+              <button class="buttonLogin" @click="metodeLogin(1)">
+                Login Pekerja
+              </button>
+            </div>
+            <div class="loginPerekrut">
+              <button class="buttonLogin" @click="metodeLogin(2)">
+                Login Perekrut
+              </button>
+            </div>
           </b-col>
         </b-row>
       </b-container>
@@ -28,15 +38,13 @@
 </template>
 
 <script>
-import LoginComponent from '../components/_base/Login/LoginComponent'
 import LoginImage from '../components/_base/Login/LoginImage'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'ConfirmEmail',
   components: {
-    LoginImage,
-    LoginComponent
+    LoginImage
   },
   data() {
     return {
@@ -50,12 +58,19 @@ export default {
     aktivasi() {
       this.confirmEmails(this.kode)
         .then(result => {
-          return this.$swal('Success!', `${result.data.massage}`, 'success')
+          this.rule = 1
+          return this.$swal('Success!', `${result.data.message}`, 'success')
         })
         .catch(error => {
-          return this.$swal('warning', `${error.data.massage}`, 'error')
+          return this.$swal('warning', `${error.data.message}`, 'error')
         })
-      this.rule = 1
+    },
+    metodeLogin(param) {
+      if (param == 1) {
+        this.$router.push('/Login')
+      } else {
+        this.$router.push('/Login-recruiter')
+      }
     }
   }
 }
@@ -64,6 +79,23 @@ export default {
 <style scoped>
 .aktivasi {
   text-align: center;
+}
+
+.wrapperMethod {
+  position: relative;
+  padding-right: 50px;
+  font-family: sans-serif;
+  top: -190px;
+}
+.buttonLogin {
+  margin-top: 20px;
+  height: 50px;
+  width: 50%;
+  background-image: linear-gradient(rgb(54, 54, 219), black);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
 }
 .wrapperButton {
   height: 500px;
@@ -94,6 +126,13 @@ export default {
   height: 1000px;
 }
 @media (max-width: 1000px) {
+  .wrapperMethod {
+    position: static;
+    z-index: 1;
+    margin-top: 200px;
+    padding: 150px;
+    color: white;
+  }
   .loginImage {
     position: absolute;
   }
@@ -114,6 +153,9 @@ export default {
   .login_bg {
     background: rgba(8, 107, 199, 0.763);
     height: 900px;
+  }
+  .wrapperMethod {
+    padding: 50px;
   }
   .wrapperButton img {
     width: 50%;

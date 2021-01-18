@@ -28,8 +28,8 @@ const routes = [
   {
     path: '/home',
     name: 'HomegPage',
-    component: HomegPage
-    // meta: { requiresAuth: true }
+    component: HomegPage,
+    meta: { requiresRoles: true }
   },
   {
     path: '/Login',
@@ -83,17 +83,20 @@ const routes = [
   {
     path: '/profile-company',
     name: 'ProfileCompany',
-    component: ProfileCompany
+    component: ProfileCompany,
+    meta: { requiresRoles: true }
   },
   {
     path: '/edit-company',
     name: 'EditCompany',
-    component: EditCompany
+    component: EditCompany,
+    meta: { requiresRoles: true }
   },
   {
     path: '/hire/:id',
     name: 'Hire',
     component: Hire
+    //meta: { requiresRoles: true }
   },
   {
     path: '/chat-room',
@@ -124,6 +127,14 @@ router.beforeEach((to, from, next) => {
       })
     } else {
       next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresRoles)) {
+    if (store.getters.getUserRole === 1) {
+      next()
+    } else {
+      next({
+        path: '/'
+      })
     }
   } else {
     next()
