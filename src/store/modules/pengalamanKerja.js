@@ -33,10 +33,11 @@ export default {
       })
     },
     deletePengalamanKerja(context, payload) {
+      //console.log(payload.id)
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `http://${process.env.VUE_APP_URL}/experiences/delete/?id=${payload.id}&idPekerja=${payload.idPekerja}`
+            `http://localhost:3000/experiences/delete/?id=${payload.id_pengalaman}&idPekerja=${payload.idPekerja}`
           )
           .then(result => {
             //context.state.listPengalaman = result.data.data

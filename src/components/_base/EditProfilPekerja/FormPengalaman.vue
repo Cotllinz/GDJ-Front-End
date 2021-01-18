@@ -165,13 +165,14 @@ export default {
     },
     removeEmployeeForm(index, id, idPekerja) {
       const data = {
-        id: id,
+        id_pengalaman: id,
         idPekerja: idPekerja
       }
       //this.listPengalaman[index].posisi === ''
       if (this.listPengalaman[index].posisi === '') {
         this.listPengalaman.splice(index, 1)
       } else {
+        console.log(data)
         this.deletePengalamanKerja(data)
           .then(result => {
             this.listPengalaman.splice(index, 1)
@@ -179,6 +180,11 @@ export default {
           })
           .catch(error => {
             console.log(error)
+            return this.$swal({
+              icon: 'error',
+              title: 'File input not recognized',
+              text: 'Image input must be .JPG or .PNG'
+            })
           })
       }
     }
