@@ -151,12 +151,17 @@ export default {
       this.addPortofolio(data)
         .then(result => {
           this.getPortofolio(this.getUserData.id_user)
-          this.makeToast(
-            'Sukses tambah portofolio',
-            `${result.data.data.application_name}`,
-            'success'
-          )
+          // this.makeToast(
+          //   'Sukses tambah portofolio',
+          //   `${result.data.data.application_name}`,
+          //   'success'
+          // )
           this.onReset()
+          return this.$swal({
+            icon: 'success',
+            title: 'Sukses tambah portofolio',
+            text: `${result.data.data.application_name}`
+          })
         })
         .catch(error => {
           console.log(error)

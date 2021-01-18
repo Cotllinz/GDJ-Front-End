@@ -43,6 +43,7 @@
           <b-form-input
             class="input"
             type="tel"
+            pattern="[0-9]{12}"
             placeholder=" Masukan no handpone "
           ></b-form-input>
         </div>

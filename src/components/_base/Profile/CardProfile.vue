@@ -26,7 +26,7 @@
             </p>
             <b-card-text style="margin-top:20px">
               <h6 style="margin-bottom:20px;font-size:15px">
-                {{ profileById.status_jobs }}
+                {{ profileById.job_require }}
               </h6>
               {{ profileById.desc_pekerja }}
             </b-card-text>
@@ -68,7 +68,7 @@
                 icon="chat-dots"
                 style="margin-right:10px"
               ></b-icon>
-              {{ getUserData.email_user }}
+              {{ profileById.email_user }}
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
@@ -106,12 +106,19 @@ export default {
   name: 'Profile',
   data() {
     return {
-      //id: 1
+      idHired: 0
     }
   },
   created() {
-    this.getProfilPekerjaById(this.getUserData.id_user)
-    this.getSkills(this.getUserData.id_user)
+    console.log(this.getUserData.roles === 0)
+    if (this.getUserData.roles === 0) {
+      this.getProfilPekerjaById(this.getUserData.id_user)
+      this.getSkills(this.getUserData.id_user)
+    } else {
+      this.idHired = this.$route.params.idHired
+      this.getProfilPekerjaById(this.idHired)
+      this.getSkills(this.idHired)
+    }
   },
   computed: {
     ...mapGetters(['profileById', 'skillPekerja', 'getUserData'])

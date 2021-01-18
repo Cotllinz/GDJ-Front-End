@@ -1,89 +1,92 @@
 <template>
   <div>
     <b-card class="card-style">
-      <div v-for="(item, index) in listPengalaman" :key="index">
-        <div class="title-form">
-          <h5 style="font-weight:bold" class="card-margin">
-            Pengalaman kerja ke {{ index + 1 }}
-          </h5>
-          <b-icon
-            @click="removeEmployeeForm(index, item.id, item.id_pekerja)"
-            style="cursor:pointer"
-            icon="trash-fill"
-            class="del-icon"
-            variant="danger"
-          ></b-icon>
+      <b-form @submit.prevent="onSubmit">
+        <div v-for="(item, index) in listPengalaman" :key="index">
+          <div class="title-form">
+            <h5 style="font-weight:bold" class="card-margin">
+              Pengalaman kerja ke {{ index + 1 }}
+            </h5>
+            <b-icon
+              @click="removeEmployeeForm(index, item.id, item.id_pekerja)"
+              style="cursor:pointer"
+              icon="trash-fill"
+              class="del-icon"
+              variant="danger"
+            ></b-icon>
+          </div>
+          <hr />
+          <div class="card-margin input-color">
+            <h6 style="margin-top:20px">Posisi</h6>
+            <b-form-input
+              v-model="item.posisi"
+              type="text"
+              required
+              placeholder="Web Developer"
+              class="input-style"
+            ></b-form-input>
+            <b-row>
+              <b-col sm="12" md="6" lg="6" xl="6">
+                <h6>Nama perusahaan</h6>
+                <b-form-input
+                  v-model="item.at_company"
+                  type="text"
+                  required
+                  placeholder="PT Semua Aplikasi"
+                  class="input-style"
+                ></b-form-input>
+              </b-col>
+              <b-col sm="12" md="6" lg="6" xl="6">
+                <h6>Bulan/Tahun</h6>
+                <b-form-input
+                  v-model="item.date"
+                  type="date"
+                  required
+                  placeholder="January 2018"
+                  class="input-style"
+                ></b-form-input>
+              </b-col>
+            </b-row>
+            <h6>Deskripsi singkat</h6>
+            <b-form-textarea
+              v-model="item.description"
+              class="textarea"
+              placeholder="Deskripsi singkat pekerjaan anda"
+              required
+            ></b-form-textarea>
+            <hr style="margin-top:30px; margin-bottom:30px" />
+          </div>
         </div>
-        <hr />
-        <div class="card-margin input-color">
-          <h6 style="margin-top:20px">Posisi</h6>
-          <b-form-input
-            v-model="item.posisi"
-            type="text"
-            required
-            placeholder="Web Developer"
-            class="input-style"
-          ></b-form-input>
-          <b-row>
-            <b-col sm="12" md="6" lg="6" xl="6">
-              <h6>Nama perusahaan</h6>
-              <b-form-input
-                v-model="item.at_company"
-                type="text"
-                required
-                placeholder="PT Semua Aplikasi"
-                class="input-style"
-              ></b-form-input>
-            </b-col>
-            <b-col sm="12" md="6" lg="6" xl="6">
-              <h6>Bulan/Tahun</h6>
-              <b-form-input
-                v-model="item.date"
-                type="date"
-                required
-                placeholder="January 2018"
-                class="input-style"
-              ></b-form-input>
-            </b-col>
-          </b-row>
-          <h6>Deskripsi singkat</h6>
-          <b-form-textarea
-            v-model="item.description"
-            class="textarea"
-            placeholder="Deskripsi singkat pekerjaan anda"
-          ></b-form-textarea>
-          <hr style="margin-top:30px; margin-bottom:30px" />
+        <div style="font-weight:bold" class="card-margin">
+          <b-button
+            @click="addNewEmployeeForm"
+            block
+            variant="outline-secondary"
+            style="color:#d2d2d2"
+            class="btn-invert"
+            v-if="listPengalaman.length > 1"
+            disabled
+            >Tambah Pengalaman Kerja</b-button
+          >
+          <b-button
+            @click="addNewEmployeeForm"
+            block
+            variant="outline-warning"
+            class="btn-invert"
+            v-else
+            >Tambah Pengalaman Kerja</b-button
+          >
         </div>
-      </div>
-      <div style="font-weight:bold" class="card-margin">
-        <b-button
-          @click="addNewEmployeeForm"
-          block
-          variant="outline-secondary"
-          style="color:#d2d2d2"
-          class="btn-invert"
-          v-if="listPengalaman.length > 1"
-          disabled
-          >Tambah Pengalaman Kerja</b-button
-        >
-        <b-button
-          @click="addNewEmployeeForm"
-          block
-          variant="outline-warning"
-          class="btn-invert"
-          v-else
-          >Tambah Pengalaman Kerja</b-button
-        >
-      </div>
-      <div style="font-weight:bold" class="card-margin">
-        <b-button
-          @click="addPengalaman"
-          block
-          variant="outline-primary"
-          class="btn-invert"
-          >Simpan Pengalaman</b-button
-        >
-      </div>
+        <div style="font-weight:bold" class="card-margin">
+          <b-button
+            type="submit"
+            block
+            variant="outline-primary"
+            class="btn-invert"
+            >Simpan Pengalaman</b-button
+          >
+        </div>
+      </b-form>
     </b-card>
   </div>
 </template>
@@ -137,7 +140,7 @@ export default {
           console.log(error)
         })
     },
-    async addPengalaman() {
+    async onSubmit() {
       const x = await this.listPengalaman.length
       if (x >= 1) {
         await this.deleteAll()

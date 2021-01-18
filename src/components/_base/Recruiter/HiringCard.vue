@@ -35,6 +35,7 @@
             >{{ item }}</b-button
           >
         </div>
+        {{ getUserData }}
       </b-card>
     </div>
   </div>
@@ -53,7 +54,7 @@ export default {
     this.getSkills(this.idUser)
   },
   computed: {
-    ...mapGetters(['profileById', 'userSkill'])
+    ...mapGetters(['profileById', 'userSkill', 'getUserData'])
   },
   methods: {
     ...mapActions(['getProfilPekerjaById', 'getSkills'])

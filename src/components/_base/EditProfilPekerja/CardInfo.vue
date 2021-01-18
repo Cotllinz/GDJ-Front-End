@@ -6,8 +6,16 @@
           <div class="images">
             <div id="preview">
               <img v-if="url" :src="url" class="round-img" />
+              <img
+                v-else-if="profileById.image_pekerja"
+                class="round-img"
+                :src="
+                  `http://${ENV}/fileUserProfile/` + profileById.image_pekerja
+                "
+                alt=""
+              />
               <div
-                v-else-if="profileById.image_pekerja === ''"
+                v-else
                 class="d-flex justify-content-center"
                 style="background-color:#d2d2d2;border-radius:50%;width:170px;height:170px"
               >
@@ -17,15 +25,6 @@
                   alt=""
                 />
               </div>
-              <img
-                v-else
-                class="round-img"
-                :src="
-                  `http://localhost:3000/fileUserProfile/` +
-                    profileById.image_pekerja
-                "
-                alt=""
-              />
             </div>
             <div>
               <input id="fileUpload" @change="handleFile" type="file" hidden />
@@ -61,6 +60,7 @@ export default {
   name: 'ProfileInfo',
   data() {
     return {
+      ENV: process.env.VUE_APP_URL,
       url: null,
       img: '',
       idUser: (this.id = this.$route.params.id)
@@ -82,18 +82,40 @@ export default {
       this.url = URL.createObjectURL(file)
     },
     onUpdate() {
-      this.updatePekerja(this.idUser)
-        .then(result => {
-          console.log(result)
+      if (
+        this.profileById.fullname_pekerja === '' ||
+        this.profileById.job_desk === '' ||
+        this.profileById.city_pekerja === '' ||
+        this.profileById.work_place === '' ||
+        this.profileById.desc_pekerja === '' ||
+        this.profileById.linked === '' ||
+        this.profileById.github === '' ||
+        this.profileById.instagram === ''
+      ) {
+        return this.$swal({
+          icon: 'warning',
+          title: 'Lengkapi inputan',
+          text: 'warning'
         })
-        .catch(error => {
-          console.log(error)
-          return this.$swal({
-            icon: 'error',
-            title: 'File input not recognized',
-            text: 'Image input must be .JPG or .PNG'
+      } else {
+        this.updatePekerja(this.idUser)
+          .then(result => {
+            console.log(result)
+            return this.$swal({
+              icon: 'success',
+              title: 'Sukses update profile',
+              text: 'done'
+            })
           })
-        })
+          .catch(error => {
+            console.log(error)
+            return this.$swal({
+              icon: 'error',
+              title: 'File input not recognized',
+              text: 'Image input must be .JPG or .PNG'
+            })
+          })
+      }
     }
   }
 }

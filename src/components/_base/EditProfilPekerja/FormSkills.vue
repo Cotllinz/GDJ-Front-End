@@ -62,11 +62,11 @@ export default {
     ...mapActions(['addSkillPekerja', 'deleteSkill', 'getSkills']),
     addSkill() {
       if (this.skill === '') {
-        this.makeToast(
-          'Form input skill masih kosong',
-          'Input harus skill diisi',
-          'warning'
-        )
+        return this.$swal({
+          icon: 'warning',
+          title: 'Input skill kosong',
+          text: 'Warning !'
+        })
       } else {
         const data = {
           skill_name: this.skill,
