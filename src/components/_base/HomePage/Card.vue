@@ -30,6 +30,7 @@
               <h5>{{ item.fullname_pekerja }}</h5>
               <b-card-text style="color: #DBDBDD">
                 {{ item.job_desk }}<br />
+                <b-icon icon="geo-alt" style="margin-right:0px"></b-icon>
                 {{ item.city_pekerja }}
               </b-card-text>
               <div class="d-none d-lg-block">
