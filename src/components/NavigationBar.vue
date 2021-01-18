@@ -29,17 +29,19 @@
         </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
+          <b-navbar-nav v-if="configNav === 1">
             <router-link
-              v-if="configNav === 0"
               class="ml-lg-5 pl-lg-5 mt-3 mt-lg-0 mb-2 mb-lg-0 home_jobSeaker"
               tag="a"
-              to="/"
+              to="/home"
               >Home</router-link
             >
           </b-navbar-nav>
           <!-- Right aligned nav items -->
-          <b-navbar-nav v-if="configNav === 1" class="ml-auto">
+          <b-navbar-nav
+            v-if="(configNav === 0 || configNav === 1) && compType === 1"
+            class="ml-auto"
+          >
             <div
               class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
@@ -60,16 +62,21 @@
               <div class="image_profileFit">
                 <img
                   class="image_profile"
+                  @click="goToProfile(userId)"
                   :src="require('../assets/img/photo.png')"
                   alt="profile_pic"
                 />
               </div>
             </div>
           </b-navbar-nav>
-          <b-navbar-nav v-else-if="configNav === 0" class="ml-auto">
+          <b-navbar-nav
+            v-else-if="(configNav === 0 || configNav === 1) && compType === 0"
+            class="ml-auto"
+          >
             <button
               class="btn_signup  px-lg-3 py-2 mt-lg-0 mb-3 mb-lg-0 mt-2 py-lg-2"
               type="button"
+              @click="goToProfile(userId)"
             >
               Profile
             </button>
@@ -108,7 +115,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      configNav: 'getUserRole'
+      configNav: 'getUserRole',
+      userId: 'getUserId',
+      compType: 'getCompType'
     })
   },
   methods: {
@@ -128,6 +137,13 @@ export default {
     },
     showNotif() {
       console.log('a')
+    },
+    goToProfile(id) {
+      if (this.configNav === 0) {
+        return this.$router.push(`/profile-pekerja/${id}`)
+      } else if (this.configNav === 1) {
+        return this.$router.push(`/profile-company`)
+      }
     }
   }
 }

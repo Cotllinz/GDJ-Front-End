@@ -4,7 +4,8 @@ import router from '../../router/index'
 export default {
   state: {
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    compType: null
   },
   mutations: {
     setUser(state, payload) {
@@ -14,9 +15,15 @@ export default {
     delUser(state) {
       state.user = ''
       state.token = null
+    },
+    editCompType(state, payload) {
+      state.compType = payload
     }
   },
   actions: {
+    setCompType(context, payload) {
+      context.commit('editCompType', payload)
+    },
     logins(context, payload) {
       return new Promise((resolve, reject) => {
         axios
@@ -136,6 +143,9 @@ export default {
     },
     getUserData(state) {
       return state.user
+    },
+    getCompType(state) {
+      return state.compType
     }
   }
 }

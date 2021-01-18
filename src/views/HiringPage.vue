@@ -24,6 +24,8 @@ import Profile from '../components/_base/Recruiter/HiringCard'
 import FormInput from '../components/_base/Recruiter/HiringFormInput'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'HiringPage',
   components: {
@@ -32,7 +34,12 @@ export default {
     Navbar,
     Footer
   },
-  created() {},
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
+  },
   data() {
     return {}
   }

@@ -11,19 +11,19 @@
       <div class="inputTitle mt-5">
         Tujuan tentang pesan ini
         <select class="form-control" id="tujuan">
-          <option>Projek</option>
-          <option>Full Time</option>
-          <option>Part-Time</option>
-          <option>Internship</option>
+          <option value="Full Time">Full Time</option>
+          <option value="Freelance">Freelance</option>
         </select>
       </div>
       <div class="inputTitle">
         Nama Lengkap
         <div>
           <b-form-input
+            readonly
             class="input"
             type="text"
             placeholder="Masukan nama lengkap"
+            v-model="profilePerekrutById.company_name"
           ></b-form-input>
         </div>
       </div>
@@ -31,9 +31,11 @@
         Email
         <div>
           <b-form-input
+            readonly
             class="input"
             type="email"
             placeholder=" Masukan email "
+            v-model="profilePerekrutById.email_user"
           ></b-form-input>
         </div>
       </div>
@@ -41,10 +43,12 @@
         No Handpone
         <div>
           <b-form-input
+            readonly
             class="input"
             type="tel"
             pattern="[0-9]{12}"
             placeholder=" Masukan no handpone "
+            v-model="profilePerekrutById.phone_number"
           ></b-form-input>
         </div>
       </div>
@@ -67,31 +71,34 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'HireForm',
   data() {
     return {
       company: {
-        id_recruiter: '4',
-        id_pekerja: '1',
         files: '',
         jobs_needed: 'need',
         desc_jobs: ''
       }
     }
   },
+  computed: {
+    ...mapGetters(['profilePerekrutById', 'getUserId'])
+  },
   methods: {
     ...mapActions(['postHire']),
     onHire() {
-      const {
-        id_recruiter,
-        id_pekerja,
-        files,
-        jobs_needed,
-        desc_jobs
-      } = this.company
-
+      const { files, jobs_needed, desc_jobs } = this.company
+      const id_recruiter = this.getUserId
+      const id_pekerja = this.$route.params.id
+      if (!desc_jobs) {
+        return this.$swal({
+          icon: 'error',
+          title: 'Deskripsi kosong',
+          text: 'Deskripsi untuk detail pekerjaan tidak boleh kosong'
+        })
+      }
       const data = new FormData()
       data.append('id_recruiter', id_recruiter)
       data.append('id_pekerja', id_pekerja)
@@ -101,10 +108,20 @@ export default {
 
       this.postHire(data)
         .then(result => {
-          console.log(result)
+          console.log(result.data.data)
+          return this.$swal({
+            icon: 'success',
+            title: 'Success',
+            text: `Success sending hire invitation`
+          })
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error.message)
+          return this.$swal({
+            icon: 'error',
+            title: 'Success',
+            text: `${error.data.message}`
+          })
         })
     }
   }

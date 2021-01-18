@@ -51,6 +51,13 @@
         >Simpan</b-button
       ><br />
       <b-button block class="btnstyle-invert">Batal</b-button>
+      <b-button
+        class="btnstyle-invert"
+        style="margin-top: 20px;"
+        @click="loggingOut"
+      >
+        Log out
+      </b-button>
     </div>
   </div>
 </template>
@@ -73,13 +80,22 @@ export default {
     ...mapGetters(['profileById', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById', 'updatePekerja']),
+    ...mapActions(['getProfilPekerjaById', 'updatePekerja', 'logout']),
     chooseFiles: function() {
       document.getElementById('fileUpload').click()
     },
     handleFile(e) {
-      const file = (this.profileById.image_pekerja = e.target.files[0])
-      this.url = URL.createObjectURL(file)
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        return this.$swal({
+          icon: 'error',
+          title: 'File input not recognized',
+          text: 'Image input must be .JPG or .PNG'
+        })
+      } else {
+        const file = (this.profileById.image_pekerja = e.target.files[0])
+        this.url = URL.createObjectURL(file)
+      }
     },
     onUpdate() {
       if (
@@ -116,6 +132,9 @@ export default {
             })
           })
       }
+    },
+    loggingOut() {
+      this.logout()
     }
   }
 }

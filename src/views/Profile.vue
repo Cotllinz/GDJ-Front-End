@@ -48,6 +48,8 @@ import Portofolio from '../components/_base/Profile/CardPortofolio'
 import Work from '../components/_base/Profile/CardWork'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Profiles',
   components: {
@@ -57,11 +59,16 @@ export default {
     Footer,
     Work
   },
-  created() {},
   data() {
     return {
       type: 1
     }
+  },
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
   }
 }
 </script>

@@ -24,6 +24,8 @@ import EditProfile from '../components/_base/Recruiter/CompanyCard'
 import FormInput from '../components/_base/Recruiter/EditCompanyForm'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'EditCompany',
   components: {
@@ -32,7 +34,12 @@ export default {
     Navbar,
     Footer
   },
-  created() {},
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
+  },
   data() {
     return {}
   }

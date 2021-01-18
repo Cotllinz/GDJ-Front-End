@@ -87,6 +87,9 @@ export default {
       url: null
     }
   },
+  created() {
+    this.profilePerekrutById(this.user_id)
+  },
   computed: {
     ...mapGetters({
       user_id: 'getUserId',
@@ -102,14 +105,14 @@ export default {
     handleFile(event) {
       this.profilePerekrut.image_recruiter = event.target.files[0]
       this.url = URL.createObjectURL(event.target.files[0])
-      //const type = event.target.files[0].type
-      // if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-      //   return this.$swal({
-      //     icon: 'error',
-      //     title: 'File input not recognized',
-      //     text: 'Image input must be .JPG or .PNG'
-      //   })
-      // }
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        return this.$swal({
+          icon: 'error',
+          title: 'File input not recognized',
+          text: 'Image input must be .JPG or .PNG'
+        })
+      }
     },
     goUpdate() {
       this.updateCompany(this.user_id)

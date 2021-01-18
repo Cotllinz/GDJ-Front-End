@@ -21,6 +21,7 @@ import SearchSort from '../components/_base/HomePage/SearchSort'
 import Card from '../components/_base/HomePage/Card'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'HomePage',
@@ -29,6 +30,12 @@ export default {
     Card,
     Navbar,
     Footer
+  },
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
   }
 }
 </script>

@@ -2,9 +2,14 @@ import axios from 'axios'
 
 export default {
   state: {
-    portoUser: []
+    portoUser: [],
+    portoList: []
   },
-  mutation: {},
+  mutations: {
+    PortoSet(state, payload) {
+      state.portoList = payload.data
+    }
+  },
   actions: {
     addPortofolio(context, payload) {
       return new Promise((resolve, reject) => {
@@ -23,7 +28,7 @@ export default {
         axios
           .get(`http://${process.env.VUE_APP_URL}/portofolio/${payload}`)
           .then(result => {
-            context.state.portoUser = result.data.data
+            context.commit('PortoSet', result.data)
             resolve(result)
           })
           .catch(error => {
@@ -50,6 +55,9 @@ export default {
   getters: {
     portofolioUser(state) {
       return state.portoUser
+    },
+    portofolioList(state) {
+      return state.portoList
     }
   }
 }

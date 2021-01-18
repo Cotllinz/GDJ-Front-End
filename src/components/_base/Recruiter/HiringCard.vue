@@ -5,7 +5,18 @@
         <div class="images d-flex justify-content-center">
           <b-img
             rounded="circle"
+            v-if="!profileById.image_pekerja"
             :src="require('../../../assets/img/photo.png')"
+            alt="Image"
+            class="profile-img"
+          ></b-img>
+          <b-img
+            rounded="circle"
+            v-if="profileById.image_pekerja"
+            :src="
+              'http://localhost:3000/fileUserProfile/' +
+                profileById.image_pekerja
+            "
             alt="Image"
             class="profile-img"
           ></b-img>
@@ -52,12 +63,17 @@ export default {
   created() {
     this.getProfilPekerjaById(this.idUser)
     this.getSkills(this.idUser)
+    this.getProfilPerekrutById(this.getUserId)
   },
   computed: {
     ...mapGetters(['profileById', 'userSkill', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById', 'getSkills'])
+    ...mapActions([
+      'getProfilPekerjaById',
+      'getSkills',
+      'getProfilPerekrutById'
+    ])
   }
 }
 </script>

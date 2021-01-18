@@ -30,6 +30,8 @@ import FormPengalaman from '../components/_base/EditProfilPekerja/FormPengalaman
 import FormPortofolio from '../components/_base/EditProfilPekerja/FormPortofolio'
 import Navbar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'EditProfilPekerja',
   components: {
@@ -41,7 +43,12 @@ export default {
     Navbar,
     Footer
   },
-  created() {},
+  created() {
+    this.setCompType(1)
+  },
+  methods: {
+    ...mapActions(['setCompType'])
+  },
   data() {
     return {
       type: 1
