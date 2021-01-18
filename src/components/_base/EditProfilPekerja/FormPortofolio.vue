@@ -12,6 +12,7 @@
           required
           placeholder="Masukan nama aplikasi"
           class="input-style"
+          v-model="form.application_name"
         ></b-form-input>
 
         <h6>Link repository</h6>
@@ -20,6 +21,7 @@
           required
           placeholder="Masukan link repository"
           class="input-style"
+          v-model="form.repo_link"
         ></b-form-input>
         <div style="margin-bottom:25px">
           <h6>Type Portofolio</h6>
@@ -34,45 +36,120 @@
         </div>
 
         <h6>Upload gambar</h6>
-        <b-form-file class="mt-3" plain></b-form-file>
+        <b-form-file class="mt-3" plain @change="handleFile"></b-form-file>
         <hr style="margin-top:30px; margin-bottom:30px" />
       </div>
       <div style="font-weight:bold" class="card-margin">
-        <b-button block variant="outline-warning" class="btn-invert"
+        <b-button
+          block
+          variant="outline-warning"
+          class="btn-invert"
+          @click="addPorto"
           >Tambah Portofolio</b-button
         >
       </div>
+      <br /><br />
+      <b-row
+        class="card-margin"
+        v-for="(item, index) in portofolioUser"
+        :key="index"
+      >
+        <b-col>
+          {{ item.application_name }}
+        </b-col>
+        <b-col>
+          {{ item.type_portofolio }}
+        </b-col>
+        <b-col>
+          {{ item.repo_link }}
+        </b-col>
+        <b-col>
+          <b-icon
+            @click="delPorto(item.id, item.id_pekerja)"
+            style="cursor:pointer"
+            icon="trash-fill"
+            class="del-icon"
+            variant="danger"
+          ></b-icon>
+        </b-col>
+      </b-row>
     </b-card>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'FormPortofolio',
   data() {
     return {
-      //url: null,
-      //img: '',
+      idUser: 1,
       selected: 'Mobile',
       options: [
         { item: 'Mobile', name: 'Aplikasi Mobile' },
         { item: 'Web', name: 'Aplikasi Web' }
-      ]
-      // chooseFiles: function() {
-      //   document.getElementById('filePortofolio').click()
-      // },
-      // handleFile(e) {
-      //   const file = (this.img = e.target.files[0])
-      //   this.url = URL.createObjectURL(file)
-      // }
+      ],
+      form: {
+        id_pekerja: 1,
+        application_name: '',
+        repo_link: '',
+        type_portofolio: this.selected,
+        image_portofolio: ''
+      }
     }
   },
+  created() {
+    this.getPortofolio(this.idUser)
+  },
+  computed: {
+    ...mapGetters(['portofolioUser'])
+  },
   methods: {
-    // addNewEmployeeForm() {
-    //   this.employee.push({
-    //     posisi: ''
-    //   })
-    // }
+    ...mapActions(['addPortofolio', 'getPortofolio', 'delPortofolio']),
+    handleFile(e) {
+      const file = (this.form.image_portofolio = e.target.files[0])
+      this.url = URL.createObjectURL(file)
+    },
+    addPorto() {
+      const {
+        id_pekerja,
+        application_name,
+        repo_link,
+        type_portofolio,
+        image_portofolio
+      } = this.form
+      const data = new FormData()
+      data.append('id_pekerja', id_pekerja)
+      data.append('application_name', application_name)
+      data.append('repo_link', repo_link)
+      data.append('type_portofolio', type_portofolio)
+      data.append('image_portofolio', image_portofolio)
+      // for (var pair of data.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1])
+      // }
+      this.addPortofolio(data)
+        .then(result => {
+          this.getPortofolio(this.idUser)
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    delPorto(id, idUser) {
+      const data = {
+        id: id,
+        id_user: idUser
+      }
+      this.delPortofolio(data)
+        .then(result => {
+          this.getPortofolio(this.idUser)
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 }
 </script>

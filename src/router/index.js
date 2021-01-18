@@ -28,14 +28,14 @@ const routes = [
   {
     path: '/home',
     name: 'HomegPage',
-    component: HomegPage,
-    meta: { requiresAuth: true }
+    component: HomegPage
+    // meta: { requiresAuth: true }
   },
   {
     path: '/Login',
     name: 'Login',
-    component: Login,
-    meta: { requiresVisitor: true }
+    component: Login
+    // meta: { requiresVisitor: true }
   },
   {
     path: '/confirm-email/:id',
@@ -55,20 +55,20 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: Register,
-    meta: { requiresVisitor: true }
+    component: Register
+    // meta: { requiresVisitor: true }
   },
   {
     path: '/Login-recruiter',
     name: 'LoginRecruiter',
-    component: LoginRecruiter,
-    meta: { requiresVisitor: true }
+    component: LoginRecruiter
+    // meta: { requiresVisitor: true }
   },
   {
     path: '/register-recruiter',
     name: 'RegisterRecruiter',
-    component: RegisterRecruiter,
-    meta: { requiresVisitor: true }
+    component: RegisterRecruiter
+    // meta: { requiresVisitor: true }
   },
   {
     path: '/profile-pekerja',

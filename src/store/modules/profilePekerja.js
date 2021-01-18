@@ -4,6 +4,7 @@ export default {
   state: {
     profileById: '',
     exprUser: [],
+    portoUser: [],
     skill: ''
   },
   mutation: {},
@@ -46,6 +47,19 @@ export default {
             reject(error)
           })
       })
+    },
+    getPortofolio(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://${process.env.VUE_APP_URL}/portofolio/${payload}`)
+          .then(result => {
+            context.state.portoUser = result.data.data
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     }
   },
   getters: {
@@ -54,6 +68,9 @@ export default {
     },
     exprUser(state) {
       return state.exprUser
+    },
+    portoUser(state) {
+      return state.portoUser
     },
     userSkill(state) {
       return state.skill

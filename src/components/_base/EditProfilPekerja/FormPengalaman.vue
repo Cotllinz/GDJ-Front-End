@@ -1,13 +1,13 @@
 <template>
   <div>
     <b-card class="card-style">
-      <div v-for="(item, index) in employee" :key="index">
+      <div v-for="(item, index) in listPengalaman" :key="index">
         <div class="title-form">
           <h5 style="font-weight:bold" class="card-margin">
             Pengalaman kerja ke {{ index + 1 }}
           </h5>
           <b-icon
-            @click="removeEmployeeForm(index)"
+            @click="removeEmployeeForm(index, item.id, item.id_pekerja)"
             style="cursor:pointer"
             icon="trash-fill"
             class="del-icon"
@@ -28,6 +28,7 @@
             <b-col sm="12" md="6" lg="6" xl="6">
               <h6>Nama perusahaan</h6>
               <b-form-input
+                v-model="item.at_company"
                 type="text"
                 required
                 placeholder="PT Semua Aplikasi"
@@ -37,7 +38,8 @@
             <b-col sm="12" md="6" lg="6" xl="6">
               <h6>Bulan/Tahun</h6>
               <b-form-input
-                type="text"
+                v-model="item.date"
+                type="date"
                 required
                 placeholder="January 2018"
                 class="input-style"
@@ -46,10 +48,10 @@
           </b-row>
           <h6>Deskripsi singkat</h6>
           <b-form-textarea
+            v-model="item.description"
             class="textarea"
             placeholder="Deskripsi singkat pekerjaan anda"
           ></b-form-textarea>
-
           <hr style="margin-top:30px; margin-bottom:30px" />
         </div>
       </div>
@@ -62,32 +64,85 @@
           >Tambah Pengalaman Kerja</b-button
         >
       </div>
+      <div style="font-weight:bold" class="card-margin">
+        <b-button
+          @click="addPengalaman"
+          block
+          variant="outline-primary"
+          class="btn-invert"
+          >Simpan Pengalaman</b-button
+        >
+      </div>
     </b-card>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'FormPengalaman',
   data() {
     return {
+      idUser: 1,
       employee: [
         {
-          posisi: ''
+          id_pekerja: 1,
+          posisi: '',
+          at_company: '',
+          date: '',
+          description: ''
         }
       ]
     }
   },
+  created() {
+    this.getPengalamanKerja(this.idUser)
+  },
+  computed: {
+    ...mapGetters(['listPengalaman'])
+  },
   methods: {
+    ...mapActions([
+      'addPengalamanKerja',
+      'getPengalamanKerja',
+      'deletePengalamanKerja'
+    ]),
     addNewEmployeeForm() {
-      this.employee.push({
-        posisi: ''
+      this.listPengalaman.push({
+        id_pekerja: 1,
+        posisi: '',
+        at_company: '',
+        date: '',
+        description: ''
       })
-      console.log(this.employee)
     },
-    removeEmployeeForm(index) {
-      this.employee.splice(index, 1)
-      console.log(this.employee)
+    addPengalaman() {
+      this.addPengalamanKerja(this.listPengalaman)
+        .then(result => {
+          console.log(result)
+          this.getPengalamanKerja(this.idUser)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    removeEmployeeForm(index, id, idPekerja) {
+      const data = {
+        id: id,
+        idPekerja: idPekerja
+      }
+      if (this.listPengalaman[index].posisi === '') {
+        this.listPengalaman.splice(index, 1)
+      } else {
+        this.deletePengalamanKerja(data)
+          .then(result => {
+            this.getPengalamanKerja(this.idUser)
+            console.log(result)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     }
   }
 }

@@ -15,6 +15,19 @@ export default {
             reject(error)
           })
       })
+    },
+    getNotif(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://${process.env.VUE_APP_URL}/hire/notif/${payload}`)
+          .then(result => {
+            context.state.portoUser = result.data.data
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     }
   },
   getters: {}

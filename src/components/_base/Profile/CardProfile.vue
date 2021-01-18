@@ -9,7 +9,7 @@
             :src="
               profileById.image_pekerja === ''
                 ? require('../../../assets/img/default.jpg')
-                : 'http://localhost:3000/fileUserProfile/' +
+                : `http://localhost:3000/fileUserProfile/` +
                   profileById.image_pekerja
             "
             alt="Image"

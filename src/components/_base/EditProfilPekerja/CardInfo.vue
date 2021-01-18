@@ -7,7 +7,7 @@
             <div id="preview">
               <img v-if="url" :src="url" class="round-img" />
               <div
-                v-else-if="img === ''"
+                v-else-if="profileById.image_pekerja === ''"
                 class="d-flex justify-content-center"
                 style="background-color:#d2d2d2;border-radius:50%;width:170px;height:170px"
               >
@@ -20,7 +20,10 @@
               <img
                 v-else
                 class="round-img"
-                :src="'../../../assets/img/photo.png'"
+                :src="
+                  `http://localhost:3000/fileUserProfile/` +
+                    profileById.image_pekerja
+                "
                 alt=""
               />
             </div>
@@ -34,14 +37,14 @@
           </div>
         </center>
         <div class="info">
-          <h4 style="font-weight:600">Louis Tomlinson</h4>
-          <p>Web Developer</p>
+          <h4 style="font-weight:600">{{ profileById.fullname_pekerja }}</h4>
+          <p>{{ profileById.job_desk }}</p>
           <div style="font-size:15px;color:#AAACB0">
             <p class="h6">
               <b-icon icon="geo-alt" style="margin-right:10px"></b-icon
-              >Purwokerto, Jawa Tengah
+              >{{ profileById.city_pekerja }}
             </p>
-            <p>Freelancer</p>
+            <p>{{ profileById.status_jobs }}</p>
           </div>
         </div> </b-card
       ><br />
@@ -51,15 +54,24 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'ProfileInfo',
   data() {
     return {
       url: null,
-      img: ''
+      img: '',
+      idUser: 1
     }
   },
+  created() {
+    this.getProfilPekerjaById(this.idUser)
+  },
+  computed: {
+    ...mapGetters(['profileById'])
+  },
   methods: {
+    ...mapActions(['getProfilPekerjaById']),
     chooseFiles: function() {
       document.getElementById('fileUpload').click()
     },
