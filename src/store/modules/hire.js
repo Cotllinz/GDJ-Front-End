@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 export default {
-  state: {},
+  state: {
+    notif: []
+  },
   mutation: {},
   actions: {
     postHire(context, payload) {
@@ -21,7 +23,7 @@ export default {
         axios
           .get(`http://${process.env.VUE_APP_URL}/hire/notif/${payload}`)
           .then(result => {
-            context.state.portoUser = result.data.data
+            context.state.notif = result.data.data
             resolve(result)
           })
           .catch(error => {
@@ -30,5 +32,9 @@ export default {
       })
     }
   },
-  getters: {}
+  getters: {
+    notifikasi(state) {
+      return state.notif
+    }
+  }
 }

@@ -45,7 +45,11 @@
             <div
               class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
-              <div class="mr-lg-4 position-relative cursor">
+              <div
+                class="mr-lg-4 position-relative cursor"
+                id="show-btn"
+                @click="$bvModal.show('bv-modal-example')"
+              >
                 <img
                   class="pr-lg-3"
                   src="../assets/images/icons/bell (1) 1.svg"
@@ -99,6 +103,16 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
+
+      <b-modal id="bv-modal-example" hide-footer>
+        <template #modal-title> Notifikasi </template>
+        <div class="d-block text-center">
+          notif
+        </div>
+        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')"
+          >Close Me</b-button
+        >
+      </b-modal>
     </b-container>
   </div>
 </template>
@@ -113,6 +127,7 @@ export default {
   data() {
     return {}
   },
+  created() {},
   computed: {
     ...mapGetters({
       configNav: 'getUserRole',
@@ -121,7 +136,7 @@ export default {
     })
   },
   methods: {
-    ...mapGetters(['getUserRole']),
+    ...mapGetters(['getUserRole', 'notifikasi']),
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
         if (res.result.value === true && res.getSign === 'Login') {
