@@ -138,20 +138,30 @@ export default {
         })
     },
     async addPengalaman() {
-      //const x = await this.listPengalaman.length
-      // if (x !== 0) {
-      //   this.deleteAll()
-      //   //console.log('hapus')
-      // }
-      await this.addPengalamanKerja(this.listPengalaman)
-        .then(result => {
-          this.hasil = result
-          console.log('berhasil')
-          //this.getPengalamanKerja(this.getUserData.id_user)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      const x = await this.listPengalaman.length
+      if (x >= 1) {
+        await this.deleteAll()
+
+        await this.addPengalamanKerja(this.listPengalaman)
+          .then(result => {
+            this.hasil = result
+            console.log('berhasil')
+            //this.getPengalamanKerja(this.getUserData.id_user)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        await this.addPengalamanKerja(this.listPengalaman)
+          .then(result => {
+            this.hasil = result
+            console.log('berhasil')
+            //this.getPengalamanKerja(this.getUserData.id_user)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     },
     removeEmployeeForm(index, id, idPekerja) {
       const data = {

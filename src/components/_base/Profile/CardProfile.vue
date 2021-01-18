@@ -35,7 +35,8 @@
         <router-link
           v-if="getUserData.roles === 0"
           :to="{
-            name: 'EditProfile'
+            name: 'EditProfile',
+            params: { id: profileById.id_pekerja }
           }"
         >
           <b-button class="btnstyle" block>Edit Profile</b-button>
@@ -105,7 +106,7 @@ export default {
   name: 'Profile',
   data() {
     return {
-      id: 1
+      //id: 1
     }
   },
   created() {

@@ -76,7 +76,7 @@ const routes = [
     component: Profile
   },
   {
-    path: '/edit-pekerja',
+    path: '/edit-pekerja/:id',
     name: 'EditProfile',
     component: EditProfile
   },

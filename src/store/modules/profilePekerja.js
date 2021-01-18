@@ -9,6 +9,54 @@ export default {
   },
   mutation: {},
   actions: {
+    updatePekerja(context, payload) {
+      console.log(payload)
+      return new Promise((resolve, reject) => {
+        console.log(resolve)
+        console.log(reject)
+        const {
+          fullname_pekerja,
+          job_desk,
+          city_pekerja,
+          job_require,
+          job_status,
+          work_place,
+          desc_pekerja,
+          image_pekerja,
+          instagram,
+          linked,
+          github
+        } = context.state.profileById
+        const data = new FormData()
+        data.append('fullname_pekerja', fullname_pekerja)
+        data.append('job_desk', job_desk)
+        data.append('city_pekerja', city_pekerja)
+        data.append('job_require', job_require)
+        data.append('job_status', job_status)
+        data.append('work_place', work_place)
+        data.append('desc_pekerja', desc_pekerja)
+        data.append('files', image_pekerja)
+        data.append('instagram', instagram)
+        data.append('linked', linked)
+        data.append('github', github)
+        // for (var pair of data.entries()) {
+        //   console.log(pair[0] + ', ' + pair[1])
+        // }
+        axios
+          .patch(
+            `http://${process.env.VUE_APP_URL}/user/editprofile/${payload}`,
+            data
+          )
+          .then(response => {
+            console.log(response)
+            resolve(response)
+          })
+          .catch(error => {
+            //console.log(error)
+            reject(error.response)
+          })
+      })
+    },
     getProfilPekerjaById(context, payload) {
       return new Promise((resolve, reject) => {
         axios

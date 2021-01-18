@@ -48,7 +48,9 @@
           </div>
         </div> </b-card
       ><br />
-      <b-button block class="btnstyle">Simpan</b-button><br />
+      <b-button block class="btnstyle" @click.prevent="onUpdate()"
+        >Simpan</b-button
+      ><br />
       <b-button block class="btnstyle-invert">Batal</b-button>
     </div>
   </div>
@@ -61,23 +63,37 @@ export default {
     return {
       url: null,
       img: '',
-      idUser: 1
+      idUser: (this.id = this.$route.params.id)
     }
   },
   created() {
     this.getProfilPekerjaById(this.idUser)
   },
   computed: {
-    ...mapGetters(['profileById'])
+    ...mapGetters(['profileById', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById']),
+    ...mapActions(['getProfilPekerjaById', 'updatePekerja']),
     chooseFiles: function() {
       document.getElementById('fileUpload').click()
     },
     handleFile(e) {
-      const file = (this.img = e.target.files[0])
+      const file = (this.profileById.image_pekerja = e.target.files[0])
       this.url = URL.createObjectURL(file)
+    },
+    onUpdate() {
+      this.updatePekerja(this.idUser)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+          return this.$swal({
+            icon: 'error',
+            title: 'File input not recognized',
+            text: 'Image input must be .JPG or .PNG'
+          })
+        })
     }
   }
 }
