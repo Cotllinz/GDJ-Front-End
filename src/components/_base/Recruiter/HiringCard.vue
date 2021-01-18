@@ -5,19 +5,19 @@
         <div class="images d-flex justify-content-center">
           <b-img
             rounded="circle"
-            v-if="!profileById.image_pekerja"
-            :src="require('../../../assets/img/photo.png')"
-            alt="Image"
-            class="profile-img"
-          ></b-img>
-          <b-img
-            rounded="circle"
             v-if="profileById.image_pekerja"
             :src="
               'http://localhost:3000/fileUserProfile/' +
                 profileById.image_pekerja
             "
             alt="Image"
+            class="profile-img"
+          ></b-img>
+          <b-img
+            rounded="circle"
+            v-else
+            :src="require('../../../assets/img/photo.png')"
+            alt="Image_default"
             class="profile-img"
           ></b-img>
         </div>
@@ -43,10 +43,9 @@
             size="sm"
             v-for="(item, index) in userSkill"
             :key="index"
-            >{{ item }}</b-button
+            >{{ item.skill_name }}</b-button
           >
         </div>
-        {{ getUserData }}
       </b-card>
     </div>
   </div>
