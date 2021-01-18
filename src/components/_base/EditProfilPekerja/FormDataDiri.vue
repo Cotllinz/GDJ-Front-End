@@ -10,6 +10,7 @@
           required
           placeholder="Masukan nama lengkap"
           class="input-style"
+          v-model="profileById.fullname_pekerja"
         ></b-form-input>
         <h6>Job desk</h6>
         <b-form-input
@@ -17,6 +18,7 @@
           required
           placeholder="Masukan job desk"
           class="input-style"
+          v-model="profileById.job_desk"
         ></b-form-input>
         <h6>Domisili</h6>
         <b-form-input
@@ -24,6 +26,7 @@
           required
           placeholder="Masukan domisili"
           class="input-style"
+          v-model="profileById.city_pekerja"
         ></b-form-input>
         <h6>Tempat kerja</h6>
         <b-form-input
@@ -31,11 +34,13 @@
           required
           placeholder="Masukan tempat kerja"
           class="input-style"
+          v-model="profileById.work_place"
         ></b-form-input>
         <h6>Deskripsi singkat</h6>
         <b-form-textarea
-          class="textarea"
+          class="textarea input-style"
           placeholder="Tulis deskripsi singkat"
+          v-model="profileById.desc_pekerja"
         ></b-form-textarea>
         <h6>Instagram</h6>
         <b-form-input
@@ -43,6 +48,7 @@
           required
           placeholder="Masukan instagram anda"
           class="input-style"
+          v-model="profileById.instagram"
         ></b-form-input>
         <h6>Github</h6>
         <b-form-input
@@ -50,6 +56,15 @@
           required
           placeholder="Masukan Github anda"
           class="input-style"
+          v-model="profileById.github"
+        ></b-form-input>
+        <h6>Linkedin</h6>
+        <b-form-input
+          type="text"
+          required
+          placeholder="Masukan Linkedin anda"
+          class="input-style"
+          v-model="profileById.linked"
         ></b-form-input>
       </div>
     </b-card>
@@ -57,8 +72,26 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'FormDataDiri'
+  name: 'FormDataDiri',
+  data() {
+    return {
+      idUser: (this.id = this.$route.params.id)
+    }
+  },
+  created() {
+    this.getProfilPekerjaById(this.idUser)
+  },
+  computed: {
+    ...mapGetters(['profileById', 'getUserData'])
+  },
+  methods: {
+    ...mapActions(['getProfilPekerjaById']),
+    chooseFiles: function() {
+      document.getElementById('fileUpload').click()
+    }
+  }
 }
 </script>
 

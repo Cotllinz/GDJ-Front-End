@@ -4,30 +4,30 @@
       <h5 style="font-weight:bold" class="card-margin">Skill</h5>
       <hr />
       <div class="card-margin input-color">
-        <b-input-group>
-          <b-form-input
-            v-model="skill"
-            type="text"
-            required
-            placeholder="Javascript"
-            class="input-style skill"
-          ></b-form-input>
-          <b-input-group-append>
-            <b-button @click="addSkill(skill)" class="btn-style"
-              >Simpan</b-button
-            >
-          </b-input-group-append>
-        </b-input-group>
+        <b-form>
+          <b-input-group>
+            <b-form-input
+              v-model="skill"
+              type="text"
+              required
+              placeholder="Javascript"
+              class="input-style skill"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button @click="addSkill()" class="btn-style">Simpan</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form>
         <b-button-group
-          v-for="(item, index) in listSkill"
+          v-for="(item, index) in skillPekerja"
           :key="index"
           class="group-list-skill"
         >
           <b-button variant="warning" class="list-skill" size="sm">{{
-            item
+            item.skill_name
           }}</b-button>
           <b-button
-            @click="removeSkill(index)"
+            @click="removeSkill(index, item.id)"
             variant="outline-danger"
             class="list-skill"
             size="sm"
@@ -40,20 +40,63 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import toastForm from '../../../mixins/toastForm'
 export default {
   name: 'FormDataSkils',
+  mixins: [toastForm],
   data() {
     return {
+      results: '',
       skill: '',
       listSkill: []
     }
   },
+  created() {
+    this.getSkills(this.getUserData.id_user)
+  },
+  computed: {
+    ...mapGetters(['skillPekerja', 'getUserData'])
+  },
   methods: {
-    addSkill(input) {
-      this.listSkill.push(input)
+    ...mapActions(['addSkillPekerja', 'deleteSkill', 'getSkills']),
+    addSkill() {
+      if (this.skill === '') {
+        this.makeToast(
+          'Form input skill masih kosong',
+          'Input harus skill diisi',
+          'warning'
+        )
+      } else {
+        const data = {
+          skill_name: this.skill,
+          id_pekerja: this.getUserData.id_user
+        }
+        this.listSkill.push(data)
+        this.addSkillPekerja(this.listSkill)
+          .then(result => {
+            this.results = result
+            this.listSkill = []
+            this.getSkills(this.getUserData.id_user)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     },
-    removeSkill(index) {
-      this.listSkill.splice(index, 1)
+    removeSkill(index, id) {
+      const data = {
+        id_pekerja: this.getUserData.id_user,
+        id_skill: id
+      }
+      this.deleteSkill(data)
+        .then(result => {
+          this.skillPekerja.splice(index, 1)
+          this.results = result
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

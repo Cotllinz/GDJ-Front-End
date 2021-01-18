@@ -4,71 +4,27 @@
       class="portofolio"
       style="margin-top:20px;margin-bottom:20px;text-align:center"
     >
-      <b-row>
-        <b-col sm="12" md="6" lg="4" xl="4">
+      <div v-if="portoUser.length === 0">
+        <h5>Portofolio Kosong</h5>
+      </div>
+      <b-row v-else>
+        <b-col
+          sm="12"
+          md="6"
+          lg="4"
+          xl="4"
+          v-for="(item, index) in portoUser"
+          :key="index"
+        >
+          <div></div>
           <div class="porto-img">
             <b-img
-              :src="require('../../../assets/img/portofolio1.png')"
+              :src="`http://localhost:3000/imagePorto/` + item.image_portofolio"
               rounded
               alt="Rounded image"
               class="img"
             ></b-img>
-            <div class="title-porto">Project management web</div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6" lg="4" xl="4">
-          <div class="porto-img">
-            <b-img
-              :src="require('../../../assets/img/portofolio2.png')"
-              rounded
-              alt="Rounded image"
-              class="img"
-            ></b-img>
-            <div class="title-porto">Social Media App</div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6" lg="4" xl="4">
-          <div class="porto-img">
-            <b-img
-              :src="require('../../../assets/img/portofolio3.png')"
-              rounded
-              alt="Rounded image"
-              class="img"
-            ></b-img>
-            <div class="title-porto">Reminder App</div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6" lg="4" xl="4">
-          <div class="porto-img">
-            <b-img
-              :src="require('../../../assets/img/portofolio4.png')"
-              rounded
-              alt="Rounded image"
-              class="img"
-            ></b-img>
-            <div class="title-porto">Project management web</div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6" lg="4" xl="4">
-          <div class="porto-img">
-            <b-img
-              :src="require('../../../assets/img/portofolio5.png')"
-              rounded
-              alt="Rounded image"
-              class="img"
-            ></b-img>
-            <div class="title-porto">Social Media App</div>
-          </div>
-        </b-col>
-        <b-col sm="12" md="6" lg="4" xl="4">
-          <div class="porto-img">
-            <b-img
-              :src="require('../../../assets/img/portofolio6.png')"
-              rounded
-              alt="Rounded image"
-              class="img"
-            ></b-img>
-            <div class="title-porto">Reminder App</div>
+            <div class="title-porto">{{ item.application_name }}</div>
           </div>
         </b-col>
       </b-row>
@@ -77,8 +33,32 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Portofolio'
+  name: 'Portofolio',
+  data() {
+    return {
+      results: ''
+    }
+  },
+  created() {
+    this.getPorto()
+  },
+  computed: {
+    ...mapGetters(['portoUser', 'getUserData'])
+  },
+  methods: {
+    ...mapActions(['getPortofolio']),
+    getPorto() {
+      this.getPortofolio(this.getUserData.id_user)
+        .then(result => {
+          this.results = result.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 

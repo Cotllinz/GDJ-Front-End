@@ -1,13 +1,13 @@
 <template>
   <div>
     <b-card class="card-style">
-      <div v-for="(item, index) in employee" :key="index">
+      <div v-for="(item, index) in listPengalaman" :key="index">
         <div class="title-form">
           <h5 style="font-weight:bold" class="card-margin">
             Pengalaman kerja ke {{ index + 1 }}
           </h5>
           <b-icon
-            @click="removeEmployeeForm(index)"
+            @click="removeEmployeeForm(index, item.id, item.id_pekerja)"
             style="cursor:pointer"
             icon="trash-fill"
             class="del-icon"
@@ -28,6 +28,7 @@
             <b-col sm="12" md="6" lg="6" xl="6">
               <h6>Nama perusahaan</h6>
               <b-form-input
+                v-model="item.at_company"
                 type="text"
                 required
                 placeholder="PT Semua Aplikasi"
@@ -37,7 +38,8 @@
             <b-col sm="12" md="6" lg="6" xl="6">
               <h6>Bulan/Tahun</h6>
               <b-form-input
-                type="text"
+                v-model="item.date"
+                type="date"
                 required
                 placeholder="January 2018"
                 class="input-style"
@@ -46,10 +48,10 @@
           </b-row>
           <h6>Deskripsi singkat</h6>
           <b-form-textarea
+            v-model="item.description"
             class="textarea"
             placeholder="Deskripsi singkat pekerjaan anda"
           ></b-form-textarea>
-
           <hr style="margin-top:30px; margin-bottom:30px" />
         </div>
       </div>
@@ -57,9 +59,29 @@
         <b-button
           @click="addNewEmployeeForm"
           block
+          variant="outline-secondary"
+          style="color:#d2d2d2"
+          class="btn-invert"
+          v-if="listPengalaman.length > 1"
+          disabled
+          >Tambah Pengalaman Kerja</b-button
+        >
+        <b-button
+          @click="addNewEmployeeForm"
+          block
           variant="outline-warning"
           class="btn-invert"
+          v-else
           >Tambah Pengalaman Kerja</b-button
+        >
+      </div>
+      <div style="font-weight:bold" class="card-margin">
+        <b-button
+          @click="addPengalaman"
+          block
+          variant="outline-primary"
+          class="btn-invert"
+          >Simpan Pengalaman</b-button
         >
       </div>
     </b-card>
@@ -67,27 +89,98 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'FormPengalaman',
   data() {
     return {
+      hasil: '',
       employee: [
         {
-          posisi: ''
+          id_pekerja: 1,
+          posisi: '',
+          at_company: '',
+          date: '',
+          description: ''
         }
       ]
     }
   },
+  created() {
+    this.getPengalamanKerja(this.getUserData.id_user)
+  },
+  computed: {
+    ...mapGetters(['listPengalaman', 'getUserData'])
+  },
   methods: {
+    ...mapActions([
+      'addPengalamanKerja',
+      'getPengalamanKerja',
+      'deletePengalamanKerja',
+      'dellAll'
+    ]),
     addNewEmployeeForm() {
-      this.employee.push({
-        posisi: ''
+      this.listPengalaman.push({
+        id_pekerja: this.getUserData.id_user,
+        posisi: '',
+        at_company: '',
+        date: '',
+        description: ''
       })
-      console.log(this.employee)
     },
-    removeEmployeeForm(index) {
-      this.employee.splice(index, 1)
-      console.log(this.employee)
+    deleteAll() {
+      this.dellAll(this.getUserData.id_user)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    async addPengalaman() {
+      const x = await this.listPengalaman.length
+      if (x >= 1) {
+        await this.deleteAll()
+
+        await this.addPengalamanKerja(this.listPengalaman)
+          .then(result => {
+            this.hasil = result
+            console.log('berhasil')
+            //this.getPengalamanKerja(this.getUserData.id_user)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        await this.addPengalamanKerja(this.listPengalaman)
+          .then(result => {
+            this.hasil = result
+            console.log('berhasil')
+            //this.getPengalamanKerja(this.getUserData.id_user)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    },
+    removeEmployeeForm(index, id, idPekerja) {
+      const data = {
+        id: id,
+        idPekerja: idPekerja
+      }
+      //this.listPengalaman[index].posisi === ''
+      if (this.listPengalaman[index].posisi === '') {
+        this.listPengalaman.splice(index, 1)
+      } else {
+        this.deletePengalamanKerja(data)
+          .then(result => {
+            this.listPengalaman.splice(index, 1)
+            console.log(result)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     }
   }
 }

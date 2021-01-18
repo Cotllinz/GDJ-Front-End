@@ -5,74 +5,177 @@
         Portofolio
       </h5>
       <hr />
-      <div class="card-margin input-color">
-        <h6 style="margin-top:20px">Nama aplikasi</h6>
-        <b-form-input
-          type="text"
-          required
-          placeholder="Masukan nama aplikasi"
-          class="input-style"
-        ></b-form-input>
+      <b-form @submit.prevent="onSubmit">
+        <div class="card-margin input-color">
+          <h6 style="margin-top:20px">Nama aplikasi</h6>
+          <b-form-input
+            type="text"
+            required
+            placeholder="Masukan nama aplikasi"
+            class="input-style"
+            v-model="form.application_name"
+          ></b-form-input>
 
-        <h6>Link repository</h6>
-        <b-form-input
-          type="text"
-          required
-          placeholder="Masukan link repository"
-          class="input-style"
-        ></b-form-input>
-        <div style="margin-bottom:25px">
-          <h6>Type Portofolio</h6>
-          <b-form-radio-group
-            v-model="selected"
-            :options="options"
-            class="mb-3"
-            value-field="item"
-            text-field="name"
-            disabled-field="notEnabled"
-          ></b-form-radio-group>
+          <h6>Link repository</h6>
+          <b-form-input
+            type="text"
+            required
+            placeholder="Masukan link repository"
+            class="input-style"
+            v-model="form.repo_link"
+          ></b-form-input>
+          <div style="margin-bottom:25px">
+            <h6>Type Portofolio</h6>
+            <b-form-radio-group
+              required
+              @change="changeType"
+              v-model="selected"
+              :options="options"
+              class="mb-3"
+              value-field="item"
+              text-field="name"
+              disabled-field="notEnabled"
+            ></b-form-radio-group>
+          </div>
+          <h6>Upload gambar</h6>
+          <b-form-file
+            class="mt-3"
+            plain
+            @change="handleFile"
+            required
+          ></b-form-file>
+          <hr style="margin-top:30px; margin-bottom:30px" />
         </div>
-
-        <h6>Upload gambar</h6>
-        <b-form-file class="mt-3" plain></b-form-file>
-        <hr style="margin-top:30px; margin-bottom:30px" />
-      </div>
-      <div style="font-weight:bold" class="card-margin">
-        <b-button block variant="outline-warning" class="btn-invert"
-          >Tambah Portofolio</b-button
+        <div style="font-weight:bold" class="card-margin">
+          <b-button
+            block
+            type="submit"
+            variant="outline-warning"
+            class="btn-invert"
+            >Tambah Portofolio</b-button
+          >
+        </div>
+      </b-form>
+      <h6 class="card-margin" style="font-weight:bold">Daftar Portofolio</h6>
+      <b-row class="card-margin">
+        <b-col
+          sm="6"
+          md="4"
+          lg="4"
+          xl="4"
+          v-for="(item, index) in portofolioUser"
+          :key="index"
         >
-      </div>
+          <b-card>
+            <div class="d-flex flex-grow-1 align-items-baseline">
+              <b-card-text style="padding:10px">{{
+                item.application_name
+              }}</b-card-text>
+              <b-icon
+                @click="delPorto(item.id, item.id_pekerja)"
+                style="cursor:pointer;"
+                icon="trash-fill"
+                class="del-icon"
+                variant="danger"
+              ></b-icon>
+            </div>
+          </b-card>
+          <br />
+        </b-col>
+      </b-row>
     </b-card>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import toastForm from '../../../mixins/toastForm.js'
 export default {
   name: 'FormPortofolio',
+  mixins: [toastForm],
   data() {
     return {
-      //url: null,
-      //img: '',
-      selected: 'Mobile',
+      selected: null,
       options: [
-        { item: 'Mobile', name: 'Aplikasi Mobile' },
-        { item: 'Web', name: 'Aplikasi Web' }
-      ]
-      // chooseFiles: function() {
-      //   document.getElementById('filePortofolio').click()
-      // },
-      // handleFile(e) {
-      //   const file = (this.img = e.target.files[0])
-      //   this.url = URL.createObjectURL(file)
-      // }
+        { item: 0, name: 'Aplikasi Mobile' },
+        { item: 1, name: 'Aplikasi Web' }
+      ],
+      form: {
+        id_pekerja: '',
+        application_name: '',
+        repo_link: '',
+        type_portofolio: '',
+        image_portofolio: ''
+      }
     }
   },
+  created() {
+    this.getPortofolio(this.getUserData.id_user)
+    this.form.id_pekerja = this.getUserData.id_user
+  },
+  computed: {
+    ...mapGetters(['portofolioUser', 'getUserData'])
+  },
   methods: {
-    // addNewEmployeeForm() {
-    //   this.employee.push({
-    //     posisi: ''
-    //   })
-    // }
+    ...mapActions(['addPortofolio', 'getPortofolio', 'delPortofolio']),
+    changeType() {
+      this.form.type_portofolio = this.selected
+    },
+    handleFile(e) {
+      const file = (this.form.image_portofolio = e.target.files[0])
+      this.url = URL.createObjectURL(file)
+    },
+    onReset() {
+      ;(this.form.application_name = ''),
+        (this.form.repo_link = ''),
+        (this.selected = null),
+        (this.form.image_portofolio = '')
+    },
+    onSubmit() {
+      const {
+        id_pekerja,
+        application_name,
+        repo_link,
+        type_portofolio,
+        image_portofolio
+      } = this.form
+      const data = new FormData()
+      data.append('id_pekerja', id_pekerja)
+      data.append('application_name', application_name)
+      data.append('repo_link', repo_link)
+      data.append('type_portofolio', type_portofolio)
+      data.append('image_portofolio', image_portofolio)
+      // for (var pair of data.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1])
+      // }
+      this.addPortofolio(data)
+        .then(result => {
+          this.getPortofolio(this.getUserData.id_user)
+          this.makeToast(
+            'Sukses tambah portofolio',
+            `${result.data.data.application_name}`,
+            'success'
+          )
+          this.onReset()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    delPorto(id, idUser) {
+      const data = {
+        id: id,
+        id_user: idUser
+      }
+      this.delPortofolio(data)
+        .then(result => {
+          this.getPortofolio(this.getUserData.id_user)
+          this.makeToast(`${result.data.message}`, 'Delete Berhasil', 'success')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 }
 </script>

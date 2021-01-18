@@ -9,12 +9,10 @@
               <CardInfo />
             </b-col>
             <b-col sm="12" md="8" lg="8">
-              <b-form>
-                <FormDataDiri />
-                <FormSkills />
-                <FormPengalaman />
-                <FormPortofolio />
-              </b-form>
+              <FormDataDiri />
+              <FormSkills />
+              <FormPengalaman />
+              <FormPortofolio />
             </b-col>
           </b-row>
         </b-container>
