@@ -110,9 +110,10 @@ export default {
       }
     },
     profilePekerja(event) {
+      console.log(event)
       this.$router.push({
-        name: 'profile-pekerja',
-        params: { id: event }
+        name: 'Profile',
+        params: { idHired: event }
       })
     }
   }
