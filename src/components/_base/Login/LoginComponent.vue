@@ -55,7 +55,6 @@
         </div>
       </b-form>
     </div>
-    {{ form }}
   </div>
 </template>
 
