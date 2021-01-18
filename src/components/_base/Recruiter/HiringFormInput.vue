@@ -11,19 +11,19 @@
       <div class="inputTitle mt-5">
         Tujuan tentang pesan ini
         <select class="form-control" id="tujuan">
-          <option>Projek</option>
           <option>Full Time</option>
-          <option>Part-Time</option>
-          <option>Internship</option>
+          <option>Freelance</option>
         </select>
       </div>
       <div class="inputTitle">
         Nama Lengkap
         <div>
           <b-form-input
+            readonly
             class="input"
             type="text"
             placeholder="Masukan nama lengkap"
+            v-model="profilePerekrutById.company_name"
           ></b-form-input>
         </div>
       </div>
@@ -31,9 +31,11 @@
         Email
         <div>
           <b-form-input
+            readonly
             class="input"
             type="email"
             placeholder=" Masukan email "
+            v-model="profilePerekrutById.email_user"
           ></b-form-input>
         </div>
       </div>
@@ -41,9 +43,11 @@
         No Handpone
         <div>
           <b-form-input
+            readonly
             class="input"
             type="tel"
             placeholder=" Masukan no handpone "
+            v-model="profilePerekrutById.phone_number"
           ></b-form-input>
         </div>
       </div>
@@ -66,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'HireForm',
   data() {
@@ -79,6 +83,9 @@ export default {
         desc_jobs: ''
       }
     }
+  },
+  computed: {
+    ...mapGetters(['profilePerekrutById'])
   },
   methods: {
     ...mapActions(['postHire']),

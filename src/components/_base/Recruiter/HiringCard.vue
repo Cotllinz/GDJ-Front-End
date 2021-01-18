@@ -51,12 +51,17 @@ export default {
   created() {
     this.getProfilPekerjaById(this.idUser)
     this.getSkills(this.idUser)
+    this.getProfilPerekrutById(this.getUserId)
   },
   computed: {
-    ...mapGetters(['profileById', 'userSkill'])
+    ...mapGetters(['profileById', 'userSkill', 'getUserId'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById', 'getSkills'])
+    ...mapActions([
+      'getProfilPekerjaById',
+      'getSkills',
+      'getProfilPerekrutById'
+    ])
   }
 }
 </script>
