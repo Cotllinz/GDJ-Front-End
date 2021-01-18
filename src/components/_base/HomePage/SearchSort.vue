@@ -69,7 +69,7 @@ export default {
       this.getPekerjabySkill()
     },
     search() {
-      if (this.searchData.length > 2) {
+      if (this.searchData.length >= 0) {
         this.handlePage(1)
         this.changeSearch(this.searchData)
         this.getPekerjabySearch(this.searchData)
