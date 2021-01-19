@@ -8,8 +8,7 @@
             fluid
             :src="
               profileById.image_pekerja
-                ? `http://${ENV}/fileUserProfile/` +
-                  profileById.image_pekerja
+                ? `http://${ENV}/fileUserProfile/` + profileById.image_pekerja
                 : require('../../../assets/img/default.jpg')
             "
             alt="Image"
@@ -68,7 +67,7 @@
                 icon="chat-dots"
                 style="margin-right:10px"
               ></b-icon>
-              {{ profileById.email_user }}
+              far@gmail.com{{ profileById.email_user }}
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
@@ -107,7 +106,7 @@ export default {
   data() {
     return {
       idHired: 0,
-      ENV : process.env.VUE_APP_URL
+      ENV: process.env.VUE_APP_URL
     }
   },
   created() {

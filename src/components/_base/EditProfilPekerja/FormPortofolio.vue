@@ -63,7 +63,7 @@
           md="4"
           lg="4"
           xl="4"
-          v-for="(item, index) in portofolioUser"
+          v-for="(item, index) in portofolioList"
           :key="index"
         >
           <b-card>
@@ -112,9 +112,10 @@ export default {
   created() {
     this.getPortofolio(this.getUserData.id_user)
     this.form.id_pekerja = this.getUserData.id_user
+    console.log(this.portofolioList)
   },
   computed: {
-    ...mapGetters(['portofolioUser', 'getUserData'])
+    ...mapGetters(['portofolioUser', 'getUserData', 'portofolioList'])
   },
   methods: {
     ...mapActions(['addPortofolio', 'getPortofolio', 'delPortofolio']),

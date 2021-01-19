@@ -24,6 +24,7 @@ export default {
       })
     },
     getPortofolio(context, payload) {
+      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .get(`http://${process.env.VUE_APP_URL}/portofolio/${payload}`)
