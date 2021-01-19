@@ -31,8 +31,8 @@ GDJ (Get Dream Job) is a website that connects workers with recruiters, in order
 3. Type `npm install` or `yarn install`
 4. Add .env file at root folder project
 
-```sh
-VUE_APP_ENDPOINT = [localhost:3000]
+```
+VUE_APP_URL=localhost:3000
 ```
 
 5. Type `npm run serve`
@@ -44,11 +44,11 @@ VUE_APP_ENDPOINT = [localhost:3000]
 
 ## License - TEAM GDJ
 
-© [Rudy Galih](https://github.com/Cotllinz)
-© [Andrawan Erlang Pradana](https://github.com/andrawanerlang1)
-© [Firman Azhar Riyadi](https://github.com/FirmanAzharR)
-© [Mohammad Ilham Nurdhi Hafsyah](https://github.com/IlhamHafsyah)
-© [Chandra Oktaviani](https://github.com/chnd-ktvn)
+© [Rudy Galih](https://github.com/Cotllinz)<br>
+© [Andrawan Erlang Pradana](https://github.com/andrawanerlang1)<br>
+© [Firman Azhar Riyadi](https://github.com/FirmanAzharR)<br>
+© [Mohammad Ilham Nurdhi Hafsyah](https://github.com/IlhamHafsyah)<br>
+© [Chandra Oktaviani](https://github.com/chnd-ktvn)<br>
 © [Hasbi Alwi Kusmana](https://github.com/hasbiak)
 
 ## GDJ - TEAM GET DREAM JOB
