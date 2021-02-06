@@ -86,6 +86,7 @@ export default {
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
 }
+
 .shadow {
   -webkit-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
   -moz-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);

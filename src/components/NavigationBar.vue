@@ -2,6 +2,7 @@
   <div>
     <b-container>
       <b-navbar
+        style="z-index: 99;"
         class="animate__animated animate__fadeInDown animates"
         toggleable="lg"
       >
@@ -43,12 +44,12 @@
             class="ml-auto"
           >
             <div
-              class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
+              class="d-flex position-relative  justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
               <div
                 class="mr-lg-4 position-relative cursor"
                 id="show-btn"
-                @click="$bvModal.show('bv-modal-example')"
+                @click="showNotif"
               >
                 <img
                   class="pr-lg-3"
@@ -56,6 +57,8 @@
                   alt="bell"
                 />
                 <span class="badge">30+</span>
+                <!-- PopUps -->
+                <Notif v-if="PopupsNotif === 1" />
               </div>
               <div class="mr-lg-4 pr-lg-3">
                 <img
@@ -103,29 +106,24 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
-
-      <b-modal id="bv-modal-example" hide-footer>
-        <template #modal-title> Notifikasi </template>
-        <div class="d-block text-center">
-          notif
-        </div>
-        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')"
-          >Close Me</b-button
-        >
-      </b-modal>
     </b-container>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-
+import Notif from './_base/NavigationPopups/Notif'
 import Alert from '../mixins/AlertSweet'
 export default {
   name: 'Navbar',
   mixins: [Alert],
+  components: {
+    Notif
+  },
   data() {
-    return {}
+    return {
+      PopupsNotif: 1
+    }
   },
   created() {},
   computed: {
@@ -151,7 +149,11 @@ export default {
       })
     },
     showNotif() {
-      console.log('a')
+      if (this.PopupsNotif === 0) {
+        this.PopupsNotif = 1
+      } else {
+        this.PopupsNotif = 0
+      }
     },
     goToProfile(id) {
       if (this.configNav === 0) {
