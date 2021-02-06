@@ -11,6 +11,7 @@
           v-model="searchData"
           v-on:keyup.enter="search()"
           autocomplete="off"
+          placeholder="Search for any skill . . ."
         />
         <template #append>
           <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
