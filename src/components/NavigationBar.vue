@@ -46,13 +46,10 @@
             <div
               class="d-flex position-relative  justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
-              <div
-                class="mr-lg-4 position-relative cursor"
-                id="show-btn"
-                @click="showNotif"
-              >
+              <div class="mr-lg-4 position-relative" id="show-btn">
                 <img
-                  class="pr-lg-3"
+                  @click="showNotif"
+                  class="pr-lg-3 cursor"
                   src="../assets/images/icons/bell (1) 1.svg"
                   alt="bell"
                 />

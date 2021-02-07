@@ -8,6 +8,17 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'animate.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
+import VueTimeago from 'vue-timeago'
+Vue.use(VueTimeago, {
+  name: 'Timeago', // Component name, `Timeago` by default
+  locale: 'IDN', // Default locale
+  // We use `date-fns` under the hood
+  // So you can use all locales from it
+  locales: {
+    id: require('date-fns/locale/id')
+  }
+})
+
 Vue.use(VueSweetalert2)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

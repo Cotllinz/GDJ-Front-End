@@ -8,11 +8,14 @@
           <b-col class="order-2 order-lg-1" lg="6">
             <div class="title_header">
               <h1 class="mt-4 mt-lg-0">
-                Talenta terbaik negri untuk perubahan revolusi 4.0
+                Talenta terbaik negeri untuk perubahan revolusi 4.0
               </h1>
+              <!-- <p class="mt-lg-4 mt-4">
+                Temukan talenta terbaik negeri bersama kami, Get Dream Job.
+                Platform pencarian kerja andalan pencari kerja dan penyedia kerja.
+              </p> -->
               <p class="mt-lg-4 mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Get Dream Job과 함께 국내 최고의 인재를 찾아보세요. 구직자와 구직자를위한 주요 구직 플랫폼입니다.
               </p>
               <button
                 class="btn_getStarted mt-4 px-3 py-3 px-lg-3 py-lg-3 mt-lg-5"
@@ -57,7 +60,8 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Lorem ipsum dolor sit amet.</span>
+                <!-- <span class="ml-lg-4 ml-3">Penguasaan skill tallent sesuai dengan kebutuhan industri 4.0.</span>  -->
+                <span class="ml-lg-4 ml-3">Mastery of Tallent δεξιοτήτων σύμφωνα με τις ανάγκες της βιομηχανίας 4.0.</span>
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
@@ -66,7 +70,7 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Lorem ipsum dolor sit amet.</span>
+                <span class="ml-lg-4 ml-3">Dengan pengalaman kerja diatas 1 tahun.</span>
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
@@ -75,14 +79,14 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Lorem ipsum dolor sit amet.</span>
+                <span class="ml-lg-4 ml-3">Handal.</span>
               </div>
               <div class="why_chooseList  d-flex align-items-center">
                 <img
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Lorem ipsum dolor sit amet.</span>
+                <span class="ml-lg-4 ml-3">Terpercaya.</span>
               </div>
             </div>
           </b-col>
@@ -90,8 +94,7 @@
             <div class="title_talentSkill mt-xl-5 mt-4 pt-lg-4">
               <h2>Skill Tallent</h2>
               <p class="mt-lg-3 mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Penguasaan skill yang paling banyak dimiliki tallent.
               </p>
               <b-row class="mt-lg-4 mt-4">
                 <b-col cols="6">
@@ -231,7 +234,7 @@
         <div class="card_btnGet">
           <div class="d-flex flex-column flex-lg-row position_card">
             <div class="title">
-              <h2>Lorem ipsum dolor sit amet</h2>
+              <h2>Temukan talenta terbaik negeri bersama kami.</h2>
             </div>
             <button class="ml-lg-auto btn_getStart px-3">
               Mulai Dari Sekarang
@@ -258,7 +261,7 @@ export default {
           names: 'Harry Styles',
           jobDesk: 'Web Developer',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Get Dream Job sangat membantu saya dalam meraih pekerjaan impian. Terima kasih Get Dream Job.'
         },
         {
           image:
@@ -266,7 +269,7 @@ export default {
           names: 'Anya Geraldine',
           jobDesk: 'Team Support GDJ',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Banyak tallent berkualitas yang tersedia. Tallent mumpuni dan penguasaan skill sesuai industri 4.0.'
         },
         {
           image:
@@ -274,7 +277,7 @@ export default {
           names: 'Sarah Viloid',
           jobDesk: 'Team Support GDJ',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Get Dream Job menjembatani bertemunya Recruiter dan Job Seeker. Dan tak hanya Recruiter, Job Seeker pun merasa puas dengan platform ini.'
         },
         {
           image:
@@ -282,7 +285,7 @@ export default {
           names: 'Bagus Tri Harjanto',
           jobDesk: 'Mentor of Arkademy',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Tallent-tallent berkualitas mudah ditemukan disini. Keep up the good work, GDJ.'
         },
         {
           image:
@@ -290,7 +293,7 @@ export default {
           names: 'Alden H.',
           jobDesk: 'CTO of Arkademy',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Platform terbaik andalan saya dalam mencari tallent berkualitas dan professional.'
         },
         {
           image:
@@ -298,7 +301,7 @@ export default {
           names: 'Louis Tomlinson',
           jobDesk: 'Full Stack Developer',
           comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.'
+            'Sangat membantu sekali dalam menemukan perusahaan impian.'
         }
       ],
       settings: {
