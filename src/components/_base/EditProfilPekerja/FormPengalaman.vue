@@ -143,8 +143,6 @@ export default {
     async onSubmit() {
       const x = await this.listPengalaman.length
       if (x >= 1) {
-        await this.deleteAll()
-
         await this.addPengalamanKerja(this.listPengalaman)
           .then(result => {
             this.hasil = result

@@ -67,7 +67,7 @@
                 icon="chat-dots"
                 style="margin-right:10px"
               ></b-icon>
-              far@gmail.com{{ profileById.email_user }}
+              {{ profileById.email_user }}
             </p>
             <p class="h6" style="margin-bottom:30px">
               <b-icon
