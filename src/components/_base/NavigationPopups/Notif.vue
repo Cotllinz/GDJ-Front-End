@@ -1,34 +1,62 @@
 <template>
   <div class="Notification">
     <b-card class="Notif_hire">
-      <b-body>
-        <div class="title d-flex align-content-center">
-          <h5>Notification</h5>
-          <a class="clear_notif ml-auto">Clear</a>
+      <div class="title d-flex align-content-center">
+        <h5>Notification</h5>
+        <a class="clear_notif ml-auto">Clear</a>
+      </div>
+      <div class="notif_body pr-2">
+        <div
+          v-for="(items, index) in Notif"
+          :key="index"
+          class="d-flex align-items-center"
+        >
+          <img
+            class="image_setting"
+            :src="
+              items.image_recruiter
+                ? `http://${ENV}/userRecruiter/` + items.image_recruiter
+                : 'https://www.pwcenter.org/sites/default/files/default_images/default_profile.png'
+            "
+            alt="images"
+          />
+          <section class="desc_title mt-lg-2 ml-2">
+            <h5 class="pt-lg-2">Hi, I'm from {{ items.company_name }}</h5>
+            <p>
+              I want recruit you to join in my company for
+              {{ items.jobs_needed }}
+            </p>
+          </section>
+          <section class="time_desc">
+            <timeago
+              :datetime="items.created_at"
+              locale="id"
+              :auto-update="60"
+            ></timeago>
+          </section>
         </div>
-        <div class="notif_body pr-2">
-          <div class="d-flex align-items-center">
-            <img
-              class="image_setting"
-              src="https://images.unsplash.com/photo-1586554993921-b670f27646d7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80"
-              alt="images"
-            />
-            <section class="desc_title mt-lg-2 ml-2">
-              <h5 class="pt-lg-2">Hi, I'm from Arkademy</h5>
-              <p>I wan't recruit you to join in my company for Fulltime</p>
-            </section>
-            <section class="time_desc">
-              <p>18.00</p>
-            </section>
-          </div>
-        </div>
-      </b-body>
+      </div>
     </b-card>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Notif'
+  name: 'Notification',
+  data() {
+    return {
+      ENV: process.env.VUE_APP_URL
+    }
+  },
+  computed: {
+    ...mapGetters({ Id: 'getUserId', Notif: 'notifikasi' })
+  },
+  created() {
+    this.getNotif(this.Id)
+  },
+  methods: {
+    ...mapActions(['getNotif'])
+  }
 }
 </script>
 <style scoped>
@@ -41,6 +69,7 @@ export default {
 .Notif_hire {
   border-radius: 13px;
   width: 450px;
+  padding: 0;
 }
 .notif_body {
   height: 400px;
@@ -61,6 +90,7 @@ export default {
 .image_setting {
   width: 60px;
   object-fit: cover;
+  height: 60px;
   background-size: cover;
   object-position: 45%;
   border-radius: 10px;
