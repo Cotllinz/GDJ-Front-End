@@ -11,7 +11,7 @@
                 Talenta terbaik negeri untuk perubahan revolusi 4.0
               </h1>
               <!-- <p class="mt-lg-4 mt-4">
-                Carilah talenta terbaik negeri bersama kami, Get Dream Job.
+                Temukan talenta terbaik negeri bersama kami, Get Dream Job.
                 Platform pencarian kerja andalan pencari kerja dan penyedia kerja.
               </p> -->
               <p class="mt-lg-4 mt-4">
@@ -60,7 +60,8 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Penguasaan skill tallent sesuai dengan kebutuhan industri 4.0.</span>
+                <!-- <span class="ml-lg-4 ml-3">Penguasaan skill tallent sesuai dengan kebutuhan industri 4.0.</span>  -->
+                <span class="ml-lg-4 ml-3">Mastery of Tallent δεξιοτήτων σύμφωνα με τις ανάγκες της βιομηχανίας 4.0.</span>
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
@@ -233,7 +234,7 @@
         <div class="card_btnGet">
           <div class="d-flex flex-column flex-lg-row position_card">
             <div class="title">
-              <h2>Carilah talenta terbaik negeri bersama kami.</h2>
+              <h2>Temukan talenta terbaik negeri bersama kami.</h2>
             </div>
             <button class="ml-lg-auto btn_getStart px-3">
               Mulai Dari Sekarang
