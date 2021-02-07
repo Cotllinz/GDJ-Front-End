@@ -38,7 +38,6 @@
               </b-col>
               <b-col sm="12" md="6" lg="6" xl="6">
                 <h6>Bulan/Tahun</h6>
-                {{ item.date }}
                 <b-form-input
                   v-model="item.date"
                   type="date"
@@ -117,9 +116,6 @@ export default {
   },
   computed: {
     ...mapGetters(['listPengalaman', 'getUserData'])
-    // dateSlice() {
-    //   return this.listPengalaman.date.substring(0,10)
-    // }
   },
   methods: {
     ...mapActions([

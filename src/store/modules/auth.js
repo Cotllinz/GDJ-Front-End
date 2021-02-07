@@ -13,7 +13,7 @@ export default {
       state.token = payload.token
     },
     delUser(state) {
-      state.user = ''
+      state.user = {}
       state.token = null
     },
     editCompType(state, payload) {

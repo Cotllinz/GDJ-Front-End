@@ -13,7 +13,9 @@
               G<span>et</span>D<span>ream</span>J<span>ob</span>
             </div>
             <p class="mt-lg-3 mt-3">
-              Get Dream Job bertekad untuk mencari sumber daya manusia yang berkualitas dalam menghadapi perkembangan digital dan siap memasuki dunia kerja.
+              Get Dream Job bertekad untuk mencari sumber daya manusia yang
+              berkualitas dalam menghadapi perkembangan digital dan siap
+              memasuki dunia kerja.
             </p>
           </div>
         </b-col>

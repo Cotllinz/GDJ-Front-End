@@ -50,14 +50,7 @@
       <b-button block class="btnstyle" @click.prevent="onUpdate()"
         >Simpan</b-button
       ><br />
-      <b-button block class="btnstyle-invert">Batal</b-button>
-      <b-button
-        class="btnstyle-invert"
-        style="margin-top: 20px;"
-        @click="loggingOut"
-      >
-        Log out
-      </b-button>
+      <b-button block @click="back" class="btnstyle-invert">Batal</b-button>
     </div>
   </div>
 </template>
@@ -80,7 +73,7 @@ export default {
     ...mapGetters(['profileById', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById', 'updatePekerja', 'logout']),
+    ...mapActions(['getProfilPekerjaById', 'updatePekerja']),
     chooseFiles: function() {
       document.getElementById('fileUpload').click()
     },
@@ -133,8 +126,8 @@ export default {
           })
       }
     },
-    loggingOut() {
-      this.logout()
+    back() {
+      this.$router.push(`/profile-pekerja/${this.idUser}`)
     }
   }
 }

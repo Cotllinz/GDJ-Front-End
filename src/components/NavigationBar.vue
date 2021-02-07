@@ -53,23 +53,28 @@
                   src="../assets/images/icons/bell (1) 1.svg"
                   alt="bell"
                 />
-                <span class="badge">30+</span>
+                <span v-if="notifCount > 0" class="badge">{{
+                  notifCount
+                }}</span>
                 <!-- PopUps -->
                 <Notif v-if="PopupsNotif === 1" />
               </div>
               <div class="mr-lg-4 pr-lg-3">
                 <img
+                  class="cursor"
+                  @click="GoChatRoom"
                   src="../assets/images/icons/mail (3) 1.svg"
                   alt="massage"
                 />
               </div>
-              <div class="image_profileFit">
+              <div class="image_profileFit position-relative">
                 <img
-                  class="image_profile"
-                  @click="goToProfile(userId)"
+                  class="image_profile cursor"
+                  @click="showSetting"
                   :src="require('../assets/img/photo.png')"
                   alt="profile_pic"
                 />
+                <settingNav v-if="PopupsSettings === 1" />
               </div>
             </div>
           </b-navbar-nav>
@@ -108,30 +113,39 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Notif from './_base/NavigationPopups/Notif'
 import Alert from '../mixins/AlertSweet'
+import settingNav from './_base/NavigationPopups/settingNavbar'
 export default {
   name: 'Navbar',
   mixins: [Alert],
   components: {
-    Notif
+    Notif,
+    settingNav
   },
   data() {
     return {
-      PopupsNotif: 1
+      PopupsNotif: 0,
+      PopupsSettings: 0
     }
   },
-  created() {},
+  created() {
+    if (this.userId) {
+      this.getNewNotif(this.userId)
+    }
+  },
   computed: {
     ...mapGetters({
       configNav: 'getUserRole',
       userId: 'getUserId',
-      compType: 'getCompType'
+      compType: 'getCompType',
+      notifCount: 'notifCount'
     })
   },
   methods: {
-    ...mapGetters(['getUserRole', 'notifikasi']),
+    ...mapActions(['getNewNotif']),
+    ...mapMutations(['resetCount']),
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
         if (res.result.value === true && res.getSign === 'Login') {
@@ -148,8 +162,18 @@ export default {
     showNotif() {
       if (this.PopupsNotif === 0) {
         this.PopupsNotif = 1
+        this.PopupsSettings = 0
       } else {
         this.PopupsNotif = 0
+      }
+      this.resetCount()
+    },
+    showSetting() {
+      if (this.PopupsSettings === 0) {
+        this.PopupsNotif = 0
+        this.PopupsSettings = 1
+      } else {
+        this.PopupsSettings = 0
       }
     },
     goToProfile(id) {
@@ -158,6 +182,9 @@ export default {
       } else if (this.configNav === 1) {
         return this.$router.push(`/profile-company`)
       }
+    },
+    GoChatRoom() {
+      this.$router.push('/chat-room')
     }
   }
 }
@@ -199,6 +226,7 @@ export default {
   background: #5e50a1;
   color: white;
 }
+
 .logos {
   width: 50px;
   object-fit: contain;
