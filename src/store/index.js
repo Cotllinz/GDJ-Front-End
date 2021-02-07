@@ -9,6 +9,7 @@ import Skill from './modules/userSkill'
 import Pengalaman from './modules/pengalamanKerja'
 import Portofolio from './modules/portofolio'
 import home from './modules/home'
+import chat from './modules/chat'
 
 Vue.use(Vuex)
 
@@ -24,7 +25,8 @@ export default new Vuex.Store({
     Hire,
     Skill,
     Pengalaman,
-    Portofolio
+    Portofolio,
+    chat
   },
   plugins: [
     createPersistedState({
