@@ -29,6 +29,7 @@
             <div id="info" class="ml-3 ml-lg-0">
               <h5>{{ item.fullname_pekerja }}</h5>
               <b-card-text style="color: #DBDBDD">
+                {{ item.job_require }} <br />
                 {{ item.job_desk }}<br />
                 <b-icon icon="geo-alt" style="margin-right:0px"></b-icon>
                 {{ item.city_pekerja }}

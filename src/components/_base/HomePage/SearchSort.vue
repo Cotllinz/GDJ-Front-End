@@ -11,6 +11,7 @@
           v-model="searchData"
           v-on:keyup.enter="search()"
           autocomplete="off"
+          placeholder="Search for any skill . . ."
         />
         <template #append>
           <b-dropdown text="Kategori" variant="outline-none" class="btn-sort">
@@ -86,6 +87,7 @@ export default {
 .fontstyle {
   font-family: 'Open Sans', sans-serif;
 }
+
 .shadow {
   -webkit-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);
   -moz-box-shadow: 0px 0px 20px -4px rgba(148, 148, 148, 1);

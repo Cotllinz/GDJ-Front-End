@@ -38,6 +38,7 @@
               </b-col>
               <b-col sm="12" md="6" lg="6" xl="6">
                 <h6>Bulan/Tahun</h6>
+                {{ item.date }}
                 <b-form-input
                   v-model="item.date"
                   type="date"
@@ -93,8 +94,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import toastForm from '../../../mixins/toastForm.js'
 export default {
   name: 'FormPengalaman',
+  mixins: [toastForm],
   data() {
     return {
       hasil: '',
@@ -114,13 +117,15 @@ export default {
   },
   computed: {
     ...mapGetters(['listPengalaman', 'getUserData'])
+    // dateSlice() {
+    //   return this.listPengalaman.date.substring(0,10)
+    // }
   },
   methods: {
     ...mapActions([
       'addPengalamanKerja',
       'getPengalamanKerja',
-      'deletePengalamanKerja',
-      'dellAll'
+      'deletePengalamanKerja'
     ]),
     addNewEmployeeForm() {
       this.listPengalaman.push({
@@ -131,61 +136,43 @@ export default {
         description: ''
       })
     },
-    deleteAll() {
-      this.dellAll(this.getUserData.id_user)
-        .then(result => {
-          console.log(result)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    async onSubmit() {
-      const x = await this.listPengalaman.length
-      if (x >= 1) {
-        await this.addPengalamanKerja(this.listPengalaman)
+
+    onSubmit() {
+      if (this.listPengalaman.length > 0) {
+        this.addPengalamanKerja(this.listPengalaman)
           .then(result => {
             this.hasil = result
-            console.log('berhasil')
-            //this.getPengalamanKerja(this.getUserData.id_user)
+            this.makeToast('Success add work experience', 'Done', 'success')
+            this.getPengalamanKerja(this.getUserData.id_user)
           })
           .catch(error => {
-            console.log(error)
+            this.makeToast(`${error.response.message}`, 'Failed', 'danger')
           })
       } else {
-        await this.addPengalamanKerja(this.listPengalaman)
-          .then(result => {
-            this.hasil = result
-            console.log('berhasil')
-            //this.getPengalamanKerja(this.getUserData.id_user)
-          })
-          .catch(error => {
-            console.log(error)
-          })
+        this.makeToast('Work experirence empty', 'Warning', 'warning')
       }
     },
-    removeEmployeeForm(index, id, idPekerja) {
-      const data = {
-        id_pengalaman: id,
-        idPekerja: idPekerja
-      }
-      //this.listPengalaman[index].posisi === ''
-      if (this.listPengalaman[index].posisi === '') {
+    removeEmployeeForm(index, id, id_pekerja) {
+      if (
+        this.listPengalaman[index].posisi === '' ||
+        this.listPengalaman[index].at_company === '' ||
+        this.listPengalaman[index].description === ''
+      ) {
         this.listPengalaman.splice(index, 1)
       } else {
+        const data = {
+          id_pengalaman: id,
+          idPekerja: id_pekerja
+        }
         console.log(data)
         this.deletePengalamanKerja(data)
           .then(result => {
-            this.listPengalaman.splice(index, 1)
             console.log(result)
+            this.listPengalaman.splice(index, 1)
+            this.makeToast('Success Delete work experience', 'Done', 'success')
           })
           .catch(error => {
             console.log(error)
-            return this.$swal({
-              icon: 'error',
-              title: 'File input not recognized',
-              text: 'Image input must be .JPG or .PNG'
-            })
           })
       }
     }
