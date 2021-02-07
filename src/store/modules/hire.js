@@ -1,10 +1,13 @@
 import axios from 'axios'
-
 export default {
   state: {
     notif: []
   },
-  mutation: {},
+  mutations: {
+    setNotif(state, payload) {
+      state.notif = payload.data
+    }
+  },
   actions: {
     postHire(context, payload) {
       return new Promise((resolve, reject) => {
@@ -23,7 +26,7 @@ export default {
         axios
           .get(`http://${process.env.VUE_APP_URL}/hire/notif/${payload}`)
           .then(result => {
-            context.state.notif = result.data.data
+            context.commit('setNotif', result.data)
             resolve(result)
           })
           .catch(error => {
