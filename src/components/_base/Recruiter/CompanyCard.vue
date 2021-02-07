@@ -61,17 +61,59 @@
         </button>
       </div>
       <div class="buttonBawah">
-        <button class="batal" style="margin-top: 20px;" @click="batalUpdate">
-          Batal
+        <button
+          class="mb-3 btn_changePass py-3"
+          v-b-modal.modal-prevent-closing
+        >
+          Change Password
         </button>
+        <b-modal
+          id="modal-prevent-closing"
+          ref="modal"
+          centered
+          hide-footer
+          title="Change your password"
+          @show="resetModal"
+          @hidden="resetModal"
+        >
+          <form
+            class="form_style"
+            ref="form"
+            @submit.stop.prevent="handleSubmit"
+          >
+            <b-form-group
+              label="New Password"
+              label-for="name-input"
+              invalid-feedback="Name is required"
+            >
+              <b-form-input
+                type="password"
+                id="password-input"
+                placeholder="Set your new password"
+                v-model="form.newPass"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Confirm Password"
+              label-for="name-input"
+              invalid-feedback="Name is required"
+            >
+              <b-form-input
+                type="password"
+                v-model="form.confirmPassword"
+                placeholder="Confirm Password"
+                id="Confirm-password-input"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <button class="btn_change py-3">Change</button>
+          </form>
+        </b-modal>
       </div>
       <div class="buttonBawah">
-        <button
-          class="btn_logout"
-          style="margin-top: 20px;"
-          @click="loggingOut"
-        >
-          Log out
+        <button class="batal" style="margin-top: 20px;" @click="batalUpdate">
+          Batal
         </button>
       </div>
     </div>
@@ -84,7 +126,11 @@ export default {
   name: 'Profile',
   data() {
     return {
-      url: null
+      url: null,
+      form: {
+        newPass: '',
+        confirmPassword: ''
+      }
     }
   },
   created() {
@@ -98,7 +144,7 @@ export default {
   },
   methods: {
     ...mapGetters(['getUserId', 'profilePerekrutById']),
-    ...mapActions(['updateCompany', 'logout']),
+    ...mapActions(['updateCompany', 'newPassword']),
     chooseFile() {
       document.getElementById('formInputImage').click()
     },
@@ -128,14 +174,68 @@ export default {
     batalUpdate() {
       this.$router.push('/profile-company')
     },
-    loggingOut() {
-      this.logout()
+    handleSubmit() {
+      if (this.form.confirmPassword === this.form.newPass) {
+        const payload = {
+          id: this.user_id,
+          data: this.form
+        }
+        this.newPassword(payload).then(() => {
+          return this.$swal({
+            icon: 'success',
+            title: 'Sukses update password'
+          }).then(() => {
+            this.$nextTick(() => {
+              this.$bvModal.hide('modal-prevent-closing')
+            })
+          })
+        })
+      } else {
+        return this.$swal({
+          icon: 'error',
+          title: 'Password Not Match'
+        })
+      }
+    },
+    resetModal() {
+      this.form = {
+        newPass: '',
+        confirmPassword: ''
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.btn_change {
+  width: 50%;
+  background: #5e50a1;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 7px;
+  outline: none;
+  text-align: center;
+}
+.btn_changePass {
+  width: 100%;
+  background: #5f42f3;
+  border: none;
+  border-radius: 7px;
+  outline: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+.form_style {
+  font-family: 'Poppins', sans-serif;
+}
+.btn_changePass:hover {
+  background: #3b16f7;
+  transition: 0.5s;
+}
 .card-style {
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;

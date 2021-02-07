@@ -94,6 +94,21 @@ export default {
           })
       })
     },
+    newPassword(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://${process.env.VUE_APP_URL}/user/changepass/${payload.id}`,
+            payload.data
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
     logout(context) {
       localStorage.removeItem('token')
       context.commit('delUser')
