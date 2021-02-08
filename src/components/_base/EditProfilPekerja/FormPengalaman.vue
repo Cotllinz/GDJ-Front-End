@@ -116,9 +116,6 @@ export default {
   },
   computed: {
     ...mapGetters(['listPengalaman', 'getUserData'])
-    // dateSlice() {
-    //   return this.listPengalaman.date.substring(0,10)
-    // }
   },
   methods: {
     ...mapActions([

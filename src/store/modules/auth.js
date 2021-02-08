@@ -13,7 +13,7 @@ export default {
       state.token = payload.token
     },
     delUser(state) {
-      state.user = ''
+      state.user = {}
       state.token = null
     },
     editCompType(state, payload) {
@@ -85,6 +85,21 @@ export default {
           .patch(
             `http://${process.env.VUE_APP_URL}/user/resetPassword`,
             payload
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
+    newPassword(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://${process.env.VUE_APP_URL}/user/changepass/${payload.id}`,
+            payload.data
           )
           .then(result => {
             resolve(result)

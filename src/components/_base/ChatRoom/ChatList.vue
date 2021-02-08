@@ -41,17 +41,85 @@
         </div>
       </div>
     </b-card>
+    {{ user }} break {{ chat }}
   </div>
 </template>
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
+import io from 'socket.io-client'
 export default {
   name: 'ChatList',
   data() {
     return {
-      chat: [1, 2, 3]
+      role: 0,
+      socket: io(`${process.env.VUE_APP_URL}`),
+      room: '',
+      oldRoom: '',
+      roomId: null,
+      URL: process.env.VUE_APP_URL
     }
   },
-  methods: {}
+  created() {
+    this.getChatRoom(this.user.id_user)
+    this.socket.on('chatMessage', data => {
+      this.pushMessages(data)
+      this.getChatRoom(this.user.id_user)
+    })
+  },
+  computed: {
+    ...mapGetters({
+      admin: 'getterAdmin',
+      chat: 'getChatRoom',
+      user: 'getUserData'
+    })
+  },
+  methods: {
+    ...mapActions([
+      'getAdminList',
+      'changeChatActive',
+      'createRoomChat',
+      'getRoomId',
+      'getChatRoom',
+      'getMessagesHistory'
+    ]),
+    ...mapMutations(['clearMessages', 'pushMessages']),
+
+    async makeRoom(item) {
+      const setData = {
+        sender: this.user.id_user,
+        receiver: item.id_user
+      }
+      await this.createRoomChat(setData)
+        .then(result => {
+          this.$toasted.success(result)
+          this.getChatRoom(this.user.id_user)
+        })
+        .catch(error => {
+          this.$toasted.error(error)
+        })
+    },
+    chatThisUser(item) {
+      this.changeChatActive(item)
+      const data = item.roomIdUniq
+      this.getMessagesHistory(data)
+      if (this.oldRoom) {
+        this.clearMessages()
+        this.socket.emit('changeRoom', {
+          username: this.user.fullName,
+          room: data,
+          oldRoom: this.oldRoom
+        })
+        this.oldRoom = item.roomIdUniq
+      } else {
+        this.clearMessages()
+        this.socket.emit('joinRoom', {
+          username: this.user.fullName,
+          room: data
+        })
+        this.oldRoom = data
+      }
+    }
+  }
 }
 </script>
 

@@ -15,7 +15,8 @@
                 Platform pencarian kerja andalan pencari kerja dan penyedia kerja.
               </p> -->
               <p class="mt-lg-4 mt-4">
-                Get Dream Job과 함께 국내 최고의 인재를 찾아보세요. 구직자와 구직자를위한 주요 구직 플랫폼입니다.
+                Get Dream Job과 함께 국내 최고의 인재를 찾아보세요. 구직자와
+                구직자를위한 주요 구직 플랫폼입니다.
               </p>
               <button
                 class="btn_getStarted mt-4 px-3 py-3 px-lg-3 py-lg-3 mt-lg-5"
@@ -61,7 +62,10 @@
                   alt="labels"
                 />
                 <!-- <span class="ml-lg-4 ml-3">Penguasaan skill tallent sesuai dengan kebutuhan industri 4.0.</span>  -->
-                <span class="ml-lg-4 ml-3">Mastery of Tallent δεξιοτήτων σύμφωνα με τις ανάγκες της βιομηχανίας 4.0.</span>
+                <span class="ml-lg-4 ml-3"
+                  >Mastery of Tallent δεξιοτήτων σύμφωνα με τις ανάγκες της
+                  βιομηχανίας 4.0.</span
+                >
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
@@ -70,7 +74,9 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <span class="ml-lg-4 ml-3">Dengan pengalaman kerja diatas 1 tahun.</span>
+                <span class="ml-lg-4 ml-3"
+                  >Dengan pengalaman kerja diatas 1 tahun.</span
+                >
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
@@ -206,9 +212,7 @@
             <h1 class="text-center mb-lg-5">
               Their opinion about Get Dream Job
             </h1>
-            <VueSlickCarousel
-              v-bind="settings"
-            >
+            <VueSlickCarousel v-bind="settings">
               <div
                 v-for="(item, index) in setDataCard"
                 :key="index"
@@ -300,8 +304,7 @@ export default {
             'https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
           names: 'Louis Tomlinson',
           jobDesk: 'Full Stack Developer',
-          comment:
-            'Sangat membantu sekali dalam menemukan perusahaan impian.'
+          comment: 'Sangat membantu sekali dalam menemukan perusahaan impian.'
         }
       ],
       settings: {

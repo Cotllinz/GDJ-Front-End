@@ -3,7 +3,7 @@
     <b-card class="Notif_hire">
       <div class="title d-flex align-content-center">
         <h5>Notification</h5>
-        <a class="clear_notif ml-auto">Clear</a>
+        <a @click="clearNotif" class="clear_notif ml-auto">Clear</a>
       </div>
       <div class="notif_body pr-2">
         <div
@@ -55,7 +55,11 @@ export default {
     this.getNotif(this.Id)
   },
   methods: {
-    ...mapActions(['getNotif'])
+    ...mapActions(['getNotif', 'deleteNotif']),
+    clearNotif() {
+      this.deleteNotif(this.Id)
+      this.getNotif(this.Id)
+    }
   }
 }
 </script>
@@ -65,6 +69,9 @@ export default {
   z-index: 1;
   top: 40px;
   left: -140px;
+}
+.clear_notif {
+  cursor: pointer;
 }
 .Notif_hire {
   border-radius: 13px;
