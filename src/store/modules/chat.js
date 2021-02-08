@@ -41,10 +41,10 @@ export default {
         axios
           .post(`${process.env.VUE_APP_URL}/chat/room`, payload)
           .then(result => {
-            resolve(result.data.msg)
+            resolve(result.data.message)
           })
           .catch(error => {
-            reject(error.response.data.msg)
+            reject(error.response.data.message)
           })
       })
     },
@@ -64,7 +64,7 @@ export default {
             resolve(result.data.data[0].roomIdUniq)
           })
           .catch(error => {
-            reject(error.response.data.msg)
+            reject(error.response.data.message)
           })
       })
     },
@@ -77,7 +77,7 @@ export default {
             resolve(result)
           })
           .catch(error => {
-            reject(error.response.data.msg)
+            reject(error.response.data.message)
           })
       })
     },
@@ -90,7 +90,7 @@ export default {
             resolve(result)
           })
           .catch(error => {
-            reject(error.response.data.msg)
+            reject(error.response.data.message)
           })
       })
     },
@@ -103,7 +103,7 @@ export default {
             resolve(result)
           })
           .catch(error => {
-            reject(error.response.data.msg)
+            reject(error.response.data.message)
           })
       })
     }

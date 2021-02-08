@@ -41,7 +41,7 @@
         </div>
       </div>
     </b-card>
-    {{ user }}
+    {{ user }} break {{ chat }}
   </div>
 </template>
 <script>
