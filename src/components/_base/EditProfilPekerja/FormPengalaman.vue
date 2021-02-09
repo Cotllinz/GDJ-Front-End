@@ -38,12 +38,19 @@
               </b-col>
               <b-col sm="12" md="6" lg="6" xl="6">
                 <h6>Bulan/Tahun</h6>
-                {{ item.date }}
+                <!-- <b-form-input
+                  :value="fixDate(item.date)"
+                  format="yyyy-MM-dd"
+                  type="date"
+                  required
+                  placeholder="January 2018"
+                  class="input-style"
+                  @input="item.date"
+                ></b-form-input> -->
                 <b-form-input
                   v-model="item.date"
                   type="date"
                   required
-                  placeholder="January 2018"
                   class="input-style"
                 ></b-form-input>
               </b-col>
@@ -95,11 +102,13 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import toastForm from '../../../mixins/toastForm.js'
+import moment from 'moment'
 export default {
   name: 'FormPengalaman',
   mixins: [toastForm],
   data() {
     return {
+      mydate: '',
       hasil: '',
       employee: [
         {
@@ -124,6 +133,9 @@ export default {
       'getPengalamanKerja',
       'deletePengalamanKerja'
     ]),
+    fixDate(event) {
+      return moment(event).format('YYYY-MM-DD')
+    },
     addNewEmployeeForm() {
       this.listPengalaman.push({
         id_pekerja: this.getUserData.id_user,
@@ -161,7 +173,6 @@ export default {
           id_pengalaman: id,
           idPekerja: id_pekerja
         }
-        console.log(data)
         this.deletePengalamanKerja(data)
           .then(result => {
             console.log(result)
