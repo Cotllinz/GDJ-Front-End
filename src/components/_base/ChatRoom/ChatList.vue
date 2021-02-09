@@ -58,9 +58,13 @@ export default {
   data() {
     return {
       role: 0,
-      socket: io(`https://${process.env.VUE_APP_URL}`, {
-        path: '/gdj/socket.io'
-      }),
+      socket: io(
+        `https://${process.env.VUE_APP_URL}`,
+        {
+          path: '/gdj/socket.io',
+          transports: ['websocket']
+        }
+      ),
       room: '',
       oldRoom: '',
       roomId: null,
