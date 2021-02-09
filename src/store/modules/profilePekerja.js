@@ -19,7 +19,7 @@ export default {
           job_desk,
           city_pekerja,
           job_require,
-          job_status,
+          status_jobs,
           work_place,
           desc_pekerja,
           image_pekerja,
@@ -32,7 +32,7 @@ export default {
         data.append('job_desk', job_desk)
         data.append('city_pekerja', city_pekerja)
         data.append('job_require', job_require)
-        data.append('job_status', job_status)
+        data.append('status_jobs', status_jobs)
         data.append('work_place', work_place)
         data.append('desc_pekerja', desc_pekerja)
         data.append('files', image_pekerja)
