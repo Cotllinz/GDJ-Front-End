@@ -1,32 +1,57 @@
 <template>
   <div>
     <div v-if="chatMode === true">
-      <b-card class="card-style p-0">
+      <b-card class="card-style p-0 chatWrapper">
         <h6 class="title space-card">{{ chatActive.username }}</h6>
         <hr />
-        <div class="space-card">
-          <div class="left-conversation">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            at eaque ex. Quas tenetur, alias,
+        <div
+          class="history"
+          v-for="(item, index) in messagesHistory"
+          :key="index"
+        >
+          <div class="space-card">
+            <div
+              class="left-conversation"
+              v-if="item.id_user !== user.id_user"
+              :key="item"
+            >
+              {{ item.message }}
+            </div>
+            <div class="right-conversation" v-else>
+              {{ item.message }}
+            </div>
           </div>
-          <div class="right-conversation">
-            sint vel officiis atque
+        </div>
+        <div class="realtime" v-for="item in messages" :key="item">
+          <div class="space-card">
+            <div class="left-conversation" v-if="item.sender !== user.id_user">
+              {{ item.message }}
+            </div>
+            <div class="right-conversation" v-else>
+              {{ item.message }}
+            </div>
           </div>
         </div>
         <div class="enter-chat space-chat centered">
-          <b-form-input
-            type="text"
-            class="input-chat"
-            placeholder="Write your message here ..."
-          ></b-form-input>
-          <div style="font-size: 35px;">
-            <b-icon
-              icon="cursor-fill"
-              class="rounded-circle p-2"
-              style="background-color:#5E50A1"
-              variant="light"
-            ></b-icon>
-          </div>
+          <b-form v-on:submit.prevent="sendMessage">
+            <b-form-input
+              type="text"
+              class="input-chat"
+              placeholder="Write your message here ..."
+              v-model="message"
+              @submit.prevent="sendMessage"
+            >
+              <button type="submit">submit</button>
+            </b-form-input>
+            <div style="font-size: 35px;">
+              <b-icon
+                icon="cursor-fill"
+                class="rounded-circle p-2"
+                style="background-color:#5E50A1"
+                variant="light"
+              ></b-icon>
+            </div>
+          </b-form>
         </div>
       </b-card>
     </div>
@@ -52,22 +77,14 @@ export default {
   data() {
     return {
       chat: 1,
-      socket: io(`http://${process.env.VUE_APP_PORT}`, {
-        withCredentials: true,
-        extraHeaders: {
-          'terbangin-header': 'ini terbangin header'
-        }
-      }),
+      socket: io(`http://${process.env.VUE_APP_URL}`),
       message: '',
       URL: `http://${process.env.VUE_APP_URL}`
     }
   },
-  created() {
-    this.getUserProfile(this.user.userId)
-  },
   computed: {
     ...mapGetters({
-      user: 'setUser',
+      user: 'getUserData',
       chatMode: 'getterChatMode',
       chatActive: 'getterChatActive',
       activeRoom: 'getterActiveRoom',
@@ -80,30 +97,31 @@ export default {
     ...mapActions(['sendMessages', 'getChatRoom', 'getUserProfile']),
     sendMessage() {
       const setData = {
-        sender: this.user.userId,
+        sender: this.user.id_user,
         message: this.message,
-        room: this.chatActive.roomIdUniq,
-        senderPic: this.profile.profileImage,
-        receiverPic: this.chatActive.profileImage
+        room: this.chatActive.roomIdUniq
       }
       this.socket.emit('roomMessage', setData)
       const dataMessage = {
         roomIdUniq: this.chatActive.roomIdUniq,
-        sender: this.user.userId,
-        receiver: this.chatActive.userId,
+        sender: this.user.id_user,
+        receiver: this.chatActive.id_user,
         message: this.message
       }
       this.sendMessages(dataMessage)
       this.message = ''
-      this.getChatRoom(this.user.userId)
+      this.getChatRoom(this.user.id_user)
     }
   }
 }
 </script>
 
 <style scoped>
+.chatWrapper {
+  overflow: auto;
+}
 .left-conversation {
-  float: left;
+  width: max-content;
   max-width: 550px;
   background-color: #f6f7f8;
   padding: 10px;
@@ -111,7 +129,7 @@ export default {
   margin-bottom: 10px;
 }
 .right-conversation {
-  float: right;
+  width: max-content;
   max-width: 550px;
   background-color: #867cb8;
   padding: 10px;

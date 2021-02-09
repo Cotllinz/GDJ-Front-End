@@ -29,7 +29,7 @@
                 </h6>
               </div>
               <div class="chat-text" style="color:#666666">
-                {{ item.message.slice(0, 10) }} ..
+                {{ item.message.slice(0, 20) }} ..
               </div>
             </div>
             <hr />
@@ -67,9 +67,9 @@ export default {
   },
   created() {
     this.getChatRoom(this.user.id_user)
-    this.socket.on('chatMessage', data => {
+    this.socket.on('chatMessage', async data => {
       this.pushMessages(data)
-      this.getChatRoom(this.user.id_user)
+      await this.getChatRoom(this.user.id_user)
     })
   },
   computed: {
