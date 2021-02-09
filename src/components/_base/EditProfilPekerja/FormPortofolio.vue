@@ -59,27 +59,43 @@
       <h6 class="card-margin" style="font-weight:bold">Daftar Portofolio</h6>
       <b-row class="card-margin">
         <b-col
-          sm="6"
-          md="4"
-          lg="4"
-          xl="4"
-          v-for="(item, index) in portofolioUser"
+          xs="12"
+          sm="12"
+          md="6"
+          lg="6"
+          xl="6"
+          v-for="(item, index) in portofolioList"
           :key="index"
         >
-          <b-card>
-            <div class="d-flex flex-grow-1 align-items-baseline">
-              <b-card-text style="padding:10px">{{
-                item.application_name
-              }}</b-card-text>
-              <b-icon
-                @click="delPorto(item.id, item.id_pekerja)"
-                style="cursor:pointer;"
-                icon="trash-fill"
-                class="del-icon"
-                variant="danger"
-              ></b-icon>
-            </div>
-          </b-card>
+          <div>
+            <b-card
+              :img-src="
+                `http://localhost:3000/imagePorto/` + item.image_portofolio
+              "
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2"
+            >
+              <h4 style="padding:5px 10px">{{ item.application_name }}</h4>
+              <b-card-text style="padding:0px 10px;height:70px">
+                Repository: <br />
+                <a :href="item.repo_link">{{ item.repo_link }}</a>
+              </b-card-text>
+              <div style="padding:5px 10px;">
+                <b-button
+                  @click="delPorto(item.id, item.id_pekerja)"
+                  style="color:white"
+                  href="#"
+                  variant="danger"
+                  block
+                  size="sm"
+                  >Delete</b-button
+                >
+              </div>
+            </b-card>
+          </div>
           <br />
         </b-col>
       </b-row>
@@ -112,9 +128,10 @@ export default {
   created() {
     this.getPortofolio(this.getUserData.id_user)
     this.form.id_pekerja = this.getUserData.id_user
+    console.log(this.portofolioList)
   },
   computed: {
-    ...mapGetters(['portofolioUser', 'getUserData'])
+    ...mapGetters(['portofolioUser', 'getUserData', 'portofolioList'])
   },
   methods: {
     ...mapActions(['addPortofolio', 'getPortofolio', 'delPortofolio']),
@@ -186,6 +203,11 @@ export default {
 </script>
 
 <style scoped>
+.card-img-top {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
 .del-icon {
   font-size: 17px;
 }

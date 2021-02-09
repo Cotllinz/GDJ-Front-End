@@ -4,14 +4,20 @@ export default {
   state: {
     profilePerekrut: {}
   },
-  mutation: {},
+  mutations: {
+    //mutations
+    profileById(state, payload) {
+      state.profilePerekrut = payload
+    }
+  },
   actions: {
     getProfilPerekrutById(context, payload) {
       return new Promise((resolve, reject) => {
         axios
           .get(`http://${process.env.VUE_APP_URL}/company/${payload}`)
           .then(result => {
-            context.state.profilePerekrut = result.data.data[0]
+            context.commit('profileById', result.data.data[0])
+            console.log(result)
             resolve(result)
           })
           .catch(error => {
@@ -46,7 +52,6 @@ export default {
         axios
           .patch(`http://${process.env.VUE_APP_URL}/company/${payload}`, data)
           .then(response => {
-            console.log(response)
             resolve(response)
           })
           .catch(error => {

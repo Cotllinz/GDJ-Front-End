@@ -47,17 +47,52 @@
           </div>
         </div> </b-card
       ><br />
-      <b-button block class="btnstyle" @click.prevent="onUpdate()"
+      <b-button block class="btnstyle mb-3" @click.prevent="onUpdate()"
         >Simpan</b-button
-      ><br />
-      <b-button block class="btnstyle-invert">Batal</b-button>
-      <b-button
-        class="btnstyle-invert"
-        style="margin-top: 20px;"
-        @click="loggingOut"
       >
-        Log out
-      </b-button>
+      <button class="mb-3 btn_changePass py-3" v-b-modal.modal-prevent-closing>
+        Change Password
+      </button>
+      <b-modal
+        id="modal-prevent-closing"
+        ref="modal"
+        centered
+        hide-footer
+        title="Change your password"
+        @show="resetModal"
+        @hidden="resetModal"
+      >
+        <form class="form_style" ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group
+            label="New Password"
+            label-for="name-input"
+            invalid-feedback="Name is required"
+          >
+            <b-form-input
+              type="password"
+              id="password-input"
+              placeholder="Set your new password"
+              v-model="form.newPass"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label="Confirm Password"
+            label-for="name-input"
+            invalid-feedback="Name is required"
+          >
+            <b-form-input
+              type="password"
+              placeholder="Confirm Password"
+              v-model="form.confirmPassword"
+              id="Confirm-password-input"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <button class="btn_change py-3">Change</button>
+        </form>
+      </b-modal>
+      <b-button block @click="back" class="btnstyle-invert">Batal</b-button>
     </div>
   </div>
 </template>
@@ -70,7 +105,11 @@ export default {
       ENV: process.env.VUE_APP_URL,
       url: null,
       img: '',
-      idUser: (this.id = this.$route.params.id)
+      idUser: (this.id = this.$route.params.id),
+      form: {
+        newPass: '',
+        confirmPassword: ''
+      }
     }
   },
   created() {
@@ -80,7 +119,7 @@ export default {
     ...mapGetters(['profileById', 'getUserData'])
   },
   methods: {
-    ...mapActions(['getProfilPekerjaById', 'updatePekerja', 'logout']),
+    ...mapActions(['getProfilPekerjaById', 'updatePekerja', 'newPassword']),
     chooseFiles: function() {
       document.getElementById('fileUpload').click()
     },
@@ -133,14 +172,71 @@ export default {
           })
       }
     },
-    loggingOut() {
-      this.logout()
+    back() {
+      this.$router.push(`/profile-pekerja/${this.idUser}`)
+    },
+    resetModal() {
+      this.form = {
+        newPass: '',
+        confirmPassword: ''
+      }
+    },
+    handleSubmit() {
+      if (this.form.confirmPassword === this.form.newPass) {
+        const payload = {
+          id: this.idUser,
+          data: this.form
+        }
+        this.newPassword(payload).then(() => {
+          return this.$swal({
+            icon: 'success',
+            title: 'Sukses update password'
+          }).then(() => {
+            this.$nextTick(() => {
+              this.$bvModal.hide('modal-prevent-closing')
+            })
+          })
+        })
+      } else {
+        return this.$swal({
+          icon: 'error',
+          title: 'Password Not Match'
+        })
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.btn_change {
+  width: 50%;
+  background: #5e50a1;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 7px;
+  outline: none;
+  text-align: center;
+}
+.btn_changePass {
+  width: 100%;
+  background: #5f42f3;
+  border: none;
+  border-radius: 7px;
+  outline: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+.btn_changePass:hover {
+  background: #3b16f7;
+  transition: 0.5s;
+}
+.form_style {
+  font-family: 'Poppins', sans-serif;
+}
 .card-style {
   border-radius: 8px;
   border: none;

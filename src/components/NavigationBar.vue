@@ -2,6 +2,7 @@
   <div>
     <b-container>
       <b-navbar
+        style="z-index: 99;"
         class="animate__animated animate__fadeInDown animates"
         toggleable="lg"
       >
@@ -43,33 +44,37 @@
             class="ml-auto"
           >
             <div
-              class="d-flex justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
+              class="d-flex position-relative  justify-content-around mt-lg-0 mt-4 mb-lg-0 mb-4"
             >
-              <div
-                class="mr-lg-4 position-relative cursor"
-                id="show-btn"
-                @click="$bvModal.show('bv-modal-example')"
-              >
+              <div class="mr-lg-4 position-relative" id="show-btn">
                 <img
-                  class="pr-lg-3"
+                  @click="showNotif"
+                  class="pr-lg-3 cursor"
                   src="../assets/images/icons/bell (1) 1.svg"
                   alt="bell"
                 />
-                <span class="badge">30+</span>
+                <span v-if="notifCount > 0" class="badge">{{
+                  notifCount
+                }}</span>
+                <!-- PopUps -->
+                <Notif v-if="PopupsNotif === 1" />
               </div>
               <div class="mr-lg-4 pr-lg-3">
                 <img
+                  class="cursor"
+                  @click="GoChatRoom"
                   src="../assets/images/icons/mail (3) 1.svg"
                   alt="massage"
                 />
               </div>
-              <div class="image_profileFit">
+              <div class="image_profileFit position-relative">
                 <img
-                  class="image_profile"
-                  @click="goToProfile(userId)"
+                  class="image_profile cursor"
+                  @click="showSetting"
                   :src="require('../assets/img/photo.png')"
                   alt="profile_pic"
                 />
+                <settingNav v-if="PopupsSettings === 1" />
               </div>
             </div>
           </b-navbar-nav>
@@ -103,40 +108,44 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
-
-      <b-modal id="bv-modal-example" hide-footer>
-        <template #modal-title> Notifikasi </template>
-        <div class="d-block text-center">
-          notif
-        </div>
-        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')"
-          >Close Me</b-button
-        >
-      </b-modal>
     </b-container>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import Notif from './_base/NavigationPopups/Notif'
 import Alert from '../mixins/AlertSweet'
+import settingNav from './_base/NavigationPopups/settingNavbar'
 export default {
   name: 'Navbar',
   mixins: [Alert],
-  data() {
-    return {}
+  components: {
+    Notif,
+    settingNav
   },
-  created() {},
+  data() {
+    return {
+      PopupsNotif: 0,
+      PopupsSettings: 0
+    }
+  },
+  created() {
+    if (this.userId) {
+      this.getNewNotif(this.userId)
+    }
+  },
   computed: {
     ...mapGetters({
       configNav: 'getUserRole',
       userId: 'getUserId',
-      compType: 'getCompType'
+      compType: 'getCompType',
+      notifCount: 'notifCount'
     })
   },
   methods: {
-    ...mapGetters(['getUserRole', 'notifikasi']),
+    ...mapActions(['getNewNotif']),
+    ...mapMutations(['resetCount']),
     SignUpChoose(LogorSign) {
       this.AlertSelect(LogorSign).then(res => {
         if (res.result.value === true && res.getSign === 'Login') {
@@ -151,7 +160,21 @@ export default {
       })
     },
     showNotif() {
-      console.log('a')
+      if (this.PopupsNotif === 0) {
+        this.PopupsNotif = 1
+        this.PopupsSettings = 0
+      } else {
+        this.PopupsNotif = 0
+      }
+      this.resetCount()
+    },
+    showSetting() {
+      if (this.PopupsSettings === 0) {
+        this.PopupsNotif = 0
+        this.PopupsSettings = 1
+      } else {
+        this.PopupsSettings = 0
+      }
     },
     goToProfile(id) {
       if (this.configNav === 0) {
@@ -159,6 +182,9 @@ export default {
       } else if (this.configNav === 1) {
         return this.$router.push(`/profile-company`)
       }
+    },
+    GoChatRoom() {
+      this.$router.push('/chat-room')
     }
   }
 }
@@ -200,6 +226,7 @@ export default {
   background: #5e50a1;
   color: white;
 }
+
 .logos {
   width: 50px;
   object-fit: contain;

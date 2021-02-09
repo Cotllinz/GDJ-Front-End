@@ -1,10 +1,20 @@
 import axios from 'axios'
-
 export default {
   state: {
-    notif: []
+    notif: [],
+    notifCount: 0
   },
-  mutation: {},
+  mutations: {
+    setNotif(state, payload) {
+      state.notif = payload.data
+    },
+    setCount(state, payload) {
+      state.notifCount = payload.data[0].total
+    },
+    resetCount(state) {
+      state.notifCount = 0
+    }
+  },
   actions: {
     postHire(context, payload) {
       return new Promise((resolve, reject) => {
@@ -23,10 +33,42 @@ export default {
         axios
           .get(`http://${process.env.VUE_APP_URL}/hire/notif/${payload}`)
           .then(result => {
-            context.state.notif = result.data.data
+            context.commit('setNotif', result.data)
             resolve(result)
           })
           .catch(error => {
+            console.clear()
+            reject(error)
+          })
+      })
+    },
+    getNewNotif(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://${process.env.VUE_APP_URL}/hire/countnotif/${payload}`)
+          .then(result => {
+            context.commit('setCount', result.data)
+            resolve(result)
+            console.clear() 
+          })
+          .catch(error => {
+            console.clear()
+            reject(error)
+          })
+      })
+    },
+    deleteNotif(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(
+            `http://${process.env.VUE_APP_URL}/hire/deletenotif/${payload}`
+          )
+          .then(result => {
+            context.state.notif = []
+            resolve(result)
+          })
+          .catch(error => {
+            console.clear()
             reject(error)
           })
       })
@@ -35,6 +77,9 @@ export default {
   getters: {
     notifikasi(state) {
       return state.notif
+    },
+    notifCount(state) {
+      return state.notifCount
     }
   }
 }

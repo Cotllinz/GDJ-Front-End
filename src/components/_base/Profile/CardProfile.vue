@@ -8,8 +8,7 @@
             fluid
             :src="
               profileById.image_pekerja
-                ? `http://${ENV}/fileUserProfile/` +
-                  profileById.image_pekerja
+                ? `http://${ENV}/fileUserProfile/` + profileById.image_pekerja
                 : require('../../../assets/img/default.jpg')
             "
             alt="Image"
@@ -107,7 +106,7 @@ export default {
   data() {
     return {
       idHired: 0,
-      ENV : process.env.VUE_APP_URL
+      ENV: process.env.VUE_APP_URL
     }
   },
   created() {
