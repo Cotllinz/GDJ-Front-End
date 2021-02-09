@@ -6,34 +6,63 @@
         <hr />
         <div
           class="history"
+          style="padding:0 10px"
           v-for="(item, index) in messagesHistory"
           :key="index"
         >
-          <div class="space-card">
+          <div
+            class="container"
+            v-if="item.id_user !== user.id_user"
+            :key="item"
+          >
             <div
-              class="left-conversation"
-              v-if="item.id_user !== user.id_user"
-              :key="item"
+              class="item"
+              style="background-color: #A9A3CC;max-width:400px;min-width:100px;border-radius:15px"
             >
-              {{ item.message }}
+              <p>
+                {{ item.message }}
+              </p>
             </div>
-            <div class="right-conversation" v-else>
-              {{ item.message }}
+          </div>
+          <div class="container" v-else>
+            <div
+              class="item"
+              style="float:right;background-color: #ECECF3;max-width:400px;min-width:100px;border-radius:15px"
+            >
+              <p>
+                {{ item.message }}
+              </p>
             </div>
           </div>
         </div>
         <div class="realtime" v-for="item in messages" :key="item">
-          <div class="space-card">
-            <div class="left-conversation" v-if="item.sender !== user.id_user">
-              {{ item.message }}
+          <div
+            class="container"
+            v-if="item.sender !== user.id_user"
+            :key="item"
+          >
+            <div
+              class="item"
+              style="background-color: #A9A3CC;max-width:400px;min-width:100px;border-radius:15px"
+            >
+              <p>
+                {{ item.message }}
+              </p>
             </div>
-            <div class="right-conversation" v-else>
-              {{ item.message }}
+          </div>
+          <div class="container" v-else>
+            <div
+              class="item"
+              style="float:right;background-color: #ECECF3;max-width:400px;min-width:100px;border-radius:15px"
+            >
+              <p>
+                {{ item.message }}
+              </p>
             </div>
           </div>
         </div>
-        <div class="enter-chat space-chat centered">
-          <b-form v-on:submit.prevent="sendMessage">
+        <div class="enter-chat space-chat">
+          <b-form v-on:submit.prevent="sendMessage" class="centered">
             <b-form-input
               type="text"
               class="input-chat"
@@ -52,6 +81,7 @@
               ></b-icon>
             </div>
           </b-form>
+          <br /><br />
         </div>
       </b-card>
     </div>
@@ -78,7 +108,7 @@ export default {
     return {
       chat: 1,
       socket: io(`http://${process.env.VUE_APP_URL}`, {
-        path: "/gdj/socket.io"
+        path: '/gdj/socket.io'
       }),
       message: '',
       URL: `http://${process.env.VUE_APP_URL}`
@@ -119,32 +149,30 @@ export default {
 </script>
 
 <style scoped>
+.item {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px;
+}
+.container {
+  border: none;
+  background-color: white;
+  padding: 5px;
+}
+.container::after {
+  content: '';
+  clear: both;
+  display: table;
+}
 .chatWrapper {
   overflow: auto;
 }
-.left-conversation {
-  width: max-content;
-  max-width: 550px;
-  background-color: #f6f7f8;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-.right-conversation {
-  width: max-content;
-  max-width: 550px;
-  background-color: #867cb8;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  color: white;
-}
+
 .centered {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  height: 650px;
-  width: 730px;
+  display: flex;
+  align-items: flex-end;
+  height: 220px;
+  width: 100%;
 }
 .input-chat {
   border-radius: 20px;
@@ -175,14 +203,6 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-  .left-conversation {
-    float: left;
-    max-width: 250px;
-  }
-  .right-conversation {
-    float: right;
-    max-width: 250px;
-  }
   .centered {
     height: 550px;
     width: 320px;
