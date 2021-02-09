@@ -90,7 +90,7 @@ export default {
     ...mapGetters(['profilePerekrutById', 'getUserId'])
   },
   methods: {
-    ...mapActions(['postHire', 'getProfilPerekrutById']),
+    ...mapActions(['postHire', 'getProfilPerekrutById', 'createRoomChat']),
     onHire() {
       const { files, jobs_needed, desc_jobs } = this.company
       const id_recruiter = this.getUserId
@@ -125,6 +125,18 @@ export default {
             title: 'Success',
             text: `${error.data.message}`
           })
+        })
+      const roomData = {
+        sender: this.getUserId,
+        receiver: this.$route.params.id
+      }
+      this.createRoomChat(roomData)
+        .then(result => {
+          this.$toasted.success(result)
+          this.$toasted.success('Check chat message')
+        })
+        .catch(error => {
+          this.$toasted.error(error)
         })
     }
   }

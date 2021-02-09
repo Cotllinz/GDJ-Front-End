@@ -10,13 +10,9 @@
               <h1 class="mt-4 mt-lg-0">
                 Talenta terbaik negeri untuk perubahan revolusi 4.0
               </h1>
-              <!-- <p class="mt-lg-4 mt-4">
+              <p class="mt-lg-4 mt-4">
                 Temukan talenta terbaik negeri bersama kami, Get Dream Job.
                 Platform pencarian kerja andalan pencari kerja dan penyedia kerja.
-              </p> -->
-              <p class="mt-lg-4 mt-4">
-                Get Dream Job과 함께 국내 최고의 인재를 찾아보세요. 구직자와
-                구직자를위한 주요 구직 플랫폼입니다.
               </p>
               <button
                 class="btn_getStarted mt-4 px-3 py-3 px-lg-3 py-lg-3 mt-lg-5"
@@ -61,11 +57,9 @@
                   src="../../../assets/images/icons/tick 1.jpg"
                   alt="labels"
                 />
-                <!-- <span class="ml-lg-4 ml-3">Penguasaan skill tallent sesuai dengan kebutuhan industri 4.0.</span>  -->
-                <span class="ml-lg-4 ml-3"
-                  >Mastery of Tallent δεξιοτήτων σύμφωνα με τις ανάγκες της
-                  βιομηχανίας 4.0.</span
-                >
+                <span class="ml-lg-4 ml-3">
+                  Penguasaan skill tallent sesuai dengan kebutuhan industri 
+                  4.0.</span> 
               </div>
               <div
                 class="why_chooseList mb-lg-4 mb-3 d-flex align-items-center"
