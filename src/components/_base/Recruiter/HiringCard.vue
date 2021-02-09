@@ -7,7 +7,7 @@
             rounded="circle"
             v-if="profileById.image_pekerja"
             :src="
-              `https://${vuePort}/fileUserProfile/` + profileById.image_pekerja
+              `https://${vuePort}/fileuploadgdj/fileUserProfile/` + profileById.image_pekerja
             "
             alt="Image"
             class="profile-img"

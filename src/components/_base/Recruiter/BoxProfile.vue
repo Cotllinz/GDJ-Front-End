@@ -20,7 +20,7 @@
               fluid
               v-if="profilePerekrut.image_recruiter"
               :src="
-                `https://${vuePort}/userRecruiter/` +
+                `https://${vuePort}/fileuploadgdj/userRecruiter/` +
                   profilePerekrut.image_recruiter
               "
               alt="Image"
