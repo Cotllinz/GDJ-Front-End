@@ -83,11 +83,14 @@ export default {
       }
     }
   },
+  created() {
+    this.getProfilPerekrutById(this.getUserId)
+  },
   computed: {
     ...mapGetters(['profilePerekrutById', 'getUserId'])
   },
   methods: {
-    ...mapActions(['postHire']),
+    ...mapActions(['postHire', 'getProfilPerekrutById']),
     onHire() {
       const { files, jobs_needed, desc_jobs } = this.company
       const id_recruiter = this.getUserId
