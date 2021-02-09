@@ -16,7 +16,7 @@
             fluid
             v-if="profilePerekrut.image_recruiter && !url"
             :src="
-              'https://localhost:3000/userRecruiter/' +
+              `https://${vuePort}/userRecruiter/` +
                 profilePerekrut.image_recruiter
             "
             alt="Image"
@@ -126,6 +126,7 @@ export default {
   name: 'Profile',
   data() {
     return {
+      vuePort: process.env.VUE_APP_URL,
       url: null,
       form: {
         newPass: '',

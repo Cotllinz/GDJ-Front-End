@@ -7,8 +7,7 @@
             rounded="circle"
             v-if="profileById.image_pekerja"
             :src="
-              'https://localhost:3000/fileUserProfile/' +
-                profileById.image_pekerja
+              `https://${vuePort}/fileUserProfile/` + profileById.image_pekerja
             "
             alt="Image"
             class="profile-img"
@@ -56,6 +55,7 @@ export default {
   name: 'Hire',
   data() {
     return {
+      vuePort: process.env.VUE_APP_URL,
       idUser: (this.id = this.$route.params.id)
     }
   },

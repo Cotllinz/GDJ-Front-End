@@ -23,7 +23,7 @@
               <b-img
                 left
                 :src="
-                  'https://localhost:3000/fileUserProfile/' + item.image_pekerja
+                  `https://${vuePort}/fileUserProfile/` + item.image_pekerja
                 "
                 rounded
                 alt="Photo"
@@ -86,7 +86,9 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Card',
   data() {
-    return {}
+    return {
+      vuePort: process.env.VUE_APP_URL
+    }
   },
   computed: {
     ...mapGetters({

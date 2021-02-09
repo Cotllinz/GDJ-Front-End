@@ -70,7 +70,7 @@
           <div>
             <b-card
               :img-src="
-                `https://localhost:3000/imagePorto/` + item.image_portofolio
+                `https://${vuePort}/imagePorto/` + item.image_portofolio
               "
               img-alt="Image"
               img-top
@@ -112,6 +112,7 @@ export default {
   data() {
     return {
       selected: null,
+      vuePort: process.env.VUE_APP_URL,
       options: [
         { item: 0, name: 'Aplikasi Mobile' },
         { item: 1, name: 'Aplikasi Web' }

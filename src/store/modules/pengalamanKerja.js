@@ -37,7 +37,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `https://localhost:3000/experiences/delete/?id=${payload.id_pengalaman}&idPekerja=${payload.idPekerja}`
+            `https://${process.env.VUE_APP_URL}/experiences/delete/?id=${payload.id_pengalaman}&idPekerja=${payload.idPekerja}`
           )
           .then(result => {
             //context.state.listPengalaman = result.data.data
