@@ -15,7 +15,7 @@
             class="image_setting"
             :src="
               items.image_recruiter
-                ? `http://${ENV}/userRecruiter/` + items.image_recruiter
+                ? `https://${ENV}/userRecruiter/` + items.image_recruiter
                 : 'https://www.pwcenter.org/sites/default/files/default_images/default_profile.png'
             "
             alt="images"

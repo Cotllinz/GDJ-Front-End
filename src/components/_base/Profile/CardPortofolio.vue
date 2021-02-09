@@ -18,7 +18,7 @@
         >
           <div class="porto-img">
             <b-img
-              :src="`http://${ENV}/imagePorto/` + item.image_portofolio"
+              :src="`https://${ENV}/imagePorto/` + item.image_portofolio"
               rounded
               alt="Rounded image"
               class="img"

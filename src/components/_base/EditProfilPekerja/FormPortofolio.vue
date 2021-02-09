@@ -70,7 +70,7 @@
           <div>
             <b-card
               :img-src="
-                `http://localhost:3000/imagePorto/` + item.image_portofolio
+                `https://localhost:3000/imagePorto/` + item.image_portofolio
               "
               img-alt="Image"
               img-top

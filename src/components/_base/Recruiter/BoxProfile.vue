@@ -20,7 +20,7 @@
               fluid
               v-if="profilePerekrut.image_recruiter"
               :src="
-                'http://localhost:3000/userRecruiter/' +
+                'https://localhost:3000/userRecruiter/' +
                   profilePerekrut.image_recruiter
               "
               alt="Image"

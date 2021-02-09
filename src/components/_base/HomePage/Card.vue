@@ -23,7 +23,7 @@
               <b-img
                 left
                 :src="
-                  'http://localhost:3000/fileUserProfile/' + item.image_pekerja
+                  'https://localhost:3000/fileUserProfile/' + item.image_pekerja
                 "
                 rounded
                 alt="Photo"

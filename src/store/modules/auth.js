@@ -27,7 +27,7 @@ export default {
     logins(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`http://${process.env.VUE_APP_URL}/user/login`, payload)
+          .post(`https://${process.env.VUE_APP_URL}/user/login`, payload)
           .then(result => {
             context.commit('setUser', result.data.data)
             localStorage.setItem('token', result.data.data.token)
@@ -43,7 +43,7 @@ export default {
       console.log(context)
       return new Promise((resolve, reject) => {
         axios
-          .post(`http://${process.env.VUE_APP_URL}/user/register`, payload)
+          .post(`https://${process.env.VUE_APP_URL}/user/register`, payload)
           .then(result => {
             resolve(result)
           })
@@ -56,7 +56,7 @@ export default {
       console.log(context)
       return new Promise((resolve, reject) => {
         axios
-          .patch(`http://${process.env.VUE_APP_URL}/user/activation/${payload}`)
+          .patch(`https://${process.env.VUE_APP_URL}/user/activation/${payload}`)
           .then(result => {
             resolve(result)
           })
@@ -69,7 +69,7 @@ export default {
       console.log(context)
       return new Promise((resolve, reject) => {
         axios
-          .post(`http://${process.env.VUE_APP_URL}/user/forgot`, payload)
+          .post(`https://${process.env.VUE_APP_URL}/user/forgot`, payload)
           .then(result => {
             resolve(result)
           })
@@ -83,7 +83,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `http://${process.env.VUE_APP_URL}/user/resetPassword`,
+            `https://${process.env.VUE_APP_URL}/user/resetPassword`,
             payload
           )
           .then(result => {
@@ -98,7 +98,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `http://${process.env.VUE_APP_URL}/user/changepass/${payload.id}`,
+            `https://${process.env.VUE_APP_URL}/user/changepass/${payload.id}`,
             payload.data
           )
           .then(result => {

@@ -10,7 +10,7 @@ export default {
       //console.log(payload)
       return new Promise((resolve, reject) => {
         axios
-          .post(`http://${process.env.VUE_APP_URL}/experiences`, payload)
+          .post(`https://${process.env.VUE_APP_URL}/experiences`, payload)
           .then(result => {
             resolve(result)
           })
@@ -22,7 +22,7 @@ export default {
     getPengalamanKerja(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://${process.env.VUE_APP_URL}/experiences/${payload}`)
+          .get(`https://${process.env.VUE_APP_URL}/experiences/${payload}`)
           .then(result => {
             context.state.listPengalaman = result.data.data
             resolve(result)
@@ -37,7 +37,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `http://localhost:3000/experiences/delete/?id=${payload.id_pengalaman}&idPekerja=${payload.idPekerja}`
+            `https://localhost:3000/experiences/delete/?id=${payload.id_pengalaman}&idPekerja=${payload.idPekerja}`
           )
           .then(result => {
             //context.state.listPengalaman = result.data.data
@@ -52,7 +52,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `http://${process.env.VUE_APP_URL}/experiences/deleteall/?id=${payload}`
+            `https://${process.env.VUE_APP_URL}/experiences/deleteall/?id=${payload}`
           )
           .then(result => {
             resolve(result)

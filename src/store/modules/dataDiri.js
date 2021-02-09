@@ -9,7 +9,7 @@ export default {
     getDatarofiles(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`http://${process.env.VUE_APP_URL}/user/profile/${payload}`)
+          .post(`https://${process.env.VUE_APP_URL}/user/profile/${payload}`)
           .then(result => {
             resolve(result)
           })

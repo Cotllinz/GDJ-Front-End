@@ -10,7 +10,7 @@
                 v-else-if="profileById.image_pekerja"
                 class="round-img"
                 :src="
-                  `http://${ENV}/fileUserProfile/` + profileById.image_pekerja
+                  `https://${ENV}/fileUserProfile/` + profileById.image_pekerja
                 "
                 alt=""
               />

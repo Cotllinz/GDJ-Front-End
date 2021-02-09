@@ -7,7 +7,7 @@
             rounded="circle"
             v-if="profileById.image_pekerja"
             :src="
-              'http://localhost:3000/fileUserProfile/' +
+              'https://localhost:3000/fileUserProfile/' +
                 profileById.image_pekerja
             "
             alt="Image"

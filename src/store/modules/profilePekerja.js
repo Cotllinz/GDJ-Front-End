@@ -41,7 +41,7 @@ export default {
         data.append('github', github)
         axios
           .patch(
-            `http://${process.env.VUE_APP_URL}/user/editprofile/${payload}`,
+            `https://${process.env.VUE_APP_URL}/user/editprofile/${payload}`,
             data
           )
           .then(response => {
@@ -57,7 +57,7 @@ export default {
     getProfilPekerjaById(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://${process.env.VUE_APP_URL}/user/profile/${payload}`)
+          .get(`https://${process.env.VUE_APP_URL}/user/profile/${payload}`)
           .then(result => {
             context.state.profileById = result.data.data[0]
             resolve(result)
@@ -70,7 +70,7 @@ export default {
     getExperience(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://${process.env.VUE_APP_URL}/experiences/${payload}`)
+          .get(`https://${process.env.VUE_APP_URL}/experiences/${payload}`)
           .then(result => {
             context.state.exprUser = result.data.data
             resolve(result)
@@ -83,7 +83,7 @@ export default {
     getSkills(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://${process.env.VUE_APP_URL}/skill/${payload}`)
+          .get(`https://${process.env.VUE_APP_URL}/skill/${payload}`)
           .then(result => {
             context.state.skill = result.data.data
             resolve(result)
@@ -96,7 +96,7 @@ export default {
     getPortofolio(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://${process.env.VUE_APP_URL}/portofolio/${payload}`)
+          .get(`https://${process.env.VUE_APP_URL}/portofolio/${payload}`)
           .then(result => {
             context.state.portoUser = result.data.data
             resolve(result)
