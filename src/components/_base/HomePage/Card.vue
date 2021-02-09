@@ -11,7 +11,11 @@
         v-for="(item, index) in jobSeeker"
         :key="index"
       >
-        <b-card @click="profilePekerja(item.id_pekerja)" class="home-card">
+        <b-card
+          v-if="item.skills.length > 0 && item.job_require"
+          @click="profilePekerja(item.id_pekerja)"
+          class="home-card"
+        >
           <div
             class="d-flex flex-lg-column align-items-center align-items-lg-start"
           >
@@ -34,25 +38,32 @@
                 <b-icon icon="geo-alt" style="margin-right:0px"></b-icon>
                 {{ item.city_pekerja }}
               </b-card-text>
-              <div class="d-none d-lg-block">
+              <div v-if="item.skills.length > 0" class="d-none d-lg-block">
                 <b-button size="sm" class="skill">{{
                   item.skills[0].skill_name
                 }}</b-button>
-                <b-button size="sm" class="skill">{{
-                  item.skills[1].skill_name
-                }}</b-button>
-                <span class="badge">{{ item.skills.length - 2 }}+</span>
+                <b-button
+                  v-if="item.skills.length > 1"
+                  size="sm"
+                  class="skill"
+                  >{{ item.skills[1].skill_name }}</b-button
+                >
+                <span v-if="item.skills.length > 2" class="badge"
+                  >{{ item.skills.length - 2 }}+</span
+                >
               </div>
             </div>
           </div>
-          <div class="d-block d-lg-none">
+          <div v-if="item.skills.length > 0" class="d-block d-lg-none">
             <b-button size="sm" class="skill">{{
               item.skills[0].skill_name
             }}</b-button>
-            <b-button size="sm" class="skill">{{
+            <b-button v-if="item.skills.length > 1" size="sm" class="skill">{{
               item.skills[1].skill_name
             }}</b-button>
-            <span class="badge">{{ item.skills.length - 2 }}+</span>
+            <span v-if="item.skills.length > 2" class="badge"
+              >{{ item.skills.length - 2 }}+</span
+            >
           </div>
         </b-card>
       </b-col>
