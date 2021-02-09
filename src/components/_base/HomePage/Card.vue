@@ -23,7 +23,8 @@
               <b-img
                 left
                 :src="
-                  `https://${vuePort}/fileuploadgdj/fileUserProfile/` + item.image_pekerja
+                  `https://${vuePort}/fileuploadgdj/fileUserProfile/` +
+                    item.image_pekerja
                 "
                 rounded
                 alt="Photo"

@@ -8,7 +8,8 @@
             fluid
             :src="
               profileById.image_pekerja
-                ? `https://${ENV}/fileuploadgdj/fileUserProfile/` + profileById.image_pekerja
+                ? `https://${ENV}/fileuploadgdj/fileUserProfile/` +
+                  profileById.image_pekerja
                 : require('../../../assets/img/default.jpg')
             "
             alt="Image"

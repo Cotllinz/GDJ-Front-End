@@ -18,7 +18,10 @@
         >
           <div class="porto-img">
             <b-img
-              :src="`https://${ENV}/fileuploadgdj/imagePorto/` + item.image_portofolio"
+              :src="
+                `https://${ENV}/fileuploadgdj/imagePorto/` +
+                  item.image_portofolio
+              "
               rounded
               alt="Rounded image"
               class="img"

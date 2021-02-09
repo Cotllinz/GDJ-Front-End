@@ -56,7 +56,9 @@ export default {
       console.log(context)
       return new Promise((resolve, reject) => {
         axios
-          .patch(`https://${process.env.VUE_APP_URL}/user/activation/${payload}`)
+          .patch(
+            `https://${process.env.VUE_APP_URL}/user/activation/${payload}`
+          )
           .then(result => {
             resolve(result)
           })

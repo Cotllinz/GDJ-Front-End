@@ -49,7 +49,7 @@ export default {
           .then(result => {
             context.commit('setCount', result.data)
             resolve(result)
-            console.clear() 
+            console.clear()
           })
           .catch(error => {
             console.clear()

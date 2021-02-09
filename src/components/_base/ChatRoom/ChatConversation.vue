@@ -77,13 +77,10 @@ export default {
   data() {
     return {
       chat: 1,
-      socket: io(
-        `https://${process.env.VUE_APP_URL}`,
-        {
-          path: '/gdj/socket.io',
-          transports: ['websocket']
-        }
-      ),
+      socket: io(`https://${process.env.VUE_APP_URL}`, {
+        path: '/gdj/socket.io',
+        transports: ['websocket']
+      }),
       message: '',
       URL: `https://${process.env.VUE_APP_URL}`
     }
