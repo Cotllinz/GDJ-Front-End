@@ -44,7 +44,8 @@
               <b-icon icon="geo-alt" style="margin-right:10px"></b-icon
               >{{ profileById.city_pekerja }}
             </p>
-            <p>{{ profileById.status_jobs }}</p>
+            <p v-if="profileById.status_jobs === 'ON'">Ingin bekerja</p>
+            <p v-if="profileById.status_jobs === 'OFF'">Tidak ingin bekerja</p>
           </div>
         </div> </b-card
       ><br />

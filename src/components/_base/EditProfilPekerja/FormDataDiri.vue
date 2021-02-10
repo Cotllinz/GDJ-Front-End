@@ -20,6 +20,22 @@
           class="input-style"
           v-model="profileById.job_desk"
         ></b-form-input>
+        <h6>Job Require</h6>
+        <b-form-select class="mb-3 " v-model="profileById.job_require">
+          <b-form-select-option value="Full Time"
+            >Full Time</b-form-select-option
+          >
+          <b-form-select-option value="Freelance"
+            >Freelance</b-form-select-option
+          >
+        </b-form-select>
+        <h6>Status Jobs</h6>
+        <b-form-select class="mb-3 " v-model="profileById.status_jobs">
+          <b-form-select-option value="OFF"
+            >Tidak Ingin Bekerja</b-form-select-option
+          >
+          <b-form-select-option value="ON">Ingin Bekerja</b-form-select-option>
+        </b-form-select>
         <h6>Domisili</h6>
         <b-form-input
           type="text"
