@@ -9,7 +9,7 @@ export default {
     getSkills(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://${process.env.VUE_APP_URL}/skill/${payload}`)
+          .get(`${process.env.VUE_APP_URL}/skill/${payload}`)
           .then(result => {
             context.state.skills = result.data.data
             resolve(result)
@@ -25,7 +25,7 @@ export default {
         // console.log(reject)
         console.log(payload)
         axios
-          .post(`https://${process.env.VUE_APP_URL}/skill/add`, payload)
+          .post(`${process.env.VUE_APP_URL}/skill/add`, payload)
           .then(result => {
             resolve(result)
           })
@@ -39,7 +39,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `https://${process.env.VUE_APP_URL}/skill/?id=${payload.id_pekerja}&idSkill=${payload.id_skill}`
+            `${process.env.VUE_APP_URL}/skill/?id=${payload.id_pekerja}&idSkill=${payload.id_skill}`
           )
           .then(result => {
             console.log(result)
