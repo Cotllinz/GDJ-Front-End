@@ -14,7 +14,7 @@ export default {
     getProfilPerekrutById(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://${process.env.VUE_APP_URL}/company/${payload}`)
+          .get(`${process.env.VUE_APP_URL}/company/${payload}`)
           .then(result => {
             context.commit('profileById', result.data.data[0])
             console.log(result)
@@ -50,7 +50,7 @@ export default {
         data.append('social_media', social_media)
         data.append('linked_in', linked_in)
         axios
-          .patch(`https://${process.env.VUE_APP_URL}/company/${payload}`, data)
+          .patch(`${process.env.VUE_APP_URL}/company/${payload}`, data)
           .then(response => {
             resolve(response)
           })
