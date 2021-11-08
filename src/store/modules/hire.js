@@ -19,7 +19,7 @@ export default {
     postHire(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`https://${process.env.VUE_APP_URL}/hire`, payload)
+          .post(`${process.env.VUE_APP_URL}/hire`, payload)
           .then(result => {
             resolve(result)
           })
@@ -31,7 +31,7 @@ export default {
     getNotif(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://${process.env.VUE_APP_URL}/hire/notif/${payload}`)
+          .get(`${process.env.VUE_APP_URL}/hire/notif/${payload}`)
           .then(result => {
             context.commit('setNotif', result.data)
             resolve(result)
@@ -45,7 +45,7 @@ export default {
     getNewNotif(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://${process.env.VUE_APP_URL}/hire/countnotif/${payload}`)
+          .get(`${process.env.VUE_APP_URL}/hire/countnotif/${payload}`)
           .then(result => {
             context.commit('setCount', result.data)
             resolve(result)
@@ -61,7 +61,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `https://${process.env.VUE_APP_URL}/hire/deletenotif/${payload}`
+            `${process.env.VUE_APP_URL}/hire/deletenotif/${payload}`
           )
           .then(result => {
             context.state.notif = []
