@@ -47,7 +47,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `https://${process.env.VUE_APP_URL}/home/limit?page=${context.state.page}&limit=${context.state.limit}&sort=${context.state.sort}&status=${context.state.categoryStatus}`
+            `${process.env.VUE_APP_URL}/home/limit?page=${context.state.page}&limit=${context.state.limit}&sort=${context.state.sort}&status=${context.state.categoryStatus}`
           )
           .then(result => {
             context.commit('setListPekerja', result.data)
@@ -62,7 +62,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `https://${process.env.VUE_APP_URL}/home/getsortingskill?page=${context.state.page}&limit=${context.state.limit}`
+            `${process.env.VUE_APP_URL}/home/getsortingskill?page=${context.state.page}&limit=${context.state.limit}`
           )
           .then(result => {
             console.log(result)
@@ -79,7 +79,7 @@ export default {
         return new Promise((resolve, reject) => {
           axios
             .get(
-              `https://${process.env.VUE_APP_URL}/home?page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}`
+              `${process.env.VUE_APP_URL}/home?page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}`
             )
             .then(result => {
               console.log(result)
