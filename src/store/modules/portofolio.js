@@ -14,7 +14,7 @@ export default {
     addPortofolio(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`https://${process.env.VUE_APP_URL}/portofolio`, payload)
+          .post(`${process.env.VUE_APP_URL}/portofolio`, payload)
           .then(result => {
             resolve(result)
           })
@@ -27,7 +27,7 @@ export default {
       console.log(payload)
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://${process.env.VUE_APP_URL}/portofolio/${payload}`)
+          .get(`${process.env.VUE_APP_URL}/portofolio/${payload}`)
           .then(result => {
             context.commit('PortoSet', result.data)
             resolve(result)
@@ -41,7 +41,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `https://${process.env.VUE_APP_URL}/portofolio/delete/?id=${payload.id}&idPekerja=${payload.id_user}`
+            `${process.env.VUE_APP_URL}/portofolio/delete/?id=${payload.id}&idPekerja=${payload.id_user}`
           )
           .then(result => {
             context.state.portoUser = result.data.data
